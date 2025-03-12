@@ -1,0 +1,162 @@
+@use "./colors" as *;
+@import "bootstrap/scss/bootstrap";
+
+// Mobile-First (base styles for screens <768px)
+.navbar {
+    background-color: $primary-text;
+    color: $white !important;
+    position: relative;
+    padding: 12px 12px 12px 0 !important;
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .header-search {
+            input {
+                display: none;
+            }
+            span svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+        .location-icon,
+        .angleDown-icon {
+            display: none;
+        }
+    }
+    .header-logo {
+        width: 275px; // Adjust logo size on small screens
+    }
+
+    .header-icon svg {
+        fill: $white !important;
+        width: 18px;
+        height: 18px;
+    }
+
+    .header-search {
+        position: relative;
+        width: 100%;
+
+        input {
+            background-color: $secondary-dark;
+            color: white;
+            border: none;
+            padding: 6px 14px 6px 12px;
+            border-radius: 6px;
+            outline: none;
+
+            &::placeholder {
+                color: $white;
+            }
+        }
+
+        .header-icon {
+            cursor: pointer !important;
+            position: absolute;
+            top: 50%;
+            padding: 8px;
+            transform: translateY(-50%);
+            right: 10px;
+
+            svg {
+                fill: $white !important;
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 130% !important;
+        z-index: 9999;
+        padding: 4px 8px;
+        border-radius: 0;
+    }
+
+    .dropdown-item {
+        color: $black;
+        transition:
+            background-color 0.3s ease,
+            color 0.3s ease;
+
+        &:hover {
+            background-color: transparent;
+            color: $primary-light;
+        }
+    }
+
+    .dropdown-right {
+        right: 0 !important;
+        left: auto !important;
+    }
+
+    #language-dropdown::after {
+        display: none;
+    }
+
+    .navbar-expand-lg {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+// Medium Screens (md: >=768px && <992px)
+@media (min-width: 768px) {
+    .navbar {
+        .navbar-nav {
+            gap: 10px;
+            .header-search {
+                input {
+                    display: block;
+                }
+                span svg {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+            .header-iconContainer {
+                gap: 12px;
+                .location-icon,
+                .angleDown-icon {
+                    display: block;
+                }
+            }
+            .location-icon {
+                display: block !important;
+            }
+        }
+    }
+}
+
+// Large Screens (lg: >=992px)
+@media (min-width: 992px) {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 32px !important;
+        .navbar-nav {
+            margin-left: auto;
+            justify-content: end;
+        }
+
+        .header-logo {
+            width: 230px;
+        }
+        .header-search {
+            input {
+                padding: 7px 14px 7px 14px;
+            }
+        }
+        .header-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+        .angleDown-icon {
+            display: block !important;
+        }
+    }
+}

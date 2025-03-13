@@ -1,0 +1,65 @@
+@use "../base/colors" as *;
+.carousel-indicators {
+    gap: 1px;
+    button {
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 100%;
+        margin: 0 5px !important;
+        display: none;
+        color: gray !important;
+        &.active {
+            color: $primary-text !important;
+        }
+    }
+}
+.carousel-container {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    margin-bottom: 63px;
+    .carousel-item {
+        position: relative;
+        &:hover .carousel-img {
+            transform: scale(1.05);
+        }
+        .carousel-img {
+            transition: transform 0.8s ease-in-out;
+            object-position: center center;
+            object-fit: fill;
+        }
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.8s linear;
+        }
+        &:hover .carousel-overlay {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.8s linear;
+        }
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+        transform: translateY(100%);
+        transition: opacity 0.8s ease;
+        z-index: 10;
+    }
+    &:hover .carousel-control-prev,
+    &:hover .carousel-control-next {
+        transform: translateY(0%);
+    }
+}
+
+// Medium Screens (md: >=768px)
+@media (min-width: 768px) {
+    .carousel-indicators button {
+        display: block;
+    }
+}

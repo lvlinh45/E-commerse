@@ -1,0 +1,7 @@
+@use "./colors" as *;
+.heading {
+    color: $text-heading;
+    font-size: 23px;
+    font-weight: bold;
+    line-height: 32px;
+}

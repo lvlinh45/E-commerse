@@ -1,4 +1,4 @@
-@use "./colors" as *;
+@use "../base/colors" as *;
 @import "bootstrap/scss/bootstrap";
 
 // Mobile-First (base styles for screens <768px)
@@ -104,7 +104,7 @@
     }
 }
 
-// Medium Screens (md: >=768px && <992px)
+// Medium Screens (md: >=768px)
 @media (min-width: 768px) {
     .navbar {
         .navbar-nav {

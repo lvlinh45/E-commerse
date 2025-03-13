@@ -1,0 +1,26 @@
+@use "../base/colors" as *;
+
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.category-item {
+    background-color: $primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 108px;
+    }
+}
+.container {
+    max-width: 1400px !important;
+}
+@media (min-width: 768px) {
+    .category-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+    }
+}

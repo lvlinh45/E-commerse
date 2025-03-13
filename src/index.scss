@@ -1,5 +1,8 @@
-@use "styles/colors" as *; // Import all variables from colors.scss
-@use "styles/header" as *;
+@use "styles/base/colors" as *; // Import all variables from colors.scss
+@use "styles/base/typography" as *;
+@use "styles/layout/header" as *;
+@use "styles/components/carousel" as *;
+@use "styles/components/category" as *;
 
 body {
     font-family: "Nunito Sans", sans-serif !important;

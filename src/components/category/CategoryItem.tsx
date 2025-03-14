@@ -1,9 +1,9 @@
 const CategoryItem = ({ url, name }: { url: string; name: string }) => {
   return (
     <div className="category-item">
-      <div>
+      <p>
         <img src={url} alt="category-item" />
-      </div>
+      </p>
       <div>
         <p>{name}</p>
       </div>

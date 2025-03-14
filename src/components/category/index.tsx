@@ -5,7 +5,7 @@ import CategoryItem from "./CategoryItem";
 const Category = () => {
   return (
     <div className="text-center">
-      <Text classname="mb-4" text="NEW COLLECTIONS"></Text>
+      <Text classname="mb-4" text="SHOP BY CATEGORY"></Text>
       <div className="category-container">
         {imgCategory.map((item) => (
           <CategoryItem

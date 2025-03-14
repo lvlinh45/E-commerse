@@ -1,7 +1,22 @@
 @use "./colors" as *;
-.heading {
-    color: $text-heading;
-    font-size: 23px;
-    font-weight: bold;
-    line-height: 32px;
+.text-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .heading {
+        color: $text-heading;
+        font-size: 23px;
+        font-weight: bold;
+        line-height: 32px;
+    }
+    .text-showAll {
+        color: black;
+        background-color: white;
+        border: none;
+        font-size: 14px;
+        margin: 0 0 -3px 0;
+        padding: 0 0 0 10px;
+        font-weight: bold;
+        cursor: pointer;
+    }
 }

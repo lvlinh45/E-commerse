@@ -1,65 +1,63 @@
 @use "../base/colors" as *;
-.carousel-indicators {
-    gap: 1px;
-    button {
-        width: 10px !important;
-        height: 10px !important;
-        border-radius: 100%;
-        margin: 0 5px !important;
-        display: none;
-        color: gray !important;
-        &.active {
-            color: $primary-text !important;
-        }
+
+.slick-prev {
+    left: 2px !important;
+    opacity: 0;
+    z-index: 10000;
+    transition: 0.5s all linear;
+    &::before {
+        display: none !important;
+    }
+}
+.slick-next {
+    right: 2px !important;
+    opacity: 0;
+    z-index: 10000;
+    transition: 0.5s all linear;
+    &::before {
+        display: none !important;
     }
 }
 .carousel-container {
-    position: relative;
+    transition: 0.5s all linear;
     cursor: pointer;
-    overflow: hidden;
-    margin-bottom: 63px;
-    .carousel-item {
-        position: relative;
-        &:hover .carousel-img {
-            transform: scale(1.05);
+    &:hover .slick-next {
+        right: 32px !important;
+        opacity: 1;
+        transition: 0.5s all linear;
+    }
+    &:hover .slick-prev {
+        left: 32px !important;
+        opacity: 1;
+        transition: 0.5s all linear;
+    }
+    .carousel-overlay {
+        transition: 0.1s all linear;
+    }
+    &:hover .carousel-overlay {
+        position: fixed !important;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.01);
+        transition: 0.1s all linear;
+    }
+    .slick-dots {
+        bottom: 20px !important;
+        li {
+            button:before {
+                font-size: 13px !important;
+            }
         }
-        .carousel-img {
-            transition: transform 0.8s ease-in-out;
-            object-position: center center;
-            object-fit: fill;
-        }
-        .carousel-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.8s linear;
-        }
-        &:hover .carousel-overlay {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity 0.8s linear;
+        .slick-active {
+            button:before {
+                opacity: 2 !important;
+            }
         }
     }
-    .carousel-control-prev,
-    .carousel-control-next {
-        transform: translateY(100%);
-        transition: opacity 0.8s ease;
-        z-index: 10;
+    .carousel-img {
+        transition: all 0.3s linear;
     }
-    &:hover .carousel-control-prev,
-    &:hover .carousel-control-next {
-        transform: translateY(0%);
-    }
-}
 
-// Medium Screens (md: >=768px)
-@media (min-width: 768px) {
-    .carousel-indicators button {
-        display: block;
+    &:hover .carousel-img {
+        transform: scale(1.1);
     }
 }

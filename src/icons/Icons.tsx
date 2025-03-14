@@ -109,3 +109,71 @@ export const IconAngleDown = () => (
     <path d="M0-.75h24v24H0z" fill="none"></path>
   </svg>
 );
+export const IconPrev = () => (
+  <svg
+    style={{ width: "30px", height: "30px" }}
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="#fff"
+    className="size-19"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="m8.25 4.5 7.5 7.5-7.5 7.5"
+    />
+  </svg>
+);
+export const IconPrevLarge = () => (
+  <svg
+    style={{ width: "50px", height: "50px" }}
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="#fff"
+    className="size-19"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="m8.25 4.5 7.5 7.5-7.5 7.5"
+    />
+  </svg>
+);
+export const IconNext = () => (
+  <svg
+    style={{ width: "30px", height: "30px" }}
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="#fff"
+    className="size-8"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M15.75 19.5 8.25 12l7.5-7.5"
+    />
+  </svg>
+);
+export const IconNextLarge = () => (
+  <svg
+    style={{ width: "50px", height: "50px" }}
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="#fff"
+    className="size-8"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M15.75 19.5 8.25 12l7.5-7.5"
+    />
+  </svg>
+);

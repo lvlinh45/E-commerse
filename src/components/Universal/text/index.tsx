@@ -8,7 +8,11 @@ const Text = ({
   showAll?: string;
 }) => {
   return (
-    <div className="text-container" style={{ paddingRight: "7px" }}>
+    <div
+      className={`text-container  ${
+        showAll ? "justify-content-between" : "justify-content-center"
+      }`}
+    >
       <div className={`${classname} heading`}>{text}</div>
       <p className={`${classname} text-showAll`}>{showAll}</p>
     </div>

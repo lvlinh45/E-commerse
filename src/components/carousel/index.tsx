@@ -26,7 +26,6 @@ const CarouselElement = () => {
         {imgUrl.map((item) => (
           <>
             <img
-              width="100%"
               height="500px"
               src={item.url}
               alt="img-banner"

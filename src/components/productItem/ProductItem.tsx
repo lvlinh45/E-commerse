@@ -8,7 +8,6 @@ const ProductItem = ({ url }: { url?: string }) => {
       <img
         style={{
           width: "100%",
-          paddingRight: "7px",
           objectFit: "cover",
         }}
         src={url}

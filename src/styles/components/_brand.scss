@@ -1,0 +1,40 @@
+@use "../base/colors" as *; // Import all variables from colors.scss
+
+.brandItem-wrapper {
+    .brandItem-heading {
+        margin: 0 0 8px;
+        font-size: 90%;
+        opacity: 0.75;
+        font-weight: 300;
+        word-break: break-word;
+    }
+    .brandItem-desc {
+        min-height: 40px;
+        display: -webkit-box;
+        max-width: 100%;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .brandItem-review {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .brandItem-price {
+        font-size: 18px;
+    }
+}
+
+.slick-slide {
+    margin-right: 10px; /* Tạo khoảng cách giữa các phần tử */
+}
+
+.slick-track {
+    display: flex;
+    flex-wrap: nowrap; /* Đảm bảo các phần tử không bị wrap ra ngoài */
+}
+
+.slick-list {
+    padding: 0 10px; /* Padding cho 2 bên để không làm ảnh hưởng tới 2 bên */
+}

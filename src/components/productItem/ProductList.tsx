@@ -8,10 +8,12 @@ import { imgCollection } from "../../constants/collection";
 const ProductList = () => {
   const settings = {
     dots: false,
-    infinite: true,
+    // infinite: true,
+    className: "slider variable-width",
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    initialSlide: 4,
     nextArrow: (
       <div className="slick-prev">
         <IconPrevLarge></IconPrevLarge>
@@ -27,7 +29,7 @@ const ProductList = () => {
   return (
     <div className="mt-5 ">
       <Text text="NEW COLLECTIONS" classname="mb-3" showAll="SHOW ALL"></Text>
-      <div className="carousel-container carousel-main mb-5 ">
+      <div className="carousel-container productList-track carousel-main mb-5 ">
         <Slider {...settings}>
           {imgCollection.map((item) => (
             <>

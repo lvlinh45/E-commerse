@@ -37,7 +37,7 @@
     &:hover .carousel-overlay {
         position: fixed !important;
         inset: 0;
-        background-color: rgba(0, 0, 0, 0.01);
+        background-color: rgba(0, 0, 0, 0.02);
         transition: 0.1s all linear;
     }
     .slick-dots {
@@ -57,7 +57,24 @@
         transition: all 0.3s linear;
     }
 
-    &:hover .carousel-img {
-        transform: scale(1.1);
+    &:hover .slick-current .carousel-img {
+        transform: scale(1.05);
+    }
+}
+// .slick-track {
+//     display: flex !important;
+//     justify-content: flex-start; /* Sử dụng flex-start để các slide bắt đầu từ đầu */
+//     align-items: center;
+//     width: 100%;
+//     gap: 10px; /* Tạo khoảng cách giữa các slide */
+//     padding-left: 0; /* Loại bỏ khoảng cách ở bên trái */
+//     padding-right: 0; /* Loại bỏ khoảng cách ở bên phải */
+// }
+
+.productList-track {
+    .slick-track {
+        display: flex !important;
+        flex-wrap: nowrap;
+        column-gap: 10px;
     }
 }

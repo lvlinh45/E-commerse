@@ -1,7 +1,6 @@
 @use "./colors" as *;
 .text-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     .heading {
         color: $text-heading;

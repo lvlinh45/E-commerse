@@ -1,26 +1,26 @@
 @use "../base/colors" as *;
 
-.slick-prev {
-    left: 2px !important;
-    opacity: 0;
-    z-index: 10000;
-    transition: 0.5s all linear;
-    &::before {
-        display: none !important;
-    }
-}
-.slick-next {
-    right: 2px !important;
-    opacity: 0;
-    z-index: 10000;
-    transition: 0.5s all linear;
-    &::before {
-        display: none !important;
-    }
-}
 .carousel-container {
     transition: 0.5s all linear;
     cursor: pointer;
+    .slick-prev {
+        left: 2px !important;
+        opacity: 0;
+        z-index: 10000;
+        transition: 0.5s all linear;
+        &::before {
+            display: none !important;
+        }
+    }
+    .slick-next {
+        right: 2px !important;
+        opacity: 0;
+        z-index: 10000;
+        transition: 0.5s all linear;
+        &::before {
+            display: none !important;
+        }
+    }
     &:hover .slick-next {
         right: 32px !important;
         opacity: 1;
@@ -61,20 +61,43 @@
         transform: scale(1.05);
     }
 }
-// .slick-track {
-//     display: flex !important;
-//     justify-content: flex-start; /* Sử dụng flex-start để các slide bắt đầu từ đầu */
-//     align-items: center;
-//     width: 100%;
-//     gap: 10px; /* Tạo khoảng cách giữa các slide */
-//     padding-left: 0; /* Loại bỏ khoảng cách ở bên trái */
-//     padding-right: 0; /* Loại bỏ khoảng cách ở bên phải */
-// }
 
-.productList-track {
-    .slick-track {
-        display: flex !important;
-        flex-wrap: nowrap;
-        column-gap: 10px;
+// SLIDER
+
+.productList-container {
+    transition: 0.5s all linear;
+    .swiper-button-prev {
+        opacity: 0 !important;
+        left: 12px !important;
+        transition: 0.5s all linear;
+        z-index: 10000;
+        transform: translateY(-50%);
+        top: 50% !important;
+        &::after {
+            opacity: 1;
+        }
+    }
+    .swiper-button-next {
+        opacity: 0 !important;
+        right: 12px !important;
+        transition: 0.5s all linear;
+        transform: translateY(-50%);
+        top: 50% !important;
+        &::after {
+            opacity: 1;
+        }
+    }
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 30px !important;
+        color: $white;
+    }
+    &:hover .swiper-button-next {
+        right: 24px !important;
+        opacity: 1 !important;
+    }
+    &:hover .swiper-button-prev {
+        left: 24px !important;
+        opacity: 1 !important;
     }
 }

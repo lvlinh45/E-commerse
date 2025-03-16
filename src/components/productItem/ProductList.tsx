@@ -1,42 +1,31 @@
-import Slider from "react-slick"; // Import Slider từ react-slick
-
-import { IconNextLarge, IconPrevLarge } from "../../icons/Icons";
 import ProductItem from "./ProductItem";
 import Text from "../Universal/text";
 import { imgCollection } from "../../constants/collection";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
 
 const ProductList = () => {
-  const settings = {
-    dots: false,
-    // infinite: true,
-    className: "slider variable-width",
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 4,
-    nextArrow: (
-      <div className="slick-prev">
-        <IconPrevLarge></IconPrevLarge>
-      </div>
-    ),
-    prevArrow: (
-      <div className="slick-next">
-        <IconNextLarge></IconNextLarge>
-      </div>
-    ),
-  };
-
   return (
-    <div className="mt-5 ">
+    <div className="mt-5 slick-product">
       <Text text="NEW COLLECTIONS" classname="mb-3" showAll="SHOW ALL"></Text>
-      <div className="carousel-container productList-track carousel-main mb-5 ">
-        <Slider {...settings}>
+      <div className="productList-container overflow-hidden">
+        <Swiper
+          navigation={true}
+          grabCursor={true}
+          spaceBetween={10}
+          slidesPerView={4}
+          modules={[Navigation, Autoplay]}
+        >
           {imgCollection.map((item) => (
-            <>
-              <ProductItem key={item.id} url={item.url}></ProductItem>
-            </>
+            <div key={item.id}>
+              <div>
+                <SwiperSlide>
+                  <ProductItem key={item.id} url={item.url}></ProductItem>
+                </SwiperSlide>
+              </div>
+            </div>
           ))}
-        </Slider>
+        </Swiper>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 export const imgUrl = [
   {
     id: 1,
-    url: "https://cdn.shopify.com/s/files/1/0456/5070/6581/files/Hike_Cool_6.3_1545x500_EN.jpg?v=1741766230&width=352%20352w,%20//cdn.shopify.com/s/files/1/0456/5070/6581/files/Hike_Cool_6.3_1545x500_EN.jpg?v=1741766230&width=832%20832w,%20//cdn.shopify.com/s/files/1/0456/5070/6581/files/Hike_Cool_6.3_1545x500_EN.jpg?v=1741766230&width=1200%201200w,%20//cdn.shopify.com/s/files/1/0456/5070/6581/files/Hike_Cool_6.3_1545x500_EN.jpg?v=1741766230&width=1545%201545w,%20//cdn.shopify.com/s/files/1/0456/5070/6581/files/Hike_Cool_6.3_1545x500_EN.jpg?v=1741766230&width=1920%201920w",
+    url: "//cdn.shopify.com/s/files/1/0456/5070/6581/files/Hike_Cool_6.3_1545x500_EN.jpg?v=1741766230&width=2400",
   },
   {
     id: 2,

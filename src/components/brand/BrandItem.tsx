@@ -1,60 +1,63 @@
-import Slider from "react-slick";
-import { IconNext, IconPrev } from "../../icons/Icons";
-import Text from "../Universal/text";
-import BrandItem from "./BrandItem";
-import { imgCollection } from "../../constants/collection";
+import { IconStar } from "../../icons/Icons";
+import { Product } from "../../types/Products";
 
-const Brand = () => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    nextArrow: (
-      <div className="slick-prev">
-        <IconPrev></IconPrev>
-      </div>
-    ),
-    prevArrow: (
-      <div className="slick-next">
-        <IconNext></IconNext>
-      </div>
-    ),
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+const BrandItem = ({
+  name,
+  price,
+  imageUrl,
+  discount = 0,
+  numberOfReviews,
+}: Product) => {
+  const finalPrice =
+    discount > 0 ? (price ?? 0) * (1 - discount / 100) : price ?? 0;
 
   return (
-    <div className="mt-5">
-      <Text text="NEW COLLECTIONS" classname="mb-3" showAll="SHOW ALL"></Text>
-      <div className="mb-5">
-        <Slider {...settings}>
-          {imgCollection.map((item) => (
-            <div key={item.id} className="slick-slide">
-              <div style={{ marginRight: "10px" }}>
-                <BrandItem />
-              </div>
-            </div>
-          ))}
-        </Slider>
+    <div className="brand-item">
+      <div style={{ position: "relative" }}>
+        <img
+          src="https://cdn.shopify.com/s/files/1/0456/5070/6581/files/1741510674992-138236095-frame_EN.png?v=1741510724"
+          alt=""
+          className="brandItem-frame"
+        />
+        <img className="brandItem-imgPrimary" src={imageUrl} alt={name} />
+      </div>
+      <div className="brandItem-wrapper">
+        <h3 className="brandItem-heading mt-4">{name}</h3>
+        <div className="brandItem-review">
+          <div>
+            <span className="icon-star">
+              <IconStar></IconStar>
+              <IconStar></IconStar>
+              <IconStar></IconStar>
+              <IconStar></IconStar>
+              <IconStar></IconStar>
+            </span>
+          </div>
+          <div className="brand-reviews">{numberOfReviews} reviews</div>
+        </div>
+
+        <div className="d-flex align-items-center gap-2">
+          {discount > 0 && (
+            <span className="brandItem-original-price">
+              {finalPrice?.toLocaleString("de-DE")}đ
+            </span>
+          )}
+
+          {discount > 0 && (
+            <span className="brandItem-discount">
+              {price?.toLocaleString("de-DE")}đ
+            </span>
+          )}
+        </div>
+
+        {discount === 0 && (
+          <span className="brandItem-original-price">
+            {price?.toLocaleString()}đ
+          </span>
+        )}
       </div>
     </div>
   );
 };
 
-export default Brand;
+export default BrandItem;

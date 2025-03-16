@@ -4,6 +4,8 @@ import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "swiper/css";
+import "swiper/css/navigation";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 

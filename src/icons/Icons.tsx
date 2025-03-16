@@ -60,10 +60,11 @@ export const IconLocation = () => (
 export const IconStar = () => (
   <svg
     className="cc-rating-stars__svg"
-    width="13"
-    height="13"
-    viewBox="0 0 13 13"
+    width="24px"
+    height="24px"
+    viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
+    fill="#faba09"
   >
     <path
       fill-rule="evenodd"

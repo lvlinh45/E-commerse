@@ -1,6 +1,4 @@
 @use "../base/colors" as *;
-@import "bootstrap/scss/bootstrap";
-
 // Mobile-First (base styles for screens <768px)
 .navbar {
     background-color: $primary-text;

@@ -1,13 +1,14 @@
-@use "styles/base/colors" as *; // Import all variables from colors.scss
-@use "styles/base/typography" as *;
-@use "styles/layout/header" as *;
-@use "styles/layout/footer" as *;
-@use "styles/components/carousel" as *;
-@use "styles/components/category" as *;
-@use "styles/components/brand" as *;
-@use "styles/components/topBrand" as *;
-@use "styles/components/trending" as *;
-
+@use "../src/styles/base/colors" as *;
+// Import all variables from colors.scss
+@use "../src/styles/base/typography" as *;
+@use "../src/styles/layout/header" as *;
+@use "../src/styles/layout/footer" as *;
+@use "../src/styles/components/HomePage/carousel" as *;
+@use "../src/styles/components/HomePage/category" as *;
+@use "../src/styles/components/HomePage/brand" as *;
+@use "../src/styles/components/HomePage/topBrand" as *;
+@use "../src/styles/components/HomePage/trending" as *;
+@use "../src/styles/components/HomePage/poster" as *;
 body {
     font-family: "Nunito Sans", sans-serif !important;
 }

@@ -1,0 +1,32 @@
+.poster {
+    cursor: pointer;
+    position: relative;
+
+    .poster-wrapper {
+        overflow: hidden;
+        transition: 0.5s all ease;
+        img {
+            transition: 0.8s all ease;
+        }
+    }
+
+    .poster-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.25);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+    }
+
+    &:hover .poster-overlay {
+        opacity: 1;
+    }
+
+    &:hover img {
+        transform: scale(1.03);
+    }
+}

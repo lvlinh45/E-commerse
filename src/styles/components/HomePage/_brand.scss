@@ -1,5 +1,4 @@
-@use "../base/colors" as *; // Import all variables from colors.scss
-
+@use "../../base/colors" as *;
 .brand-container > div {
     background-color: transparent !important;
 }
@@ -30,6 +29,10 @@
             min-height: 36px;
             display: -webkit-box;
             overflow: hidden;
+            transition: 0.3s all;
+            &:hover {
+                color: $primary-light;
+            }
         }
 
         .brandItem-review {

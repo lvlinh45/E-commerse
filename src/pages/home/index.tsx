@@ -22,6 +22,7 @@ const HomePage = () => {
         <ProductList
           products={imgCollection}
           textHeading="NEW COLLECTIONS"
+          showAll="SHOW ALL"
         ></ProductList>
         <Brand
           products={imgArrival}

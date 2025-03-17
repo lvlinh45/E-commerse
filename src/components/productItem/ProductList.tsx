@@ -8,10 +8,11 @@ const ProductList = ({
   products,
   textHeading = "",
   quatitySlide = 4,
+  showAll = "",
 }: ProductListProps) => {
   return (
     <div className="mt-5 slick-product">
-      <Text text={textHeading} classname="mb-3" showAll="SHOW ALL"></Text>
+      <Text text={textHeading} classname="mb-3" showAll={showAll}></Text>
       <div className="productList-container">
         <Swiper
           navigation={true}

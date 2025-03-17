@@ -1,0 +1,88 @@
+@use "../base/colors" as *;
+
+.trending-container {
+    margin-top: 50px;
+    .trending-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .trending-item {
+        .trending-card {
+            border: none;
+            overflow: hidden;
+            border-radius: 0;
+            .card-wrapper {
+                overflow: hidden;
+                border-radius: 0;
+            }
+            .card-img-top {
+                height: 330px;
+                object-fit: cover;
+                border-radius: 0;
+                cursor: pointer;
+                transition: 0.5s all;
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+            .card-body {
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                height: 100px;
+                .read-more {
+                    font-size: 15px;
+                    color: $black;
+                    text-decoration: none;
+                    font-weight: bold;
+                    transition: 0.3s all;
+                    cursor: pointer;
+                    margin-top: auto;
+                    &:hover {
+                        color: $primary-light;
+                    }
+                }
+            }
+
+            .trending-title {
+                font-size: 12px;
+                font-weight: bold;
+                color: $black;
+                transition: 0.3s all;
+                cursor: pointer;
+
+                &:hover {
+                    color: $primary-light;
+                }
+            }
+        }
+    }
+    .nav-link {
+        color: $primary-text !important;
+        padding: 12px 20px !important;
+        border: 1px solid #838383 !important;
+        border-radius: 20px !important;
+        transition: 0.3s all;
+        line-height: 1.2;
+        &:hover {
+            color: $primary-light !important;
+        }
+        &.active {
+            background-color: $primary-text !important;
+            color: white !important;
+            border-color: black !important;
+        }
+    }
+    #uncontrolled-tab {
+        border: unset;
+        justify-content: center;
+        gap: 16px;
+        font-size: 10px;
+        color: $primary-text;
+        .tab-content {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+    }
+}

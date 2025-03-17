@@ -1,6 +1,6 @@
 import { Product } from "../types/Products";
 
-export const imgProduct: Product[] = [
+export const imgProductSale: Product[] = [
   {
     id: 1,
     name: "Women's Speedo Placement Swimsuit - Navy",

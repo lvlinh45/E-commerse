@@ -1,13 +1,17 @@
 import ProductItem from "./ProductItem";
 import Text from "../Universal/text";
-import { imgCollection } from "../../constants/collection";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
+import { ProductListProps } from "../../types/Products";
 
-const ProductList = () => {
+const ProductList = ({
+  products,
+  textHeading = "",
+  quatitySlide = 4,
+}: ProductListProps) => {
   return (
     <div className="mt-5 slick-product">
-      <Text text="NEW COLLECTIONS" classname="mb-3" showAll="SHOW ALL"></Text>
+      <Text text={textHeading} classname="mb-3" showAll="SHOW ALL"></Text>
       <div className="productList-container">
         <Swiper
           navigation={true}
@@ -29,16 +33,16 @@ const ProductList = () => {
               slidesPerView: 3,
             },
             1024: {
-              slidesPerView: 4,
+              slidesPerView: quatitySlide,
               spaceBetween: 20,
             },
           }}
         >
-          {imgCollection.map((item) => (
+          {products.map((item) => (
             <div key={item.id}>
               <div>
                 <SwiperSlide>
-                  <ProductItem key={item.id} url={item.url}></ProductItem>
+                  <ProductItem key={item.id} url={item.imageUrl}></ProductItem>
                 </SwiperSlide>
               </div>
             </div>

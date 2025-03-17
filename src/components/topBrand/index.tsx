@@ -1,4 +1,4 @@
-import { imgTopBrand } from "../../constants/collection";
+import { imgTopBrand } from "../../constants/urlCollection";
 import Text from "../Universal/text";
 
 const TopBrand = () => {
@@ -11,7 +11,7 @@ const TopBrand = () => {
             <img
               className="w-100"
               key={brand.id}
-              src={brand.url}
+              src={brand.imageUrl}
               alt={`Brand ${brand.id}`}
             />
           ))}

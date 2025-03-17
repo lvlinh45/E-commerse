@@ -71,7 +71,7 @@
         left: 12px !important;
         transition: 0.5s all linear;
         z-index: 10000;
-        transform: translateY(-50%);
+        transform: translateY(-50%) !important;
         top: 50% !important;
         &::after {
             opacity: 1;
@@ -81,8 +81,8 @@
         opacity: 0 !important;
         right: 12px !important;
         transition: 0.5s all linear;
-        transform: translateY(-50%);
         top: 50% !important;
+        transform: translateY(-50%) !important;
         &::after {
             opacity: 1;
         }

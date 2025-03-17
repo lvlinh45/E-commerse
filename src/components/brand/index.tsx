@@ -2,13 +2,17 @@ import Text from "../Universal/text";
 import BrandItem from "./BrandItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import { imgProduct } from "../../constants/urlProduct";
+import { ProductListProps } from "../../types/Products";
 
-const Brand = () => {
+const Brand = ({
+  products,
+  textHeading = "",
+  showAll = "",
+}: ProductListProps) => {
   return (
     <>
       <div className="mt-5">
-        <Text text="NEW ARRIVAL" classname="mb-3" showAll="SHOW ALL"></Text>
+        <Text text={textHeading} classname="mb-3" showAll={showAll}></Text>
         <Swiper
           // loop={true}
           navigation={true}
@@ -37,7 +41,7 @@ const Brand = () => {
           }}
         >
           <div className="testa">
-            {imgProduct.map((item) => (
+            {products.map((item) => (
               <div key={item.id}>
                 <SwiperSlide>
                   <BrandItem

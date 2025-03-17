@@ -2,15 +2,17 @@ const Text = ({
   text,
   classname = "",
   showAll,
+  textCenter = "",
 }: {
   text: string;
   classname?: string;
   showAll?: string;
+  textCenter?: string;
 }) => {
   return (
     <div
-      className={`text-container  ${
-        showAll ? "justify-content-between" : "justify-content-left"
+      className={`text-container ${textCenter} ${
+        showAll ? "justify-content-between" : ""
       }`}
     >
       <div className={`${classname} heading`}>{text}</div>

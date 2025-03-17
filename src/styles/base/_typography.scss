@@ -2,6 +2,7 @@
 .text-container {
     display: flex;
     align-items: center;
+    height: fit-content;
     .heading {
         color: $text-heading;
         font-size: 23px;
@@ -21,5 +22,19 @@
         &:hover {
             color: $primary-light;
         }
+    }
+}
+// BUTTON
+.button-universal {
+    padding: 8px 44px;
+    color: $white;
+    background-color: $text-heading;
+    display: block;
+    width: fit-content;
+    transition: 0.3s all;
+    cursor: pointer;
+    font-weight: bold;
+    &:hover {
+        color: $primary-light;
     }
 }

@@ -1,0 +1,95 @@
+@use "../base/colors" as *;
+
+.footer-container {
+    padding: 40px 20px 10px;
+    font-family: Arial, sans-serif;
+    color: $text-heading;
+    border-top: 1px solid $primary;
+    .footer-section {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 24px;
+        margin-bottom: 40px;
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+
+            h5 {
+                font-size: 14px;
+                margin-bottom: 20px;
+                margin-bottom: 10px;
+                font-weight: 700;
+            }
+            p {
+                span {
+                    font-weight: bold;
+                }
+            }
+            p,
+            ul {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+
+                li {
+                    margin-bottom: 10px;
+                    cursor: pointer;
+                    transition: 0.3s all;
+                    &:hover {
+                        text-decoration: underline !important;
+                        text-decoration-thickness: 2px;
+                        text-decoration-color: $black !important;
+                        color: $primary-light;
+                        text-underline-offset: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    .payment-methods {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        h5 {
+            font-size: 18px;
+            font-weight: bold;
+            grid-column: span 2;
+            text-align: center;
+        }
+
+        .payment-icons {
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+            gap: 10px;
+            img {
+                width: 100%;
+                &:nth-child(2),
+                &:last-child {
+                    width: 50%;
+                }
+            }
+        }
+
+        .footer-logos {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+
+            img {
+                width: 60px;
+            }
+        }
+    }
+}
+@media (min-width: 768px) {
+    .footer-section {
+        grid-template-columns: repeat(5, 1fr) !important;
+    }
+}

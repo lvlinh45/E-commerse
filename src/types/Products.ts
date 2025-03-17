@@ -11,4 +11,11 @@ export interface Product {
   numberOfReviews?: number;
   rating?: number;
   status?: string;
+  vendor?: string;
+}
+export interface ProductListProps {
+  products: Product[];
+  textHeading?: string;
+  showAll?: string;
+  quatitySlide?: number;
 }

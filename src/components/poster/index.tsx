@@ -1,9 +1,7 @@
-import { posterUrl } from "../../constants/urlPoster";
-
-const Poster = () => {
+const Poster = ({ posterUrl }: { posterUrl: string }) => {
   return (
-    <div className="w-100 mt-5">
-      <img className="w-100" src={posterUrl[0].url} alt="Poster 1" />
+    <div className="w-100 mt-5" style={{ cursor: "pointer" }}>
+      <img className="w-100" src={posterUrl} alt="Poster 1" />
     </div>
   );
 };

@@ -73,6 +73,23 @@ export const IconStar = () => (
     ></path>
   </svg>
 );
+export const IconNotRatingStar = () => (
+  <svg
+    className="cc-rating-stars__svg"
+    width="24px"
+    height="24px"
+    viewBox="0 0 16 16"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="#f5c54969"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M8.43579 4.9459L13.63 4.9536L9.42653 8.01929L11.0329 12.97L6.81981 9.91778L2.60673 12.97L4.20346 8.01929L0 4.9536L5.20383 4.9459L6.81981 0L8.43579 4.9459Z"
+    ></path>
+  </svg>
+);
+
 export const IconAngleRight = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

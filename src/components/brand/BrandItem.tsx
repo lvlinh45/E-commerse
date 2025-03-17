@@ -1,4 +1,4 @@
-import { IconStar } from "../../icons/Icons";
+import { IconNotRatingStar, IconStar } from "../../icons/Icons";
 import { Product } from "../../types/Products";
 
 const BrandItem = ({
@@ -7,6 +7,8 @@ const BrandItem = ({
   imageUrl,
   discount = 0,
   numberOfReviews,
+  rating = 0,
+  status,
 }: Product) => {
   const finalPrice =
     discount > 0 ? (price ?? 0) * (1 - discount / 100) : price ?? 0;
@@ -20,18 +22,34 @@ const BrandItem = ({
           className="brandItem-frame"
         />
         <img className="brandItem-imgPrimary" src={imageUrl} alt={name} />
+        {(status === "new" || discount !== 0) && (
+          <div
+            className={`brandItem-status ${
+              status === "new"
+                ? "brandItem-status"
+                : "brandItem-status-discount"
+            }`}
+          >
+            {status === "new" && status}
+            {status !== "new" && <>-{discount}%</>}
+          </div>
+        )}
       </div>
       <div className="brandItem-wrapper">
         <h3 className="brandItem-heading mt-4">{name}</h3>
-        <div className="brandItem-review">
-          <div>
-            <span className="icon-star">
-              <IconStar></IconStar>
-              <IconStar></IconStar>
-              <IconStar></IconStar>
-              <IconStar></IconStar>
-              <IconStar></IconStar>
-            </span>
+        <div
+          className={`brandItem-review ${
+            rating > 0 ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div className="icon-star">
+            {Array.from({ length: 5 }, (_, index) =>
+              index < rating ? (
+                <IconStar key={index} />
+              ) : (
+                <IconNotRatingStar key={index} />
+              )
+            )}
           </div>
           <div className="brand-reviews">{numberOfReviews} reviews</div>
         </div>

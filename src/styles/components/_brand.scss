@@ -49,14 +49,38 @@
             font-size: 13px;
         }
     }
+    .brandItem-status {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        text-transform: uppercase;
+        background-color: $primary-light;
+        border-radius: 3px;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 2px 6px;
+    }
+    .brandItem-status-discount {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        color: $white;
+        text-transform: uppercase;
+        background-color: $discount;
+        border-radius: 3px;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 2px 6px;
+    }
 }
 
 .swiper {
-    overflow: visible !important;
+    overflow: hidden !important;
     .swiper-button-next {
         color: $black;
-        right: -30px;
-        top: 90px;
+        right: 0;
+        top: 50%;
+        transform: translateY(-150%);
         &::after {
             font-size: 18px;
             font-weight: 600;
@@ -64,8 +88,9 @@
     }
     .swiper-button-prev {
         color: $black;
-        left: -30px;
-        top: 90px;
+        left: 0;
+        top: 50%;
+        transform: translateY(-150%);
         &::after {
             font-size: 18px;
             font-weight: 600;

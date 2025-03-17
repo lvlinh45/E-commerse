@@ -10,7 +10,7 @@ const Text = ({
   return (
     <div
       className={`text-container  ${
-        showAll ? "justify-content-between" : "justify-content-center"
+        showAll ? "justify-content-between" : "justify-content-left"
       }`}
     >
       <div className={`${classname} heading`}>{text}</div>

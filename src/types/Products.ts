@@ -10,4 +10,5 @@ export interface Product {
   discount?: number;
   numberOfReviews?: number;
   rating?: number;
+  status: string;
 }

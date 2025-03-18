@@ -52,6 +52,7 @@ const Brand = ({
                     numberOfReviews={item.numberOfReviews}
                     rating={item.rating}
                     status={item.status}
+                    vendor={item.vendor}
                   ></BrandItem>
                 </SwiperSlide>
               </div>

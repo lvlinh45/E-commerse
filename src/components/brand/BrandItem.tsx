@@ -9,6 +9,7 @@ const BrandItem = ({
   numberOfReviews,
   rating = 0,
   status,
+  vendor,
 }: Product) => {
   const finalPrice =
     discount > 0 ? (price ?? 0) * (1 - discount / 100) : price ?? 0;
@@ -36,7 +37,10 @@ const BrandItem = ({
         )}
       </div>
       <div className="brandItem-wrapper">
-        <h3 className="brandItem-heading mt-4">{name}</h3>
+        <div className="brandItem-text">
+          {vendor && <p className="mb-2 mt-4 brandItem-vendor">{vendor}</p>}
+          <h3 className={`brandItem-heading ${!vendor && "mt-4"}`}>{name}</h3>
+        </div>
         <div
           className={`brandItem-review ${
             rating > 0 ? "opacity-100" : "opacity-0"
@@ -69,9 +73,7 @@ const BrandItem = ({
         </div>
 
         {discount === 0 && (
-          <span className="brandItem-original-price">
-            {price?.toLocaleString()}đ
-          </span>
+          <span className="brandItem-original">{price?.toLocaleString()}đ</span>
         )}
       </div>
     </div>

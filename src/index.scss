@@ -3,12 +3,15 @@
 @use "../src/styles/base/typography" as *;
 @use "../src/styles/layout/header" as *;
 @use "../src/styles/layout/footer" as *;
+// HOME PAGE
 @use "../src/styles/components/HomePage/carousel" as *;
 @use "../src/styles/components/HomePage/category" as *;
 @use "../src/styles/components/HomePage/brand" as *;
 @use "../src/styles/components/HomePage/topBrand" as *;
 @use "../src/styles/components/HomePage/trending" as *;
 @use "../src/styles/components/HomePage/poster" as *;
+// CART PAGE
+@use "../src/styles/components/CartPage/drawer" as *;
 body {
     font-family: "Nunito Sans", sans-serif !important;
 }

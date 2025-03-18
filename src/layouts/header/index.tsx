@@ -7,23 +7,30 @@ import {
   IconLocation,
   IconSearch,
   IconAngleDown,
-} from "../../icons/Icons"; // Import your angle-down icon
+} from "../../icons/Icons";
 import { Language } from "../../types/languages";
+import Drawer from "../../components/drawer";
 
 const HeaderLayout = () => {
-  // State to track the selected language and its flag
   const [selectedLang, setSelectedLang] = useState<Language>({
     code: "en",
     flag: "//supersports.com.vn/cdn/shop/t/230/assets/en.png?v=94828056452989466101720174907",
     name: "English",
   });
 
+  const [drawerOpen, setDrawerOpen] = useState(false); // State to manage the Drawer
+
   const handleLanguageSelect = (code: string, flag: string, name: string) => {
     setSelectedLang({ code, flag, name });
   };
 
+  const toggleDrawer = (open: boolean) => () => {
+    setDrawerOpen(open);
+  };
+
   return (
     <>
+      <Drawer open={drawerOpen} onClose={toggleDrawer(false)} />{" "}
       <Navbar expand="lg">
         <Navbar.Brand href="#home">
           <img
@@ -43,14 +50,20 @@ const HeaderLayout = () => {
           </div>
           <div className="d-flex align-items-center gap-3">
             <div className="d-flex header-iconContainer">
-              <span className="header-icon">
+              <span
+                className="header-icon"
+                style={{ cursor: "pointer" }}
+                onClick={toggleDrawer(true)}
+              >
                 <IconCart />
               </span>
-              <span className="header-icon location-icon">
+              <span
+                className="header-icon location-icon"
+                style={{ cursor: "pointer" }}
+              >
                 <IconLocation />
               </span>
             </div>
-            {/* Language Dropdown */}
             <Dropdown className="position-relative">
               <Dropdown.Toggle
                 variant="link"

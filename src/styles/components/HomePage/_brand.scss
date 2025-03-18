@@ -20,17 +20,30 @@
     .brandItem-wrapper {
         border: none;
         --Paper-shadow: unset;
-        .brandItem-heading {
-            margin: 0 0 8px;
-            font-size: 14px;
-            color: #000;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            min-height: 36px;
-            display: -webkit-box;
-            overflow: hidden;
-            transition: 0.3s all;
-            &:hover {
+        .brandItem-text {
+            .brandItem-vendor {
+                color: $primary-text;
+                margin: 0 0 8px;
+                font-size: 13px;
+                opacity: 0.9;
+                font-weight: 400;
+                word-break: break-word;
+                transition: 0.5s all;
+                text-transform: uppercase;
+            }
+            .brandItem-heading {
+                margin: 0 0 8px;
+                font-size: 14px;
+                color: #000;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                min-height: 36px;
+                display: -webkit-box;
+                transition: 0.5s all;
+                overflow: hidden;
+            }
+            &:hover .brandItem-vendor,
+            &:hover .brandItem-heading {
                 color: $primary-light;
             }
         }
@@ -45,11 +58,15 @@
         }
         .brandItem-original-price {
             font-size: 18px;
-            color: $primary-text;
+            color: $discount;
         }
         .brandItem-discount {
             text-decoration: line-through;
             font-size: 13px;
+        }
+        .brandItem-original {
+            font-size: 18px;
+            color: $primary-text;
         }
     }
     .brandItem-status {

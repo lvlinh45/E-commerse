@@ -14,7 +14,7 @@ export default function BreadScrumbs({
   destination,
 }: {
   page: string;
-  subPage: string;
+  subPage?: string;
   destination: string;
 }) {
   return (
@@ -23,19 +23,23 @@ export default function BreadScrumbs({
         <Link className="breadcrumbs-link" color="inherit" href="/">
           {page}
         </Link>
-        <Link
-          className="breadcrumbs-link"
-          color="inherit"
-          href="/material-ui/getting-started/installation/"
-        >
-          {subPage}
-        </Link>
-        <Typography
-          sx={{ color: "text.primary" }}
-          className="breadcrumbs-destination"
-        >
-          {destination}
-        </Typography>
+        {subPage && (
+          <Link
+            className="breadcrumbs-link"
+            color="inherit"
+            href="/material-ui/getting-started/installation/"
+          >
+            {subPage}
+          </Link>
+        )}
+        {destination && (
+          <Typography
+            sx={{ color: "text.primary" }}
+            className="breadcrumbs-destination"
+          >
+            {destination}
+          </Typography>
+        )}
       </Breadcrumbs>
     </div>
   );

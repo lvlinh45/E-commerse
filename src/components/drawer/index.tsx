@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { CSSTransition } from "react-transition-group";
+import { useNavigate } from "react-router-dom";
 
 interface CartItem {
   id: number;
@@ -24,6 +25,8 @@ interface DrawerProps {
 }
 
 const Drawer: React.FC<DrawerProps> = ({ open, onClose }) => {
+  const navigate = useNavigate();
+
   const [cartItems, setCartItems] = React.useState<CartItem[]>([
     {
       id: 1,
@@ -93,7 +96,7 @@ const Drawer: React.FC<DrawerProps> = ({ open, onClose }) => {
             {cartItems.map((item) => (
               <CSSTransition
                 key={item.id}
-                timeout={300} // Set to match the transition time in SCSS
+                timeout={300}
                 classNames="cart-item-fade"
               >
                 <ListItem className="cart-item">
@@ -151,6 +154,7 @@ const Drawer: React.FC<DrawerProps> = ({ open, onClose }) => {
                 variant="contained"
                 className="shoppingCart-button"
                 fullWidth
+                onClick={() => navigate("/cart")}
               >
                 Shopping Cart
               </Button>

@@ -51,22 +51,12 @@ const FooterLayout = () => {
               <li>Big C</li>
             </ul>
           </div>
-          <div className="footer-column payment-methods">
+          <div className="footer-column">
             <h5>PAYMENT METHODS</h5>
-            <div className="payment-icons">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0456/5070/6581/files/ICON_PAYMENT_EN_13ad9f7a-8fce-4388-ae99-4f8da95ad0e0.png?v=1713840527"
-                alt="bank"
-              />
-              <img
-                src="https://cdn.shopify.com/s/files/1/0670/3484/1376/files/image_41_487e5803-f4d0-489f-ac14-7b301b6cbb92.png?v=1683197427"
-                alt="BCT"
-              />
-              <img
-                src="https://images.dmca.com/Badges/DMCA_logo-grn-btn100w.png?ID=82a9b6db-8bb5-4f59-b809-e909e4e33dda"
-                alt="img-protected"
-              />
-            </div>
+            <ul>
+              <li>MoMo</li>
+              <li>Zalo Pay</li>
+            </ul>
           </div>
         </div>
       </Container>

@@ -7,9 +7,10 @@ import {
   IconLocation,
   IconSearch,
   IconAngleDown,
-} from "../../icons/Icons";
-import { Language } from "../../types/languages";
+} from "../../assets/icons/Icons";
+import { Language } from "../../assets/types/languages";
 import Drawer from "../../components/drawer";
+import { useNavigate } from "react-router-dom";
 
 const HeaderLayout = () => {
   const [selectedLang, setSelectedLang] = useState<Language>({
@@ -17,6 +18,7 @@ const HeaderLayout = () => {
     flag: "//supersports.com.vn/cdn/shop/t/230/assets/en.png?v=94828056452989466101720174907",
     name: "English",
   });
+  const navigate = useNavigate();
 
   const [drawerOpen, setDrawerOpen] = useState(false); // State to manage the Drawer
 
@@ -32,7 +34,10 @@ const HeaderLayout = () => {
     <>
       <Drawer open={drawerOpen} onClose={toggleDrawer(false)} />{" "}
       <Navbar expand="lg">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand
+          onClick={() => navigate("/")}
+          style={{ cursor: "pointer" }}
+        >
           <img
             src="files/LOGO_SSP_RGB-02.jpg"
             srcSet="//supersports.com.vn/cdn/shop/files/LOGO_SSP_RGB-02.jpg?v=1718952262&width=2082 768w, //supersports.com.vn/cdn/shop/files/LOGO_SSP_RGB-02.jpg?v=1718952262&width=2082 500w"

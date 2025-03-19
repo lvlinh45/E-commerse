@@ -1,5 +1,5 @@
-import { IconNotRatingStar, IconStar } from "../../icons/Icons";
-import { Product } from "../../types/Products";
+import { IconNotRatingStar, IconStar } from "../../assets/icons/Icons";
+import { Product } from "../../assets/types/Products";
 
 const BrandItem = ({
   name,

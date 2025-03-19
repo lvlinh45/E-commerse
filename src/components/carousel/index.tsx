@@ -1,6 +1,6 @@
 import { imgUrl } from "../../constants/urlBanner";
 import Slider from "react-slick";
-import { IconNext, IconPrev } from "../../icons/Icons";
+import { IconNext, IconPrev } from "../../assets/icons/Icons";
 
 const CarouselElement = () => {
   const settings = {

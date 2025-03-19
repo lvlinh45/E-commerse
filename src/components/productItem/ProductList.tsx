@@ -2,7 +2,7 @@ import ProductItem from "./ProductItem";
 import Text from "../Universal/text";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import { ProductListProps } from "../../types/Products";
+import { ProductListProps } from "../../assets/types/Products";
 
 const ProductList = ({
   products,

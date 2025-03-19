@@ -1,4 +1,4 @@
-import { User } from "../types/Role";
+import { User } from "../assets/types/Role";
 
 export const Auths: User[] = [
   {

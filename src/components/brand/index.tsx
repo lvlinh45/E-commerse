@@ -2,7 +2,7 @@ import Text from "../Universal/text";
 import BrandItem from "./BrandItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import { ProductListProps } from "../../types/Products";
+import { ProductListProps } from "../../assets/types/Products";
 
 const Brand = ({
   products,

@@ -2,7 +2,7 @@ import { Tab, Tabs, Row, Col, Card } from "react-bootstrap";
 import Text from "../Universal/text";
 import { trendingTab } from "../../constants/urlTrending";
 import Button from "../Universal/Button";
-import { IconAngleRight } from "../../icons/Icons";
+import { IconAngleRight } from "../../assets/icons/Icons";
 
 const Trending = () => {
   return (

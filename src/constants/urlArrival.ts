@@ -1,4 +1,4 @@
-import { Product } from "../types/Products";
+import { Product } from "../assets/types/Products";
 
 export const imgArrival: Product[] = [
   {

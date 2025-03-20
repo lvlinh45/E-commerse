@@ -21,7 +21,6 @@ const HeaderLayout = () => {
   });
   const navigate = useNavigate();
   const { cart } = useCart();
-  console.log("TCL: HeaderLayout -> cart", cart.length);
 
   const [drawerOpen, setDrawerOpen] = useState(false); // State to manage the Drawer
 

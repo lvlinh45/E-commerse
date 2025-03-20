@@ -41,7 +41,7 @@
             padding: 12px 0;
             border-bottom: 1px solid #ddd;
             .cart-imgWrapper {
-                max-width: 142px;
+                max-width: 80px;
                 aspect-ratio: 1 / 1;
                 margin-right: 16px;
                 img {
@@ -50,7 +50,6 @@
                 }
             }
             .cart-item-wrapper {
-                height: 140px;
                 display: flex;
                 justify-content: center;
                 flex-direction: column;
@@ -224,5 +223,8 @@
 @media (min-width: 768px) {
     .cart-drawer {
         width: 600px;
+    }
+    .cart-imgWrapper {
+        max-width: 142px;
     }
 }

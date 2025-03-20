@@ -1,10 +1,26 @@
 import { useState, useEffect } from "react";
 import { useCart } from "../../context/CartContext";
+import { ILocation } from "../../assets/types/Location";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-interface ILocation {
-  value: number;
-  label: string;
-}
+// Yup validation schema
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  firstName: yup.string().optional(),
+  lastName: yup.string().required("Last name is required"),
+  address: yup.string().required("Address is required"),
+  province: yup.string().required("Province is required"),
+  district: yup.string().required("District is required"),
+  village: yup.string().required("Village is required"),
+  agreeTerms: yup
+    .boolean()
+    .oneOf([true], "You must agree to the terms and policies"),
+});
 
 const CheckoutPage = () => {
   const { cart } = useCart();
@@ -19,6 +35,14 @@ const CheckoutPage = () => {
 
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const loadProvinces = (inputValue: string) =>
     new Promise<ILocation[]>((resolve) => {
@@ -93,7 +117,6 @@ const CheckoutPage = () => {
     setSelectedDistrict(districtCode);
     setVillages([]);
     loadWards(districtCode)("").then((data) => {
-      console.log("TCL: handleDistrictChange -> data", data);
       setVillages(data);
     });
   };
@@ -102,15 +125,34 @@ const CheckoutPage = () => {
     loadProvinces("").then((data) => setProvinces(data));
   }, []);
 
+  const onSubmit = (data: { email: string }) => {
+    console.log(data);
+  };
+
   return (
     <div className="checkout-container">
       <div className="checkout-left">
         {/* Contact Information Section */}
         <div className="checkout-heading">
           <h3 className="checkout-title">Contact information</h3>
-          <input type="text" className="checkout-input" placeholder="Email" />
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <input
+                type="text"
+                className="checkout-input"
+                placeholder="Email"
+                {...field}
+              />
+            )}
+          />
+          {errors.email && (
+            <p style={{ color: "red" }}>{errors.email.message}</p>
+          )}
+
           <div className="checkout-heading--notification">
-            <input type="checkbox" name="" id="notification" />
+            <input type="checkbox" name="notification" id="notification" />
             <label htmlFor="notification">Email me with news and offers</label>
           </div>
         </div>
@@ -123,82 +165,135 @@ const CheckoutPage = () => {
           </h4>
           <div className="checkout-groupInput">
             {/* Province Dropdown */}
-            <select
-              value={selectedProvince}
-              onChange={(e) => handleProvinceChange(e.target.value)}
-            >
-              <option value="" disabled selected hidden>
-                Province
-              </option>
-              {provinces.map((province) => (
-                <option key={province.value} value={province.value}>
-                  {province.label}
-                </option>
-              ))}
-            </select>
+            <Controller
+              name="province"
+              control={control}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  onChange={(e) => {
+                    handleProvinceChange(e.target.value);
+                    field.onChange(e);
+                  }}
+                >
+                  <option value="" disabled selected hidden>
+                    Province
+                  </option>
+                  {provinces.map((province) => (
+                    <option key={province.value} value={province.value}>
+                      {province.label}
+                    </option>
+                  ))}
+                </select>
+              )}
+            />
+            {errors.province && (
+              <p style={{ color: "red" }}>{errors.province.message}</p>
+            )}
 
             {/* District Dropdown */}
-            <select
-              value={selectedDistrict}
-              onChange={(e) => handleDistrictChange(e.target.value)}
-              disabled={!selectedProvince}
-            >
-              <option value="" disabled selected hidden>
-                District
-              </option>
-              {districts.map((district) => (
-                <option key={district.value} value={district.value}>
-                  {district.label}
-                </option>
-              ))}
-            </select>
+            <Controller
+              name="district"
+              control={control}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  onChange={(e) => {
+                    handleDistrictChange(e.target.value);
+                    field.onChange(e);
+                  }}
+                  disabled={!selectedProvince}
+                >
+                  <option value="" disabled selected hidden>
+                    District
+                  </option>
+                  {districts.map((district) => (
+                    <option key={district.value} value={district.value}>
+                      {district.label}
+                    </option>
+                  ))}
+                </select>
+              )}
+            />
+            {errors.district && (
+              <p style={{ color: "red" }}>{errors.district.message}</p>
+            )}
 
             {/* Village Dropdown */}
-            <select disabled={!selectedDistrict}>
-              <option value="" disabled selected hidden>
-                Village
-              </option>
-              {villages.map((village) => (
-                <option key={village.value} value={village.value}>
-                  {village.label}
-                </option>
-              ))}
-            </select>
+            <Controller
+              name="village"
+              control={control}
+              render={({ field }) => (
+                <select {...field} disabled={!selectedDistrict}>
+                  <option value="" disabled selected hidden>
+                    Village
+                  </option>
+                  {villages.map((village) => (
+                    <option key={village.value} value={village.value}>
+                      {village.label}
+                    </option>
+                  ))}
+                </select>
+              )}
+            />
+            {errors.village && (
+              <p style={{ color: "red" }}>{errors.village.message}</p>
+            )}
 
             {/* Additional Input Fields */}
             <div className="checkout-inputRow">
-              <input
-                type="text"
-                className="checkout-input"
-                placeholder="First Name (optional)"
+              <Controller
+                name="firstName"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    className="checkout-input"
+                    placeholder="First Name (optional)"
+                    {...field}
+                  />
+                )}
               />
-              <input
-                type="text"
-                className="checkout-input"
-                placeholder="Last Name"
+              <Controller
+                name="lastName"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    className="checkout-input"
+                    placeholder="Last Name"
+                    {...field}
+                  />
+                )}
               />
             </div>
+            {errors.lastName && (
+              <p style={{ color: "red" }}>{errors.lastName.message}</p>
+            )}
+
             <div>
-              <input
-                type="text"
-                className="checkout-input"
-                placeholder="Address"
+              <Controller
+                name="address"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    className="checkout-input"
+                    placeholder="Address"
+                    {...field}
+                  />
+                )}
               />
-            </div>
-            <div className="checkout-inputRow">
-              <input
-                type="text"
-                className="checkout-input"
-                placeholder="First Name (optional)"
-              />
-              <input
-                type="text"
-                className="checkout-input"
-                placeholder="Last Name"
-              />
+              {errors.address && (
+                <p style={{ color: "red" }}>{errors.address.message}</p>
+              )}
             </div>
             <div className="checkout-heading--notification">
-              <input type="checkbox" name="" id="save-notification" />
+              <input
+                type="checkbox"
+                name="save-notification"
+                id="save-notification"
+              />
               <label htmlFor="save-notification">
                 Save this information for next time
               </label>
@@ -223,13 +318,30 @@ const CheckoutPage = () => {
             address. All transactions are secure and encrypted.
           </h4>
           <div className="checkout-heading--notification">
-            <input type="checkbox" name="" id="term" />
+            <Controller
+              name="agreeTerms"
+              control={control}
+              render={({ field }) => (
+                <input
+                  type="checkbox"
+                  {...field}
+                  checked={field.value}
+                  value={undefined}
+                />
+              )}
+            />
+
             <label htmlFor="term">
               I agree with the Terms and Policies stipulated by Supersports
             </label>
           </div>
+          {errors.agreeTerms && (
+            <p style={{ color: "red" }}>{errors.agreeTerms.message}</p>
+          )}
         </div>
-        <button className="checkout-button">Pay now</button>
+        <button className="checkout-button" onClick={handleSubmit(onSubmit)}>
+          Pay now
+        </button>
       </div>
 
       {/* Checkout Right Section - Showing Cart Items */}

@@ -80,9 +80,8 @@ const CartItem = () => {
                   <div className="cartItem-utils">
                     <p className="cartItem-total">
                       {(
-                        (item?.price ?? 0) * (item?.quantity ?? 0)
-                      ).toLocaleString()}{" "}
-                      đ
+                        (item.price ?? 0) * (item.quantity ?? 0)
+                      ).toLocaleString()}
                     </p>
                     <button
                       className="remove-button"

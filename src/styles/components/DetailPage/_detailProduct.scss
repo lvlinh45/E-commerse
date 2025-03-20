@@ -1,12 +1,12 @@
 @use "../../base/colors" as *;
 .product-detail-container {
     display: flex;
-    flex-direction: row;
-    gap: 40px;
+    flex-direction: column;
+    gap: 20px;
     padding: 20px;
     color: $primary-text;
     .product-wrapper {
-        width: 60%;
+        width: 100%;
     }
     .product-info {
         flex: 1;
@@ -133,6 +133,16 @@
                     background: #e8e8e8;
                 }
             }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .product-detail-container {
+        flex-direction: row;
+        gap: 0;
+        .product-wrapper {
+            width: 60%;
         }
     }
 }

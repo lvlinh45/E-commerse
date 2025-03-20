@@ -1,4 +1,4 @@
-import { ProductReviews } from "../assets/types/Rating";
+import { ProductReviews } from "../types/Rating";
 
 export const Rating: ProductReviews[] = [
   {

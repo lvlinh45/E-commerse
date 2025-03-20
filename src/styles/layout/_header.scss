@@ -24,8 +24,31 @@
             display: none;
         }
     }
+    .header-icon-cart {
+        cursor: pointer;
+        position: relative;
+        svg {
+            fill: $white !important;
+            width: 22px;
+            height: 22px;
+            cursor: pointer !important;
+        }
+        p {
+            position: absolute;
+            top: -20%;
+            right: -20%;
+            font-size: 11px;
+            color: #ffffff;
+            z-index: 1;
+            font-weight: bold;
+            min-width: 16px;
+            padding: 0 5px;
+            background: #ff4eed;
+            border-radius: 16px;
+        }
+    }
     .header-logo {
-        width: 275px; // Adjust logo size on small screens
+        width: 275px;
     }
 
     .header-icon svg {
@@ -58,7 +81,6 @@
             padding: 8px;
             transform: translateY(-50%);
             right: 10px;
-
             svg {
                 fill: $white !important;
                 width: 14px;
@@ -119,6 +141,7 @@
             }
             .header-iconContainer {
                 gap: 12px;
+                align-items: center;
                 .location-icon,
                 .angleDown-icon {
                     display: block;

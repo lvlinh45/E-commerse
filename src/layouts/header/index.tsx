@@ -9,8 +9,9 @@ import {
   IconAngleDown,
 } from "../../assets/icons/Icons";
 import { Language } from "../../assets/types/languages";
-import Drawer from "../../components/drawer";
+import DrawerSiderBar from "../../components/drawer";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 
 const HeaderLayout = () => {
   const [selectedLang, setSelectedLang] = useState<Language>({
@@ -19,6 +20,8 @@ const HeaderLayout = () => {
     name: "English",
   });
   const navigate = useNavigate();
+  const { cart } = useCart();
+  console.log("TCL: HeaderLayout -> cart", cart.length);
 
   const [drawerOpen, setDrawerOpen] = useState(false); // State to manage the Drawer
 
@@ -32,7 +35,7 @@ const HeaderLayout = () => {
 
   return (
     <>
-      <Drawer open={drawerOpen} onClose={toggleDrawer(false)} />{" "}
+      <DrawerSiderBar open={drawerOpen} onClose={toggleDrawer(false)} />{" "}
       <Navbar expand="lg">
         <Navbar.Brand
           onClick={() => navigate("/")}
@@ -49,18 +52,19 @@ const HeaderLayout = () => {
         <Nav>
           <div className="header-search">
             <input type="text" placeholder="Search" />
-            <span className="header-icon ">
+            <span className="header-icon">
               <IconSearch />
             </span>
           </div>
           <div className="d-flex align-items-center gap-3">
             <div className="d-flex header-iconContainer">
               <span
-                className="header-icon"
+                className="header-icon-cart"
                 style={{ cursor: "pointer" }}
                 onClick={toggleDrawer(true)}
               >
                 <IconCart />
+                <p>{cart.length}</p>
               </span>
               <span
                 className="header-icon location-icon"
@@ -73,7 +77,7 @@ const HeaderLayout = () => {
               <Dropdown.Toggle
                 variant="link"
                 id="language-dropdown"
-                className="p-0 d-flex align-items-center  outline-none"
+                className="d-flex align-items-center p-0 outline-none"
               >
                 <img
                   alt="iso-code-flag"
@@ -83,12 +87,12 @@ const HeaderLayout = () => {
                   src={selectedLang.flag}
                   loading="lazy"
                 />
-                <span className="ms-2 angleDown-icon">
+                <span className="angleDown-icon ms-2">
                   <IconAngleDown />
                 </span>
               </Dropdown.Toggle>
 
-              <Dropdown.Menu className="position-absolute end-0 dropdown-right">
+              <Dropdown.Menu className="dropdown-right position-absolute end-0">
                 <Dropdown.Item
                   href="#"
                   className="d-flex align-items-center gap-1"

@@ -1,16 +1,25 @@
 import BreadScrumbs from "../../components/Universal/Breadscrumb";
-import CartItem from "./cartItem";
+import CartItem from "./CartItem";
+import { useCart } from "../../context/CartContext"; // Import useCart hook
 
 const CartPage = () => {
+  const { cart } = useCart(); // Get cart data from CartContext
+
+  // Calculate subtotal (total price) of all products in the cart
+  const subtotal = cart.reduce(
+    (total, item) => total + (item?.price ?? 0) * (item.quantity ?? 0),
+    0
+  );
+
   return (
     <>
-      <BreadScrumbs page={"Home"} destination={"Shopping Cart"}></BreadScrumbs>
+      <BreadScrumbs page={"Home"} destination={"Shopping Cart"} />
       <div className="cartPage-container">
         <h1 className="cartPage-title">Shopping Cart</h1>
         <p className="cartPage-shopping">Continue shopping</p>
         <div className="cartPage-wrapper">
           <div style={{ flex: 1 }}>
-            <CartItem cartTitle=""></CartItem>
+            <CartItem cartTitle="Shopping Cart" />
           </div>
           <div className="cart-checkout">
             <div className="cartPage-heading">
@@ -23,10 +32,17 @@ const CartPage = () => {
               </p>
             </div>
             <div className="cartPage-information">
+              {/* Display number of products in the cart */}
               <div>
-                <span className="cartPage-subHeading">(1) product</span>
-                <span className="cartPage-total">599.000₫</span>
+                <span className="cartPage-subHeading">
+                  ({cart.length}) product{cart.length > 1 ? "s" : ""}
+                </span>
+                <span className="cartPage-total">
+                  {subtotal.toLocaleString()}₫
+                </span>
               </div>
+
+              {/* Display discount and shipping fee */}
               <div>
                 <span className="cartPage-subHeading">Discount</span>
                 <span className="cartPage-span">Applied at checkout</span>
@@ -37,9 +53,13 @@ const CartPage = () => {
                   Applied at the payment page
                 </span>
               </p>
+
+              {/* Display subtotal and checkout button */}
               <p>
-                <span className="cartPage-subHeading"> Subtotal:</span>
-                <span className="cartPage-total"> 599.000₫</span>
+                <span className="cartPage-subHeading">Subtotal:</span>
+                <span className="cartPage-total">
+                  {subtotal.toLocaleString()}₫
+                </span>
               </p>
               <button>CHECKOUT</button>
               <p className="cartPage-shipping">

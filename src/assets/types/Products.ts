@@ -12,6 +12,8 @@ export interface Product {
   rating?: number;
   status?: string;
   vendor?: string;
+  quantity?: number;
+  size?: string | number;
 }
 export interface ProductListProps {
   products: Product[];

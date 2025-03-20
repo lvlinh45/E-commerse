@@ -16,6 +16,8 @@
 
 // DETAIL PAGE
 @use "../src/styles/components/DetailPage/detailProduct" as *;
+// CHECKOUT PAGE
+@use "../src/styles/components/CheckoutPage/checkoutPage" as *;
 
 body {
     font-family: "Nunito Sans", sans-serif !important;

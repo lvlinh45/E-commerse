@@ -6,30 +6,34 @@ import ProtectedRoute from "./ProtectedRoute";
 import HomePage from "../pages/home";
 import ProducDetailPage from "../pages/product/ProductDetailPage";
 import CartPage from "../pages/cart";
+import CheckoutPage from "../pages/checkout";
+import { CartProvider } from "../context/CartContext"; // Import CartProvider
 
 const AppRoute = () => {
   return (
-    <>
+    <CartProvider>
       <Routes>
-        <Route path="/" element={<MainLayout></MainLayout>}>
-          <Route index element={<HomePage></HomePage>}></Route>
-          <Route
-            path="/products/:productId"
-            element={<ProducDetailPage></ProducDetailPage>}
-          ></Route>
-          <Route path="/cart" element={<CartPage></CartPage>}></Route>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/products/:id" element={<ProducDetailPage />} />
+
+          <Route path="/cart" element={<CartPage />} />
         </Route>
+
+        <Route path="/checkout" element={<CheckoutPage />} />
+
         <Route
           path="/auth/admin"
           element={
             <ProtectedRoute>
-              <AdminPage></AdminPage>
+              <AdminPage />
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<NotFound></NotFound>}></Route>
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </CartProvider>
   );
 };
 

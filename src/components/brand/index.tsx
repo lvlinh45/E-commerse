@@ -45,6 +45,7 @@ const Brand = ({
               <div key={item.id}>
                 <SwiperSlide>
                   <BrandItem
+                    id={item.id}
                     name={item.name}
                     price={item.price}
                     imageUrl={item.imageUrl}

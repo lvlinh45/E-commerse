@@ -1,4 +1,4 @@
-import { Language } from "../assets/types/languages";
+import { Language } from "../types/languages";
 
 const LanguageMockup: Language[] = [
   {

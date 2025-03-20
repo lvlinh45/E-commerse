@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { IconNotRatingStar, IconStar } from "../../assets/icons/Icons";
 import { Product } from "../../assets/types/Products";
 
 const BrandItem = ({
+  id,
   name,
   price,
   imageUrl,
@@ -13,9 +15,9 @@ const BrandItem = ({
 }: Product) => {
   const finalPrice =
     discount > 0 ? (price ?? 0) * (1 - discount / 100) : price ?? 0;
-
+  const navigate = useNavigate();
   return (
-    <div className="brand-item">
+    <div className="brand-item" onClick={() => navigate(`/products/${id}`)}>
       <div style={{ position: "relative" }}>
         <img
           src="https://cdn.shopify.com/s/files/1/0456/5070/6581/files/1741510674992-138236095-frame_EN.png?v=1741510724"

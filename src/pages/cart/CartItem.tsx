@@ -5,56 +5,38 @@ import ListItem from "@mui/material/ListItem";
 import IconButton from "@mui/material/IconButton";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
+import { useCart } from "../../context/CartContext";
 
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-  vendor: string;
+interface CartItemProps {
+  cartTitle?: string;
 }
 
-const CartItem = ({ cartTitle = "Shopping Cart" }: { cartTitle?: string }) => {
-  const [cartItems, setCartItems] = React.useState<CartItem[]>([
-    {
-      id: 1,
-      name: "Men's Under Armour Sportstyle Nylon Cap - Orange",
-      price: 899000,
-      quantity: 1,
-      image:
-        "//cdn.shopify.com/s/files/1/0456/5070/6581/files/ly_8-00336315946-1_1704438036.jpg?v=1704275084&width=1000",
-      vendor: "UNDER AMOUR",
-    },
-    {
-      id: 2,
-      name: "Kids' Speedo Biofuse 2.0 Goggle - Blue",
-      price: 599000,
-      quantity: 1,
-      image:
-        "//cdn.shopify.com/s/files/1/0456/5070/6581/files/ly_8-00336315946-1_1704438036.jpg?v=1704275084&width=1000",
-      vendor: "UNDER AMOUR",
-    },
-  ]);
+const CartItem: React.FC<CartItemProps> = ({ cartTitle = "Shopping Cart" }) => {
+  const { cart, addToCart, removeFromCart } = useCart();
 
   const handleQuantityChange = (id: number, change: number) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + change } : item
-      )
-    );
+    const item = cart.find((item) => item.id === id);
+    if (item) {
+      addToCart(
+        {
+          ...item,
+          quantity: (item.quantity ?? 0) + change,
+        },
+        (item.quantity ?? 0) + change
+      );
+    }
   };
 
   const handleRemoveItem = (id: number) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    removeFromCart(id);
   };
 
-  const subtotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+  const subtotal = cart.reduce(
+    (total, item) => total + (item?.price ?? 0) * (item.quantity ?? 0),
     0
   );
 
-  if (cartItems.length === 0) {
+  if (cart.length === 0) {
     return (
       <Box className="cart-drawer">
         <div className="cart-header">
@@ -74,10 +56,10 @@ const CartItem = ({ cartTitle = "Shopping Cart" }: { cartTitle?: string }) => {
       </div>
       <div className="cart-container">
         <List className="cart-top">
-          {cartItems.map((item) => (
-            <ListItem className="cart-item cartPage-item ">
+          {cart.map((item) => (
+            <ListItem key={item.id} className="cart-item cartPage-item">
               <div className="cart-imgWrapper">
-                <img src={item.image} alt={item.name} />
+                <img src={item.imageUrl} alt={item.name} />
               </div>
               <div className="cart-item-wrapper cartPage-item-wrapper">
                 <div className="cart-item-info">
@@ -86,28 +68,35 @@ const CartItem = ({ cartTitle = "Shopping Cart" }: { cartTitle?: string }) => {
                 </div>
                 <div className="d-flex item-custom">
                   <div className="item-price">
-                    {item.price.toLocaleString()}đ
+                    {(item.price ?? 0).toLocaleString()}đ
                   </div>
                   <div>
                     <div className="cart-actions">
                       <div className="cart-calculate">
                         <IconButton
-                          onClick={() => handleQuantityChange(item.id, -1)}
-                          disabled={item.quantity <= 1}
+                          onClick={() =>
+                            item.id !== undefined &&
+                            handleQuantityChange(item.id, -1)
+                          }
+                          disabled={(item.quantity ?? 0) <= 1}
                         >
                           <RemoveIcon />
                         </IconButton>
                         <span>{item.quantity}</span>
                         <IconButton
-                          onClick={() => handleQuantityChange(item.id, 1)}
+                          onClick={() =>
+                            item.id !== undefined &&
+                            handleQuantityChange(item.id, 1)
+                          }
                         >
                           <AddIcon />
                         </IconButton>
                       </div>
                       <button
                         className="remove-button"
-                        onClick={() => handleRemoveItem(item.id)}
-                        color="error"
+                        onClick={() =>
+                          item.id !== undefined && handleRemoveItem(item.id)
+                        }
                       >
                         Remove
                       </button>

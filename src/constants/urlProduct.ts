@@ -11,7 +11,7 @@ export const imgProduct: Product[] = [
     numberOfReviews: 3,
     price: 950000,
     discount: 10,
-    rating: 4,
+    rating: 1,
     status: "new",
   },
   {

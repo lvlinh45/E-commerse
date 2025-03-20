@@ -7,7 +7,7 @@ import HomePage from "../pages/home";
 import ProducDetailPage from "../pages/product/ProductDetailPage";
 import CartPage from "../pages/cart";
 import CheckoutPage from "../pages/checkout";
-import { CartProvider } from "../context/CartContext"; // Import CartProvider
+import { CartProvider } from "../context/CartContext";
 
 const AppRoute = () => {
   return (
@@ -18,9 +18,8 @@ const AppRoute = () => {
           <Route path="/products/:id" element={<ProducDetailPage />} />
 
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
         </Route>
-
-        <Route path="/checkout" element={<CheckoutPage />} />
 
         <Route
           path="/auth/admin"

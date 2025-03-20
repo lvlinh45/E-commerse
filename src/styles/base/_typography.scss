@@ -48,6 +48,7 @@
     .breadcrumbs-link {
         text-decoration: none;
         transition: 0.5s all;
+        margin-bottom: 0;
         cursor: pointer;
         &:hover {
             color: $primary-light;
@@ -178,5 +179,10 @@
 .embla {
     &__slide {
         flex: 0 0 auto;
+    }
+}
+.image-wrapper {
+    img {
+        object-fit: cover;
     }
 }

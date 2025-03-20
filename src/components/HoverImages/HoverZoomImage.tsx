@@ -53,7 +53,7 @@ const HoverZoomImage: React.FC<HoverZoomImageProps> = ({
 
   return (
     <div
-      className={`image-wrapper `} // Thêm class từ props
+      className={`image-wrapper`}
       ref={wrapperRef}
       style={{
         width,

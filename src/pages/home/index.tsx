@@ -6,11 +6,8 @@ import Poster from "../../components/poster";
 import TopBrand from "../../components/topBrand";
 import Trending from "../../components/trending";
 import { imgCollection } from "../../constants/urlCollection";
-import { imgArrival } from "../../constants/urlArrival";
 import { posterUrl } from "../../constants/urlPoster";
 import { imgProduct } from "../../constants/urlProduct";
-import { imgProductSale } from "../../constants/urlProductSale";
-import { imgSport } from "../../constants/urlSport";
 import { imgShopSport } from "../../constants/urlShopSport";
 
 const HomePage = () => {
@@ -25,16 +22,16 @@ const HomePage = () => {
           showAll="SHOW ALL"
         ></ProductList>
         <Brand
-          products={imgArrival}
+          products={imgProduct.slice(0, 10)}
           textHeading="NEW ARRIVAL"
           showAll="SHOW ALL"
         ></Brand>
         <Poster posterUrl={posterUrl[0].url}></Poster>
-        <Brand products={imgProduct}></Brand>
+        <Brand products={imgProduct.slice(11, 20)}></Brand>
         <Poster posterUrl={posterUrl[1].url}></Poster>
-        <Brand products={imgProductSale}></Brand>
+        <Brand products={imgProduct.slice(21, 30)}></Brand>
         <Poster posterUrl={posterUrl[2].url}></Poster>
-        <Brand products={imgSport}></Brand>
+        <Brand products={imgProduct.slice(31, 40)}></Brand>
         <TopBrand></TopBrand>
         <ProductList
           products={imgShopSport}

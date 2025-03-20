@@ -1,4 +1,3 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -7,11 +6,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { useCart } from "../../context/CartContext";
 
-interface CartItemProps {
-  cartTitle?: string;
-}
-
-const CartItem: React.FC<CartItemProps> = ({ cartTitle = "Shopping Cart" }) => {
+const CartItem = () => {
   const { cart, addToCart, removeFromCart } = useCart();
 
   const handleQuantityChange = (id: number, change: number) => {
@@ -31,17 +26,10 @@ const CartItem: React.FC<CartItemProps> = ({ cartTitle = "Shopping Cart" }) => {
     removeFromCart(id);
   };
 
-  const subtotal = cart.reduce(
-    (total, item) => total + (item?.price ?? 0) * (item.quantity ?? 0),
-    0
-  );
-
   if (cart.length === 0) {
     return (
       <Box className="cart-drawer">
-        <div className="cart-header">
-          <h2>{cartTitle}</h2>
-        </div>
+        <div className="cart-header"></div>
         <div className="empty-cart-message">
           <p>Your cart is currently empty.</p>
         </div>
@@ -51,9 +39,6 @@ const CartItem: React.FC<CartItemProps> = ({ cartTitle = "Shopping Cart" }) => {
 
   return (
     <Box className="cart-drawer">
-      <div className="cart-header">
-        <h2>{cartTitle}</h2>
-      </div>
       <div className="cart-container">
         <List className="cart-top">
           {cart.map((item) => (
@@ -70,49 +55,49 @@ const CartItem: React.FC<CartItemProps> = ({ cartTitle = "Shopping Cart" }) => {
                   <div className="item-price">
                     {(item.price ?? 0).toLocaleString()}đ
                   </div>
-                  <div>
-                    <div className="cart-actions">
-                      <div className="cart-calculate">
-                        <IconButton
-                          onClick={() =>
-                            item.id !== undefined &&
-                            handleQuantityChange(item.id, -1)
-                          }
-                          disabled={(item.quantity ?? 0) <= 1}
-                        >
-                          <RemoveIcon />
-                        </IconButton>
-                        <span>{item.quantity}</span>
-                        <IconButton
-                          onClick={() =>
-                            item.id !== undefined &&
-                            handleQuantityChange(item.id, 1)
-                          }
-                        >
-                          <AddIcon />
-                        </IconButton>
-                      </div>
-                      <button
-                        className="remove-button"
+                  <div className="cart-actions">
+                    <div className="cart-calculate">
+                      <IconButton
                         onClick={() =>
-                          item.id !== undefined && handleRemoveItem(item.id)
+                          item.id !== undefined &&
+                          handleQuantityChange(item.id, -1)
+                        }
+                        disabled={(item.quantity ?? 0) <= 1}
+                      >
+                        <RemoveIcon />
+                      </IconButton>
+                      <span>{item.quantity}</span>
+                      <IconButton
+                        onClick={() =>
+                          item.id !== undefined &&
+                          handleQuantityChange(item.id, 1)
                         }
                       >
-                        Remove
-                      </button>
+                        <AddIcon />
+                      </IconButton>
                     </div>
+                  </div>
+                  <div className="cartItem-utils">
+                    <p className="cartItem-total">
+                      {(
+                        (item?.price ?? 0) * (item?.quantity ?? 0)
+                      ).toLocaleString()}{" "}
+                      đ
+                    </p>
+                    <button
+                      className="remove-button"
+                      onClick={() =>
+                        item.id !== undefined && handleRemoveItem(item.id)
+                      }
+                    >
+                      Remove
+                    </button>
                   </div>
                 </div>
               </div>
             </ListItem>
           ))}
         </List>
-        <div className="cart-bottom">
-          <div className="card-subtotal">
-            <span>Subtotal</span>
-            <span>{subtotal.toLocaleString()}đ</span>
-          </div>
-        </div>
       </div>
     </Box>
   );

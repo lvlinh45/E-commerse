@@ -32,7 +32,7 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
   };
 
   const handleRemoveItem = (id: number) => {
-    removeFromCart(id); // Remove item from cart
+    removeFromCart(id);
   };
 
   const subtotal = cart.reduce(

@@ -181,4 +181,10 @@
             display: block !important;
         }
     }
+    .header-icon {
+        &.header-icon-search {
+            background-color: $secondary-dark !important;
+            padding: 6px 8px !important;
+        }
+    }
 }

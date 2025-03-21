@@ -12,6 +12,8 @@ import { Language } from "../../assets/types/languages";
 import DrawerSiderBar from "../../components/drawer";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { Product } from "../../assets/types/Products";
+import { imgProduct } from "../../constants/urlProduct";
 
 const HeaderLayout = () => {
   const [selectedLang, setSelectedLang] = useState<Language>({
@@ -23,6 +25,9 @@ const HeaderLayout = () => {
   const { cart } = useCart();
 
   const [drawerOpen, setDrawerOpen] = useState(false); // State to manage the Drawer
+  const [searchTerm, setSearchTerm] = useState<string>(""); // Search term
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]); // Filtered products
+  const [showSearchResults, setShowSearchResults] = useState<boolean>(false); // State to control search results visibility
 
   const handleLanguageSelect = (code: string, flag: string, name: string) => {
     setSelectedLang({ code, flag, name });
@@ -32,9 +37,46 @@ const HeaderLayout = () => {
     setDrawerOpen(open);
   };
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const term = event.target.value;
+    setSearchTerm(term);
+
+    if (term) {
+      const filtered = imgProduct.filter((product) =>
+        product.name?.toLowerCase().includes(term.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts(imgProduct.slice(0, 8));
+    }
+  };
+
+  const handleFocus = () => {
+    setShowSearchResults(true);
+  };
+
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    setTimeout(() => {
+      if (
+        !event.relatedTarget ||
+        !event.relatedTarget.classList.contains("product-item")
+      ) {
+        setShowSearchResults(false);
+      }
+    }, 100);
+  };
+
+  const handleProductClick = (productId: number) => {
+    navigate(`/products/${productId}`);
+  };
+
+  const productsToDisplay = searchTerm
+    ? filteredProducts
+    : imgProduct.slice(0, 8);
+
   return (
     <>
-      <DrawerSiderBar open={drawerOpen} onClose={toggleDrawer(false)} />{" "}
+      <DrawerSiderBar open={drawerOpen} onClose={toggleDrawer(false)} />
       <Navbar expand="lg">
         <Navbar.Brand
           onClick={() => navigate("/")}
@@ -49,12 +91,64 @@ const HeaderLayout = () => {
         </Navbar.Brand>
 
         <Nav>
-          <div className="header-search">
-            <input type="text" placeholder="Search" />
-            <span className="header-icon">
-              <IconSearch />
-            </span>
+          <div
+            className="header-search-wrapper"
+            style={{ position: "relative" }}
+          >
+            <div className="header-search">
+              <input
+                type="text"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={handleSearch}
+                onFocus={handleFocus} // Show search results on input focus
+                onBlur={handleBlur} // Hide results when clicked outside
+              />
+              <span className="header-icon header-icon-search">
+                <IconSearch />
+              </span>
+            </div>
+
+            {/* Display "No products found" message if search results are empty */}
+            {showSearchResults &&
+            searchTerm &&
+            filteredProducts.length === 0 ? (
+              <div className="product-grid-wrapper">
+                <p className="text-center" style={{ marginBottom: 0 }}>
+                  Not Found Product
+                </p>
+              </div>
+            ) : (
+              showSearchResults && (
+                <div className="product-grid-wrapper">
+                  <h4>PRODUCT</h4>
+                  <div className="product-grid">
+                    {productsToDisplay.slice(0, 8).map((product) => (
+                      <div
+                        className="product-item"
+                        key={product.id}
+                        onClick={() => handleProductClick(product?.id || 0)} // Navigate on product click
+                      >
+                        <img src={product.imageUrl} alt={product.name} />
+                        <div>
+                          <p>{product.name}</p>
+                          <p>
+                            <span>
+                              {new Intl.NumberFormat("en-US", {
+                                style: "currency",
+                                currency: "VND",
+                              }).format(product.price ?? 0)}
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            )}
           </div>
+
           <div className="d-flex align-items-center gap-3">
             <div className="d-flex header-iconContainer">
               <span

@@ -1,8 +1,8 @@
 @use "../src/styles/base/colors" as *;
-// Import all variables from colors.scss
 @use "../src/styles/base/typography" as *;
 @use "../src/styles/layout/header" as *;
 @use "../src/styles/layout/footer" as *;
+@use "../src/styles/layout/search" as *;
 // HOME PAGE
 @use "../src/styles/components/HomePage/carousel" as *;
 @use "../src/styles/components/HomePage/category" as *;

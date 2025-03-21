@@ -1,0 +1,71 @@
+@use "../base/colors" as *;
+
+.product-grid-wrapper {
+    position: absolute;
+    z-index: 10;
+    top: 130%;
+    right: 20%;
+    background: white;
+    color: $primary-text;
+    max-width: 900px;
+    min-width: 600px;
+    max-height: 500px;
+    padding: 18px 24px;
+    h4 {
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 16px;
+        color: #7a7a7a;
+    }
+    .product-grid {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
+        &::after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            right: 30px;
+            transform: rotate(45deg);
+            display: block;
+            height: 16px;
+            width: 16px;
+            background-color: white;
+        }
+
+        .product-item {
+            display: flex;
+            gap: 20px;
+            padding: 4px;
+            transition: 0.5s all;
+            cursor: pointer;
+            &:hover {
+                background-color: #e8e9eb;
+            }
+            &:hover p {
+                color: $primary-light;
+                font-weight: 500;
+            }
+            img {
+                width: 72px;
+                height: 72px;
+            }
+
+            div {
+                p {
+                    line-height: 20px;
+                    font-size: 16px;
+                    font-weight: 400;
+                    margin-bottom: 6px;
+                    transition: 0.5s all;
+
+                    span {
+                        color: #222;
+                        font-size: 14px;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}

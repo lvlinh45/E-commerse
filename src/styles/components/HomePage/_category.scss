@@ -2,7 +2,7 @@
 
 .category-container {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
 .category-item {
@@ -18,7 +18,7 @@
         transition: all 0.5s;
     }
     img {
-        width: 108px;
+        width: 98px;
         transition: all 0.5s;
     }
     &:hover div,

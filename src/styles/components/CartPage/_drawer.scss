@@ -50,9 +50,6 @@
                 }
             }
             .cart-item-wrapper {
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
                 .cart-item-info {
                     height: 100%;
                     flex: 1;
@@ -218,6 +215,10 @@
     .cart-drawer {
         width: 400px;
     }
+    .cart-item-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media (min-width: 768px) {
@@ -226,5 +227,8 @@
     }
     .cart-imgWrapper {
         max-width: 142px;
+    }
+    .cart-item-wrapper {
+        flex-direction: row !important;
     }
 }

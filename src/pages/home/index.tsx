@@ -14,7 +14,7 @@ const HomePage = () => {
   return (
     <div className="overflow-hidden">
       <CarouselElement></CarouselElement>
-      <div className="px-5">
+      <div className="homepage-wrapper">
         <Category></Category>
         <ProductList
           products={imgCollection}

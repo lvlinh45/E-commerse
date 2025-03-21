@@ -1,26 +1,23 @@
 @use "../../base/colors" as *;
 
 .cartPage-item {
-    // justify-content: space-between !important;
     .cartPage-item-wrapper {
-        flex-direction: row !important;
         flex: 1;
         .item-custom {
             margin-left: auto;
             gap: 20px;
-            &:nth-child(2) {
+            flex-direction: column;
+            .item-subCustomWrapper {
+                display: flex;
             }
         }
     }
     .cart-actions {
         margin-top: 0 !important;
     }
-    .cart-item-info {
-        // width: 100px;
-    }
 }
 .cartPage-container {
-    padding: 0 120px;
+    padding: 0 20px;
     .cart-container {
         padding: 0;
     }
@@ -38,8 +35,10 @@
         display: flex;
         align-items: flex-start;
         text-align: center;
+        flex-direction: column;
         gap: 40px;
         .cart-checkout {
+            width: 100%;
             .cartPage-heading {
                 background-color: $primary-text;
                 padding: 30px 20px;
@@ -139,5 +138,29 @@
         font-weight: 700;
         text-align: center;
         margin-top: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .cartPage-container {
+        padding: 0 80px;
+    }
+    .item-custom {
+        flex-direction: row !important;
+    }
+}
+
+@media (min-width: 1025px) {
+    .cartPage-wrapper {
+        flex-direction: row !important;
+    }
+    .cartPage-container {
+        padding: 0 120px;
+        .cart-checkout {
+            width: unset !important;
+        }
+    }
+    .item-custom {
+        flex-direction: row !important;
     }
 }

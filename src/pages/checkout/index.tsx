@@ -4,6 +4,9 @@ import { ILocation } from "../../assets/types/Location";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { loadDistricts, loadProvinces, loadWards } from "../../utils";
+import { Product } from "../../assets/types/Products";
+import { useNavigate } from "react-router-dom";
 
 // Yup validation schema
 const schema = yup.object().shape({
@@ -23,12 +26,25 @@ const schema = yup.object().shape({
 });
 
 const CheckoutPage = () => {
-  const { cart } = useCart();
+  const navigate = useNavigate();
+  const { cart, clearCart } = useCart();
+  const [cloneCart, setCloneCart] = useState<Product[]>([]);
+  useEffect(() => {
+    setCloneCart(cart);
+    console.log("TCL: CheckoutPage -> cloneCart", cloneCart);
+  }, [cloneCart]);
   const subtotal = cart.reduce(
     (total, item) => total + (item.price ?? 0) * (item.quantity ?? 0),
     0
   );
-
+  useEffect(() => {
+    if (
+      (!cloneCart && !cart) ||
+      (cart.length === 0 && cloneCart.length === 0)
+    ) {
+      navigate("/");
+    }
+  }, [cart, navigate]);
   const [provinces, setProvinces] = useState<ILocation[]>([]);
   const [districts, setDistricts] = useState<ILocation[]>([]);
   const [villages, setVillages] = useState<ILocation[]>([]);
@@ -36,75 +52,18 @@ const CheckoutPage = () => {
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
 
+  const [orderSuccess, setOrderSuccess] = useState(false);
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      agreeTerms: true,
+    },
   });
-
-  const loadProvinces = (inputValue: string) =>
-    new Promise<ILocation[]>((resolve) => {
-      fetch("https://provinces.open-api.vn/api/p/")
-        .then((response) => response.json())
-        .then((data) => {
-          const provinces: ILocation[] = data.map(
-            (province: { code: string; name: string }) => ({
-              value: parseInt(province.code), // Ensure value is a number
-              label: province.name,
-            })
-          );
-          resolve(
-            provinces.filter((province) =>
-              province.label.toLowerCase().includes(inputValue.toLowerCase())
-            )
-          );
-        })
-        .catch((error) => console.error("Error fetching provinces:", error));
-    });
-
-  const loadDistricts = (provinceCode: string) => (inputValue: string) =>
-    new Promise<ILocation[]>((resolve) => {
-      if (!provinceCode) return;
-      fetch(`https://provinces.open-api.vn/api/p/${provinceCode}/?depth=2`)
-        .then((response) => response.json())
-        .then((data) => {
-          const districts: ILocation[] = data.districts.map(
-            (district: { code: string; name: string }) => ({
-              value: parseInt(district.code), // Ensure value is a number
-              label: district.name,
-            })
-          );
-          resolve(
-            districts.filter((district) =>
-              district.label.toLowerCase().includes(inputValue.toLowerCase())
-            )
-          );
-        })
-        .catch((error) => console.error("Error fetching districts:", error));
-    });
-
-  const loadWards = (districtCode: string) => (inputValue: string) =>
-    new Promise<ILocation[]>((resolve) => {
-      if (!districtCode) return;
-      fetch(`https://provinces.open-api.vn/api/d/${districtCode}/?depth=2`)
-        .then((response) => response.json())
-        .then((data) => {
-          const wards: ILocation[] = data.wards.map(
-            (ward: { code: string; name: string }) => ({
-              value: parseInt(ward.code), // Ensure value is a number
-              label: ward.name,
-            })
-          );
-          resolve(
-            wards.filter((ward) =>
-              ward.label.toLowerCase().includes(inputValue.toLowerCase())
-            )
-          );
-        })
-        .catch((error) => console.error("Error fetching wards:", error));
-    });
 
   const handleProvinceChange = (provinceCode: string) => {
     setSelectedProvince(provinceCode);
@@ -127,7 +86,63 @@ const CheckoutPage = () => {
 
   const onSubmit = (data: { email: string }) => {
     console.log(data);
+    setOrderSuccess(true);
+    clearCart();
   };
+
+  if (orderSuccess) {
+    return (
+      <div className="order-success-container">
+        <h3>Order placed successfully!</h3>
+        <p>Your order is being processed. Thank you for shopping with us!</p>
+        <p>
+          Your order ID: <strong>HAB123456</strong>
+        </p>
+
+        <div className="order-details">
+          <h4>Order Details</h4>
+          <div className="order-products">
+            {cloneCart.map((item) => (
+              <div className="order-product" key={item.id}>
+                <img
+                  src={item.imageUrl}
+                  alt={item.name}
+                  className="product-image"
+                />
+                <div className="product-info">
+                  <p className="product-name">{item.name}</p>
+                  <p className="product-price">
+                    {(
+                      (item.price ?? 0) * (item.quantity ?? 0)
+                    ).toLocaleString()}{" "}
+                    VNĐ
+                  </p>
+                  <p className="product-quantity">Quantity: {item.quantity}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="order-total">
+            <span>Total</span>
+            <span>
+              {cloneCart
+                .reduce(
+                  (total, item) =>
+                    total + (item.price ?? 0) * (item.quantity ?? 0),
+                  0
+                )
+                .toLocaleString()}
+              VNĐ
+            </span>
+          </div>
+        </div>
+
+        <a href="/" className="order-success-link">
+          Return to Home
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div className="checkout-container">
@@ -330,8 +345,7 @@ const CheckoutPage = () => {
                 />
               )}
             />
-
-            <label htmlFor="term">
+            <label htmlFor="agreeTerms">
               I agree with the Terms and Policies stipulated by Supersports
             </label>
           </div>

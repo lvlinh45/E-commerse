@@ -55,42 +55,44 @@ const CartItem = () => {
                   <div className="item-price">
                     {(item.price ?? 0).toLocaleString()}đ
                   </div>
-                  <div className="cart-actions">
-                    <div className="cart-calculate">
-                      <IconButton
-                        onClick={() =>
-                          item.id !== undefined &&
-                          handleQuantityChange(item.id, -1)
-                        }
-                        disabled={(item.quantity ?? 0) <= 1}
-                      >
-                        <RemoveIcon />
-                      </IconButton>
-                      <span>{item.quantity}</span>
-                      <IconButton
-                        onClick={() =>
-                          item.id !== undefined &&
-                          handleQuantityChange(item.id, 1)
-                        }
-                      >
-                        <AddIcon />
-                      </IconButton>
+                  <div className="item-subCustomWrapper">
+                    <div className="cart-actions">
+                      <div className="cart-calculate">
+                        <IconButton
+                          onClick={() =>
+                            item.id !== undefined &&
+                            handleQuantityChange(item.id, -1)
+                          }
+                          disabled={(item.quantity ?? 0) <= 1}
+                        >
+                          <RemoveIcon />
+                        </IconButton>
+                        <span>{item.quantity}</span>
+                        <IconButton
+                          onClick={() =>
+                            item.id !== undefined &&
+                            handleQuantityChange(item.id, 1)
+                          }
+                        >
+                          <AddIcon />
+                        </IconButton>
+                      </div>
                     </div>
-                  </div>
-                  <div className="cartItem-utils">
-                    <p className="cartItem-total">
-                      {(
-                        (item.price ?? 0) * (item.quantity ?? 0)
-                      ).toLocaleString()}
-                    </p>
-                    <button
-                      className="remove-button"
-                      onClick={() =>
-                        item.id !== undefined && handleRemoveItem(item.id)
-                      }
-                    >
-                      Remove
-                    </button>
+                    <div className="cartItem-utils">
+                      <p className="cartItem-total">
+                        {(
+                          (item.price ?? 0) * (item.quantity ?? 0)
+                        ).toLocaleString()}
+                      </p>
+                      <button
+                        className="remove-button"
+                        onClick={() =>
+                          item.id !== undefined && handleRemoveItem(item.id)
+                        }
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

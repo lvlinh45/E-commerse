@@ -1,19 +1,17 @@
 @use "../../base/colors" as *;
 .checkout-container {
     font-family: "Inter", sans-serif;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column-reverse;
     color: $black;
     .checkout-input {
         width: 100%;
         padding: 8px;
-        // border-radius: 6px;
         margin-bottom: 16px;
     }
     .checkout-left {
-        padding: 38px 120px;
+        padding: 30px;
         .checkout-heading {
-            // padding: 0 32px;
             margin-bottom: 40px;
             .checkout-heading--notification {
                 display: flex;
@@ -40,7 +38,6 @@
             select {
                 width: 100%;
                 padding: 8px;
-                // border-radius: 6px;
                 margin-bottom: 16px;
             }
             .checkout-inputRow {
@@ -78,9 +75,7 @@
         }
     }
     .checkout-right {
-        padding: 38px;
-        padding-left: 60px;
-        padding-right: 200px;
+        padding: 30px;
         flex: 1;
         background-color: $bg-checkout;
         display: flex;
@@ -138,6 +133,166 @@
                     font-weight: 700;
                 }
             }
+        }
+    }
+}
+
+/* .order-success-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    width: 100%;
+
+    h3 {
+        font-size: 24px;
+        color: #28a745;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 18px;
+        color: #555;
+        text-align: center;
+    }
+
+    .order-success-link {
+        font-size: 16px;
+        color: #007bff;
+        text-decoration: none;
+        margin-top: 20px;
+        &:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    }
+} */
+
+@media (min-width: 1025px) {
+    .checkout-container {
+        flex-direction: row;
+        .checkout-left {
+            padding: 38px 120px;
+        }
+    }
+    .checkout-right {
+        padding: 38px;
+        padding-left: 60px;
+        padding-right: 200px;
+    }
+}
+
+// Order success container
+.order-success-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: $primary;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+
+    h3 {
+        font-size: 24px;
+        color: $primary-text;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    p {
+        font-size: 18px;
+        color: $text-heading;
+        text-align: justify;
+        margin-bottom: 10px;
+    }
+
+    .order-details {
+        margin-top: 20px;
+        width: 100%;
+        background-color: $white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: 80%;
+
+        h4 {
+            font-size: 20px;
+            color: $primary-text;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .order-products {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            .order-product {
+                display: flex;
+                gap: 15px;
+                // background-color: $primary-light;
+                padding: 10px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+                .product-image {
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;
+                    border-radius: 5px;
+                }
+
+                .product-info {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    .product-name {
+                        font-size: 16px;
+                        color: $primary-text;
+                    }
+
+                    .product-price {
+                        font-size: 14px;
+                        color: $secondary;
+                    }
+
+                    .product-quantity {
+                        font-size: 14px;
+                        color: $quantity;
+                    }
+                }
+            }
+        }
+
+        .order-total {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            color: $primary-text;
+
+            span {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .order-success-link {
+        font-size: 16px;
+        color: $primary-light;
+        text-decoration: none;
+        margin-top: 20px;
+        &:hover {
+            text-decoration: underline;
         }
     }
 }

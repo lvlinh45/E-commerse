@@ -1,12 +1,28 @@
+import { useState } from "react";
 import SeekingProduct from "../../components/sidebar/seekingProduct";
 import SidebarSeeking from "../../components/sidebar/sidebarSeeking";
+import BreadScrumbs from "../../components/Universal/Breadscrumb";
+import { Filters } from "../../assets/types/Filters";
 
 const SeekingPage = () => {
+  const [filters, setFilters] = useState<Filters>({
+    gender: [],
+    brand: [],
+    price: [],
+  });
+
+  const handleFilterChange = (newFilters: Filters) => {
+    setFilters(newFilters);
+  };
+
   return (
-    <div className="seekingPage-container">
-      <SidebarSeeking></SidebarSeeking>
-      <SeekingProduct></SeekingProduct>
-    </div>
+    <>
+      <BreadScrumbs page={"Home"} destination={"Search Page"} />
+      <div className="seekingPage-container">
+        <SidebarSeeking onFilterChange={handleFilterChange} />
+        <SeekingProduct filters={filters} />
+      </div>
+    </>
   );
 };
 

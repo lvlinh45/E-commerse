@@ -6,21 +6,12 @@ const FooterLayout = () => {
       <Container>
         <div className="footer-section">
           <div className="footer-column">
-            <h5>GENERAL TRADING FASHIONS ONE MEMBER COMPANY LIMITED</h5>
+            <h5>Location</h5>
             <p>
-              <span>Office:</span> 163 Phan Dang Luu, Ward 1, Phu Nhuan
-              District, Ho Chi Minh City, Viet Nam
+              <span>Address 1: </span>VietNam
             </p>
             <p>
-              <span>E-commerce Warehouse:</span> TBS Logistics Tan Van, Binh
-              Duong Province, Viet Nam
-            </p>
-            <p>
-              <span>Hotline:</span> 1900 63 64 01
-            </p>
-            <p>
-              <span>Business Code:</span> 0314635071, register changes on April
-              20, 2020
+              <span>Address 2: </span>USA
             </p>
           </div>
           <div className="footer-column">

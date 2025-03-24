@@ -4,7 +4,7 @@ export const imgProduct: Product[] = [
   {
     id: 1,
     size: "L",
-    name: "Kids' Zoggs Zoggy Armbands  - Multicolor",
+    name: "Kids' Zoggs Zoggy Armbands - Multicolor",
     imageUrl:
       "//cdn.shopify.com/s/files/1/0456/5070/6581/files/ly_465387-en_1714721240.jpg?v=1695279317&width=1000",
     description: "Comfortable and stylish armbands for kids.",
@@ -13,7 +13,8 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 0,
     status: "new",
-    vendor: "Speedo",
+    gender: "MEN",
+    brand: "SPEEDO",
   },
   {
     id: 2,
@@ -27,7 +28,8 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 1,
     status: "new",
-    vendor: "Speedo",
+    gender: "WOMEN",
+    brand: "SPEEDO",
   },
   {
     id: 3,
@@ -41,7 +43,8 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 0,
     status: "new",
-    vendor: "Speedo",
+    gender: "BOYS",
+    brand: "SPEEDO",
   },
   {
     id: 4,
@@ -55,7 +58,8 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
-    vendor: "Speedo",
+    gender: "BOYS",
+    brand: "UNDER ARMOUR",
   },
   {
     id: 5,
@@ -69,7 +73,8 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
-    vendor: "Speedo",
+    gender: "WOMEN",
+    brand: "COLUMBIA",
   },
   {
     id: 6,
@@ -83,7 +88,8 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
-    vendor: "UNDER ARMOUR",
+    gender: "BOYS",
+    brand: "UNDER ARMOUR",
   },
   {
     id: 7,
@@ -97,7 +103,8 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
-    vendor: "HOKA",
+    gender: "BOYS",
+    brand: "HOKA",
   },
   {
     id: 8,
@@ -111,7 +118,8 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
-    vendor: "HOKA",
+    gender: "WOMEN",
+    brand: "HOKA",
   },
   {
     id: 9,
@@ -125,7 +133,8 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
-    vendor: "HOKA",
+    gender: "GIRLS",
+    brand: "HOKA",
   },
   {
     id: 10,
@@ -139,7 +148,8 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
-    vendor: "HOKA",
+    gender: "WOMEN",
+    brand: "HOKA",
   },
   {
     id: 11,
@@ -154,9 +164,11 @@ export const imgProduct: Product[] = [
     discount: 10,
     rating: 1,
     status: "new",
+    gender: "WOMEN",
+    brand: "SPEEDO",
   },
   {
-    id: 2,
+    id: 12,
     size: "M",
     name: "Men's Teva Hurricane Xlt2 Sandals - Black",
     imageUrl:
@@ -168,20 +180,8 @@ export const imgProduct: Product[] = [
     discount: 20,
     rating: 5,
     status: "new",
-  },
-  {
-    id: 12,
-    size: "S",
-    name: "Men's Teva Hurricane Xlt2 Sandals - Black",
-    imageUrl:
-      "//supersports.com.vn/cdn/shop/files/1361588-001-1.jpg?v=1700612903&width=2000",
-    description:
-      "Comfortable sandals with excellent grip for outdoor activities.",
-    numberOfReviews: 5,
-    discount: 30,
-    rating: 4,
-    status: "old",
-    price: 850000,
+    gender: "GIRLS",
+    brand: "TEVA",
   },
   {
     id: 13,
@@ -195,6 +195,8 @@ export const imgProduct: Product[] = [
     discount: 15,
     rating: 3,
     status: "old",
+    gender: "GIRLS",
+    brand: "TEVA",
     price: 500000,
   },
   {

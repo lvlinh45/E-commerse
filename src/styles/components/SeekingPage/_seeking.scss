@@ -3,13 +3,14 @@
 // CONTAINER
 .seekingPage-container {
     display: flex;
+    flex-direction: column;
     padding: 36px 48px;
-    gap: 40px;
+    gap: 10px;
 }
 
 // SIDEBAR SEEKING
 .sidebar-seeking {
-    width: 300px;
+    width: 100%;
     color: $primary-text;
     font-family: "Nunito Sans", sans-serif !important;
 
@@ -77,7 +78,7 @@
 
 // SEEKING PRODUCT
 .search-container {
-    width: 80%;
+    width: 100%;
     color: $primary-text;
     .search-bar {
         position: relative;
@@ -126,10 +127,25 @@
 
 .seeking-listProduct {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 40px;
 
     .brand-item {
         cursor: pointer;
+    }
+}
+@media (min-width: 992px) {
+    .seekingPage-container {
+        flex-direction: row;
+        gap: 40px;
+    }
+    .sidebar-seeking {
+        width: 300px;
+    }
+    .search-container {
+        width: 80%;
+    }
+    .seeking-listProduct {
+        grid-template-columns: repeat(4, 1fr);
     }
 }

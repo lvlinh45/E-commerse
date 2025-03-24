@@ -73,7 +73,7 @@ const ProductDetailPage = () => {
     <>
       <BreadScrumbs
         page={"Home"}
-        subPage={"New Arrivals"}
+        subPage={"Collection"}
         destination={product?.name ?? "Product"}
       ></BreadScrumbs>
       <DrawerSiderBar

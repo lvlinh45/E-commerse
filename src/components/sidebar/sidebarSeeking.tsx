@@ -8,17 +8,12 @@ import {
   TextField,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { FilterCategory, filterData } from "../../constants/filter";
+import { Filters } from "../../assets/types/Filters";
 
-// Define types for the state
-type FilterCategory = "gender" | "brand" | "price";
-
-type Filters = {
-  gender: string[];
-  brand: string[];
-  price: string[];
-};
-
-const SidebarSeeking: React.FC = () => {
+const SidebarSeeking: React.FC<{
+  onFilterChange: (filters: Filters) => void;
+}> = ({ onFilterChange }) => {
   const [selectedFilters, setSelectedFilters] = useState<Filters>({
     gender: [],
     brand: [],
@@ -31,46 +26,14 @@ const SidebarSeeking: React.FC = () => {
     price: "",
   });
 
-  const filterData = [
-    {
-      category: "gender" as FilterCategory,
-      options: ["MEN", "WOMEN", "BOYS", "GIRLS"],
-    },
-    {
-      category: "brand" as FilterCategory,
-      options: [
-        "SKECHERS",
-        "SOFSOLE",
-        "SPEEDO",
-        "TEVA",
-        "TRIGGERPOINT",
-        "UNDER ARMOUR",
-        "WABOBA",
-      ],
-    },
-    {
-      category: "price" as FilterCategory,
-      options: [
-        "UNDER 500.000đ",
-        "500.000đ - 1.000.000đ",
-        "1.000.000đ - 2.000.000đ",
-        "2.000.000đ - 3.000.000đ",
-        "3.000.000đ - 4.000.000đ",
-        "4.000.000đ - 5.000.000đ",
-        "ABOVE 5.000.000đ",
-      ],
-    },
-  ];
-
   const handleFilterChange = (category: FilterCategory, option: string) => {
     setSelectedFilters((prev) => {
       const updatedCategory = prev[category].includes(option)
         ? prev[category].filter((item) => item !== option)
         : [...prev[category], option];
-      return {
-        ...prev,
-        [category]: updatedCategory,
-      };
+      const newFilters = { ...prev, [category]: updatedCategory };
+      onFilterChange(newFilters);
+      return newFilters;
     });
   };
 
@@ -78,10 +41,15 @@ const SidebarSeeking: React.FC = () => {
     category: FilterCategory,
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setSearchQueries((prev) => ({
-      ...prev,
-      [category]: (e.target as HTMLInputElement).value,
-    }));
+    const query = e.target.value;
+    setSearchQueries((prev) => {
+      const updatedQueries = { ...prev, [category]: query };
+      onFilterChange({
+        ...selectedFilters,
+        [category]: query ? [query] : [],
+      });
+      return updatedQueries;
+    });
   };
 
   const filterOptions = (category: FilterCategory, options: string[]) => {
@@ -92,14 +60,12 @@ const SidebarSeeking: React.FC = () => {
   };
 
   const clearFilter = (category: FilterCategory) => {
-    setSelectedFilters((prev) => ({
-      ...prev,
-      [category]: [],
-    }));
-    setSearchQueries((prev) => ({
-      ...prev,
-      [category]: "",
-    }));
+    setSelectedFilters((prev) => {
+      const newFilters = { ...prev, [category]: [] };
+      onFilterChange(newFilters);
+      return newFilters;
+    });
+    setSearchQueries((prev) => ({ ...prev, [category]: "" }));
   };
 
   const isFilterSelected = (category: FilterCategory) =>
@@ -136,7 +102,6 @@ const SidebarSeeking: React.FC = () => {
                 margin="normal"
               />
             ) : null}
-
             {filterOptions(category, options).map((option) => (
               <FormControlLabel
                 key={option}

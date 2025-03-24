@@ -165,14 +165,13 @@
 
 .embla__slide__img {
     height: 100%;
-    object-fit: cover;
     width: 100%;
     margin: 0 auto;
 }
 .embla-thumbs__img {
     width: 100px;
     height: 100px;
-    object-fit: cover;
+    object-fit: contain;
     aspect-ratio: 1 / 1;
 }
 
@@ -183,6 +182,6 @@
 }
 .image-wrapper {
     img {
-        object-fit: cover;
+        object-fit: contain;
     }
 }

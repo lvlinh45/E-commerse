@@ -127,7 +127,7 @@ const HeaderLayout = () => {
                       <div
                         className="product-item"
                         key={product.id}
-                        onClick={() => handleProductClick(product?.id || 0)} // Navigate on product click
+                        onClick={() => handleProductClick(product?.id || 0)}
                       >
                         <img src={product.imageUrl} alt={product.name} />
                         <div>

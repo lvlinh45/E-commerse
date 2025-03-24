@@ -1,0 +1,135 @@
+@use "../../base/colors" as *;
+
+// CONTAINER
+.seekingPage-container {
+    display: flex;
+    padding: 36px 48px;
+    gap: 40px;
+}
+
+// SIDEBAR SEEKING
+.sidebar-seeking {
+    width: 300px;
+    color: $primary-text;
+    font-family: "Nunito Sans", sans-serif !important;
+
+    .filter-category {
+        margin-bottom: 40px;
+    }
+    .MuiPaper-root {
+        margin-bottom: 0;
+        .MuiAccordionSummary-root {
+            padding: 10px 16px;
+        }
+        .MuiAccordionDetails-root {
+            padding: 0;
+        }
+        .css-yfrx4k-MuiAccordionSummary-content.Mui-expanded {
+            margin: 0 !important;
+        }
+        .css-yfrx4k-MuiAccordionSummary-content {
+            margin: 0 !important;
+        }
+        .css-rizt0-MuiTypography-root {
+            font-size: 13px;
+            flex: 1;
+        }
+        .css-19opgx6-MuiFormControlLabel-root {
+            display: flex;
+            margin-right: 0;
+        }
+    }
+    .css-1808mag-MuiPaper-root-MuiAccordion-root::before {
+        display: none !important;
+    }
+    .sidebarSeeking-text {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h4 {
+            margin-bottom: 0;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        p {
+            margin-bottom: 0;
+            font-size: 10px;
+        }
+    }
+    .sidebarSeeking-main {
+        --Paper-shadow: 0 !important;
+        margin-bottom: 10px;
+    }
+    .sidebarSeeking-wrapper {
+        background-color: $bg-seeking;
+    }
+    .sidebarSeeking-input {
+        input {
+            padding: 10px 16px;
+            &::placeholder {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+// SEEKING PRODUCT
+.search-container {
+    width: 80%;
+    color: $primary-text;
+    .search-bar {
+        position: relative;
+        div {
+            svg {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 20px;
+            }
+        }
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        width: 100%;
+    }
+    .seeking-filter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        padding: 8px 0;
+        margin-bottom: 32px;
+        border-bottom: 1px solid #e8e9eb;
+        .seeking-filter-count {
+            margin-bottom: 0;
+        }
+        .seeking-filter-control {
+            .MuiInputBase-root {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+        .css-5lvf42-MuiSelect-select-MuiInputBase-input-MuiInput-input.MuiSelect-select {
+            font-size: 14px;
+        }
+    }
+}
+
+.seeking-listProduct {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+
+    .brand-item {
+        cursor: pointer;
+    }
+}

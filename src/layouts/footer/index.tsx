@@ -29,7 +29,6 @@ const FooterLayout = () => {
               <li>About Us</li>
               <li>Store Locations</li>
               <li>Contact Us</li>
-              <li>Terms & Conditions</li>
             </ul>
           </div>
           <div className="footer-column">
@@ -38,10 +37,6 @@ const FooterLayout = () => {
               <li>Delivery Policy</li>
               <li>Returns & Exchanges</li>
               <li>Installment Policy</li>
-              <li>Privacy Policy</li>
-              <li>Help & FAQs</li>
-              <li>How to Place an Order</li>
-              <li>Size Guide</li>
             </ul>
           </div>
           <div className="footer-column">

@@ -40,7 +40,7 @@ const Brand = ({
             },
           }}
         >
-          <div className="testa">
+          <div>
             {products.map((item) => (
               <div key={item.id}>
                 <SwiperSlide>

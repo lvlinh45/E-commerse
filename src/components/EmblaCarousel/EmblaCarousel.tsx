@@ -66,7 +66,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               <HoverZoomImage
                 className="embla__slide__img"
                 imageSrc={slide}
-                altText="Beautiful Landscape"
+                altText="img-detail-product"
                 width="100%"
                 height="500px"
               />

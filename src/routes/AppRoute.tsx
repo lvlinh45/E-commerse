@@ -8,6 +8,7 @@ import ProducDetailPage from "../pages/product/ProductDetailPage";
 import CartPage from "../pages/cart";
 import CheckoutPage from "../pages/checkout";
 import { CartProvider } from "../context/CartContext";
+import SeekingPage from "../pages/seeking";
 
 const AppRoute = () => {
   return (
@@ -19,6 +20,7 @@ const AppRoute = () => {
 
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/collection/all" element={<SeekingPage />} />
         </Route>
 
         <Route

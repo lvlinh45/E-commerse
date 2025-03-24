@@ -14,11 +14,7 @@ const CartPage = () => {
 
   return (
     <>
-      <BreadScrumbs
-        page={"Home"}
-        destination={"Shopping Cart"}
-        navigateSubPage="/"
-      />
+      <BreadScrumbs page={"Home"} destination={"Shopping Cart"} />
       {cart.length === 0 && (
         <>
           <div className="cartPage-emptyWrapper">

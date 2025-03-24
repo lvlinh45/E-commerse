@@ -8,7 +8,6 @@ import Trending from "../../components/trending";
 import { imgCollection } from "../../constants/urlCollection";
 import { posterUrl } from "../../constants/urlPoster";
 import { imgProduct } from "../../constants/urlProduct";
-import { imgShopSport } from "../../constants/urlShopSport";
 
 const HomePage = () => {
   return (
@@ -17,7 +16,10 @@ const HomePage = () => {
       <div className="homepage-wrapper">
         <Category></Category>
         <ProductList
-          products={imgCollection}
+          products={imgCollection.map((item) => ({
+            ...item,
+            name: "Default Name",
+          }))}
           textHeading="NEW COLLECTIONS"
           showAll="SHOW ALL"
         ></ProductList>
@@ -34,9 +36,12 @@ const HomePage = () => {
         <Brand products={imgProduct.slice(31, 40)}></Brand>
         <TopBrand></TopBrand>
         <ProductList
-          products={imgShopSport}
-          textHeading="SHOP BY SPORTS"
-          quatitySlide={6}
+          products={imgCollection.map((item) => ({
+            ...item,
+            name: "Default Name",
+          }))}
+          textHeading="NEW COLLECTIONS"
+          showAll="SHOW ALL"
         ></ProductList>
         <Trending></Trending>
       </div>

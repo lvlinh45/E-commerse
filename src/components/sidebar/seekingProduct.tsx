@@ -7,7 +7,6 @@ import { Filters } from "../../assets/types/Filters";
 import { Product } from "../../assets/types/Products";
 import BrandItem from "../brand/BrandItem";
 
-// Function to get price range
 const getPriceRange = (priceLabel: string) => {
   if (priceLabel === "UNDER 500.000đ") {
     return { min: 0, max: 500000 };
@@ -26,15 +25,13 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
   const [sortOrder, setSortOrder] = useState<string>("manual");
   const [products, setProducts] = useState<Product[]>([]);
 
-  // Load products from localStorage
   useEffect(() => {
     const storedProducts = localStorage.getItem("products");
     if (storedProducts) {
-      setProducts(JSON.parse(storedProducts)); // Load products from localStorage
+      setProducts(JSON.parse(storedProducts));
     }
   }, []);
 
-  // Filter products based on search query and filters
   const filteredProducts = products.filter((item) => {
     const matchesSearchQuery =
       searchQuery.trim() === "" ||
@@ -62,7 +59,6 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
     return matchesSearchQuery && matchesFilters;
   });
 
-  // Sort products based on sort order
   const sortProducts = (products: Product[]) => {
     switch (sortOrder) {
       case "highToLow":
@@ -80,12 +76,10 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
 
   const sortedProducts = sortProducts(filteredProducts);
 
-  // Handle search query change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
-  // Handle sort order change
   const handleChange = (event: SelectChangeEvent) => {
     setSortOrder(event.target.value);
   };

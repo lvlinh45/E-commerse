@@ -34,7 +34,7 @@ header {
     gap: 20px;
     .adminProduct-left {
         background-color: #fff;
-        padding: 16px;
+        padding: 0;
         border-radius: 8px;
         flex: 1;
         h3 {
@@ -47,7 +47,7 @@ header {
             display: grid;
             gap: 14px;
             grid-template-columns: repeat(2, 1fr);
-            padding: 20px 12px;
+            padding: 10px;
             .adminProduct-form-item {
                 display: flex;
                 flex-direction: column;
@@ -121,7 +121,7 @@ header {
     .adminProduct-right {
         min-width: 400px;
         border-radius: 8px;
-        display: flex;
+        display: none;
         flex-direction: column;
         gap: 20px;
         .adminProduct-top {
@@ -174,5 +174,17 @@ header {
                 border: 1px solid #ccc;
             }
         }
+    }
+}
+
+@media (min-width: 992px) {
+    .adminProduct-right {
+        display: flex !important;
+    }
+    .adminProduct-form {
+        padding: 20px 12px;
+    }
+    .adminProduct-left {
+        padding: 16px;
     }
 }

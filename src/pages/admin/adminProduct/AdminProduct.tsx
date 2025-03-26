@@ -2,18 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import "./adminProduct.scss";
 import Swal from "sweetalert2";
-interface IFormInput {
-  productName: string;
-  brand: string;
-  description: string;
-  salePrice: string;
-  discount: string;
-  size: string;
-  tags: string;
-  imageUrl: string;
-  visibility: string;
-  publishCategory: string;
-}
+import { IFormInput } from "../../../assets/types/Products";
 
 const AdminProduct: React.FC = () => {
   const {
@@ -56,11 +45,8 @@ const AdminProduct: React.FC = () => {
     };
 
     const storedProducts = JSON.parse(localStorage.getItem("products") || "[]");
-
     storedProducts.unshift(newProduct);
-
     localStorage.setItem("products", JSON.stringify(storedProducts));
-
     Swal.fire({
       title: "Success!",
       text: "Product has been created successfully.",
@@ -91,10 +77,6 @@ const AdminProduct: React.FC = () => {
     <>
       <header>
         <h2>Create a New Product</h2>
-        <button>
-          <span>+</span>
-          <span>New Product</span>
-        </button>
       </header>
       <section className="adminProduct-container">
         <div className="adminProduct-left">

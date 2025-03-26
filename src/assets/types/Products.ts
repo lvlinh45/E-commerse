@@ -23,3 +23,15 @@ export interface ProductListProps {
   showAll?: string;
   quatitySlide?: number;
 }
+export interface IFormInput {
+  productName: string;
+  brand: string;
+  description: string;
+  salePrice: string;
+  discount: string;
+  size: string;
+  tags: string;
+  imageUrl: string;
+  visibility: string;
+  publishCategory: string;
+}

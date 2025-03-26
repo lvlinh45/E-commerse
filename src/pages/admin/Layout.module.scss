@@ -5,10 +5,6 @@
     background-color: white;
 }
 
-.sidebar-container {
-    width: 18rem;
-}
-
 .content-container {
     flex: 1;
     padding: 1rem 1.25rem;
@@ -16,5 +12,8 @@
 
     @media (min-width: 768px) {
         padding: 1.5rem 3rem;
+    }
+    @media (min-width: 1024px) {
+        margin-left: 18rem;
     }
 }

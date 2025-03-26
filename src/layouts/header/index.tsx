@@ -24,10 +24,10 @@ const HeaderLayout = () => {
   const navigate = useNavigate();
   const { cart } = useCart();
 
-  const [drawerOpen, setDrawerOpen] = useState(false); // State to manage the Drawer
-  const [searchTerm, setSearchTerm] = useState<string>(""); // Search term
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]); // Filtered products
-  const [showSearchResults, setShowSearchResults] = useState<boolean>(false); // State to control search results visibility
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [showSearchResults, setShowSearchResults] = useState<boolean>(false);
 
   const handleLanguageSelect = (code: string, flag: string, name: string) => {
     setSelectedLang({ code, flag, name });
@@ -101,15 +101,17 @@ const HeaderLayout = () => {
                 placeholder="Search"
                 value={searchTerm}
                 onChange={handleSearch}
-                onFocus={handleFocus} // Show search results on input focus
-                onBlur={handleBlur} // Hide results when clicked outside
+                onFocus={handleFocus}
+                onBlur={handleBlur}
               />
-              <span className="header-icon header-icon-search">
+              <span
+                className="header-icon header-icon-search"
+                onClick={() => navigate(`/collection/all?q=${searchTerm}`)}
+              >
                 <IconSearch />
               </span>
             </div>
 
-            {/* Display "No products found" message if search results are empty */}
             {showSearchResults &&
             searchTerm &&
             filteredProducts.length === 0 ? (

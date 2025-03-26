@@ -135,9 +135,14 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        <a href="/" className="order-success-link">
+        <p
+          onClick={() => {
+            navigate("/");
+          }}
+          className="order-success-link"
+        >
           Return to Home
-        </a>
+        </p>
       </div>
     );
   }
@@ -169,7 +174,6 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Delivery Information Section */}
         <div className="checkout-heading">
           <h3 className="checkout-title">Delivery</h3>
           <h4 className="checkout-subTitle">

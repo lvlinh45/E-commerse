@@ -20,7 +20,7 @@ const headCells = [
   { id: "name", label: "Product Name" },
   { id: "price", label: "Price" },
   { id: "category", label: "Category" },
-  { id: "stock", label: "Stock" },
+  { id: "quantity", label: "Quantity" },
   { id: "brand", label: "Brand" },
   { id: "status", label: "Status" },
   { id: "actions", label: "Actions" },
@@ -156,7 +156,7 @@ export default function ProductTable() {
                       <TableCell>{row.name}</TableCell>
                       <TableCell>{row.price}</TableCell>
                       <TableCell>{row.category}</TableCell>
-                      <TableCell>{row.stock}</TableCell>
+                      <TableCell>{row.quantity}</TableCell>
                       <TableCell>{row.brand}</TableCell>
                       <TableCell>{row.status}</TableCell>
                       <TableCell>

@@ -38,11 +38,12 @@ const AdminProduct: React.FC = () => {
       tags: data.tags,
       imageUrl: data.imageUrl,
       visibility: data.visibility,
-      publishCategory: data.publishCategory,
+      category: data.publishCategory,
       numberOfReviews: 0,
       rating: 0,
       status: "new",
     };
+    console.log("TCL: onSubmit -> newProduct", newProduct);
 
     const storedProducts = JSON.parse(localStorage.getItem("products") || "[]");
     storedProducts.unshift(newProduct);
@@ -136,7 +137,7 @@ const AdminProduct: React.FC = () => {
                 {...register("salePrice", {
                   required: "Sale price is required",
                 })}
-                type="text"
+                type="number"
                 id="sale-price"
                 placeholder="Enter sale price"
               />
@@ -149,7 +150,7 @@ const AdminProduct: React.FC = () => {
             <div className="adminProduct-form-item">
               <label htmlFor="discount">Discount</label>
               <input
-                type="text"
+                type="number"
                 id="discount"
                 placeholder="Enter discount percentage"
               />

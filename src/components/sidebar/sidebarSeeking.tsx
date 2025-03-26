@@ -86,7 +86,14 @@ const SidebarSeeking: React.FC<{
             <div className="sidebarSeeking-text">
               <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
               {isFilterSelected(category) && (
-                <p onClick={() => clearFilter(category)}>CLEAR</p>
+                <p
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    clearFilter(category);
+                  }}
+                >
+                  CLEAR
+                </p>
               )}
             </div>
           </AccordionSummary>

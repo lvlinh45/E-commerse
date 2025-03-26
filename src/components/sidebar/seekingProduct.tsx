@@ -25,12 +25,20 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
   const [sortOrder, setSortOrder] = useState<string>("manual");
   const [products, setProducts] = useState<Product[]>([]);
 
+  // Lấy query từ query string (nếu có)
+  const query = new URLSearchParams(window.location.search).get("q");
+
   useEffect(() => {
+    // Nếu có query từ URL thì tự động điền vào searchQuery
+    if (query) {
+      setSearchQuery(query);
+    }
+
     const storedProducts = localStorage.getItem("products");
     if (storedProducts) {
       setProducts(JSON.parse(storedProducts));
     }
-  }, []);
+  }, [query]); // Chạy lại effect khi query thay đổi
 
   const filteredProducts = products.filter((item) => {
     const matchesSearchQuery =

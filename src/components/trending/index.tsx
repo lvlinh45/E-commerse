@@ -3,8 +3,10 @@ import Text from "../Universal/text";
 import { trendingTab } from "../../constants/urlTrending";
 import Button from "../Universal/Button";
 import { IconAngleRight } from "../../assets/icons/Icons";
+import { useNavigate } from "react-router-dom";
 
 const Trending = () => {
+  const navigate = useNavigate();
   return (
     <div className="trending-container mt-5 ">
       <Text
@@ -52,7 +54,7 @@ const Trending = () => {
         ))}
       </Tabs>
       <div className="d-flex justify-content-center">
-        <Button text="Show all" />
+        <Button text="Show all" onClick={() => navigate("/collection/all")} />
       </div>
     </div>
   );

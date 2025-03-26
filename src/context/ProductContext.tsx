@@ -18,7 +18,6 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
   children,
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
-  console.log("TCL: products", products);
 
   useEffect(() => {
     const storedProducts = localStorage.getItem("products");

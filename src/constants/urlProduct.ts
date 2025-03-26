@@ -3,6 +3,8 @@ import { Product } from "../assets/types/Products";
 export const imgProduct: Product[] = [
   {
     id: 1,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Kids' Zoggs Zoggy Armbands - Multicolor",
     imageUrl:
@@ -18,6 +20,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 2,
+    category: "T-shirt",
+    quantity: 9,
     size: "XL",
     name: "Women's Speedo Biofuse 2.0 Goggle - Purple",
     imageUrl:
@@ -33,6 +37,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 3,
+    category: "T-shirt",
+    quantity: 9,
     size: "S",
     name: "Kids' Speedo Biofuse 2.0 Goggle - Blue",
     imageUrl:
@@ -48,6 +54,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 4,
+    category: "T-shirt",
+    quantity: 9,
     size: "XLL",
     name: "Men's Under Armour Sportstyle Nylon Cap - Orange",
     imageUrl:
@@ -63,6 +71,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 5,
+    category: "T-shirt",
+    quantity: 9,
     size: "M",
     name: "Women's Columbia Zero Rules™ Light Short Sleeve Crew T-Shirt",
     imageUrl:
@@ -78,6 +88,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 6,
+    category: "T-shirt",
+    quantity: 9,
     size: "M",
     name: "Men's Under Armour Project Rock Duffel Bag - Black",
     imageUrl:
@@ -93,6 +105,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 7,
+    category: "T-shirt",
+    quantity: 9,
     size: "XS",
     name: "Unisex Hoka Cielo X1 2.0 Running Shoes - White",
     imageUrl:
@@ -108,6 +122,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 8,
+    category: "T-shirt",
+    quantity: 9,
     size: "XXL",
     name: "Women's Hoka Clifton 10 Running Shoes - Multicolor",
     imageUrl:
@@ -123,6 +139,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 9,
+    category: "T-shirt",
+    quantity: 9,
     size: "M",
     name: "Men's Hoka Clifton 10 Running Shoes - Multicolor",
     imageUrl:
@@ -138,6 +156,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 10,
+    category: "T-shirt",
+    quantity: 9,
     size: "XXL",
     name: "Women's Hoka Bondi 9 Running Shoes - White",
     imageUrl:
@@ -153,6 +173,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 11,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Women's Speedo Placement Swimsuit - Navy",
     imageUrl:
@@ -169,6 +191,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 12,
+    category: "T-shirt",
+    quantity: 9,
     size: "M",
     name: "Men's Teva Hurricane Xlt2 Sandals - Black",
     imageUrl:
@@ -185,6 +209,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 13,
+    category: "T-shirt",
+    quantity: 9,
     size: "XL",
     name: "Men's Teva Original Universal Sandals - Gray",
     imageUrl:
@@ -201,6 +227,8 @@ export const imgProduct: Product[] = [
   },
   {
     id: 14,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Speedo Biofuse 2.0 Goggle - Gray",
     imageUrl:
@@ -212,9 +240,12 @@ export const imgProduct: Product[] = [
     rating: 4,
     status: "new",
     price: 630000,
+    brand: "SPEEDO",
   },
   {
     id: 15,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Women's Speedo Hydraline Colourblock Zip Sunprotect Swimsuit - Black",
     imageUrl:
@@ -226,9 +257,12 @@ export const imgProduct: Product[] = [
     rating: 5,
     status: "new",
     price: 930000,
+    brand: "SPEEDO",
   },
   {
     id: 16,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Men's Under Armour Project Rock Duffel Bag - Black",
     imageUrl:
@@ -240,9 +274,12 @@ export const imgProduct: Product[] = [
     rating: 4,
     status: "new",
     price: 950000,
+    brand: "UNDER ARMOUR",
   },
   {
     id: 17,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Unisex Hoka Cielo X1 2.0 Running Shoes - White",
     imageUrl:
@@ -254,9 +291,12 @@ export const imgProduct: Product[] = [
     rating: 3,
     status: "new",
     price: 100000,
+    brand: "HOKA",
   },
   {
     id: 18,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Men's Under Armour Sportstyle Nylon Cap - Orange",
     imageUrl:
@@ -268,9 +308,12 @@ export const imgProduct: Product[] = [
     rating: 4,
     status: "old",
     price: 950000,
+    brand: "UNDER ARMOUR",
   },
   {
     id: 19,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Women's Columbia Zero Rules™ Light Short Sleeve Crew T-Shirt",
     imageUrl:
@@ -282,9 +325,12 @@ export const imgProduct: Product[] = [
     rating: 4,
     status: "new",
     price: 950000,
+    brand: "COLUMBIA",
   },
   {
     id: 20,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Women's Hoka Clifton 10 Running Shoes - Multicolor",
     imageUrl:
@@ -295,9 +341,12 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "old",
+    brand: "HOKA",
   },
   {
     id: 21,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Women's Speedo Placement Swimsuit - Navy",
     imageUrl:
@@ -309,9 +358,12 @@ export const imgProduct: Product[] = [
     discount: 10,
     rating: 4,
     status: "new",
+    brand: "SPEEDO",
   },
   {
     id: 22,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Men's Teva Hurricane Xlt2 Sandals - Black",
     imageUrl:
@@ -323,9 +375,12 @@ export const imgProduct: Product[] = [
     discount: 20,
     rating: 5,
     status: "new",
+    brand: "TEVA",
   },
   {
     id: 23,
+    category: "T-shirt",
+    quantity: 9,
     size: "M",
     name: "Men's Teva Hurricane Xlt2 Sandals - Black",
     imageUrl:
@@ -337,9 +392,12 @@ export const imgProduct: Product[] = [
     rating: 4,
     status: "old",
     price: 850000,
+    brand: "TEVA",
   },
   {
     id: 24,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Men's Teva Original Universal Sandals - Gray",
     imageUrl:
@@ -351,9 +409,12 @@ export const imgProduct: Product[] = [
     rating: 3,
     status: "old",
     price: 500000,
+    brand: "TEVA",
   },
   {
     id: 25,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Speedo Biofuse 2.0 Goggle - Gray",
     imageUrl:
@@ -365,9 +426,12 @@ export const imgProduct: Product[] = [
     rating: 4,
     status: "new",
     price: 630000,
+    brand: "SPEEDO",
   },
   {
     id: 26,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Women's Speedo Hydraline Colourblock Zip Sunprotect Swimsuit - Black",
     imageUrl:
@@ -379,9 +443,12 @@ export const imgProduct: Product[] = [
     rating: 5,
     status: "new",
     price: 930000,
+    brand: "SPEEDO",
   },
   {
     id: 27,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Men's Under Armour Project Rock Duffel Bag - Black",
     imageUrl:
@@ -393,9 +460,12 @@ export const imgProduct: Product[] = [
     rating: 4,
     status: "new",
     price: 950000,
+    brand: "UNDER ARMOUR",
   },
   {
     id: 28,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Unisex Hoka Cielo X1 2.0 Running Shoes - White",
     imageUrl:
@@ -407,9 +477,12 @@ export const imgProduct: Product[] = [
     rating: 3,
     status: "new",
     price: 100000,
+    brand: "HOKA",
   },
   {
     id: 29,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Men's Under Armour Sportstyle Nylon Cap - Orange",
     imageUrl:
@@ -421,9 +494,12 @@ export const imgProduct: Product[] = [
     rating: 4,
     status: "old",
     price: 950000,
+    brand: "UNDER ARMOUR",
   },
   {
     id: 30,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Women's Columbia Zero Rules™ Light Short Sleeve Crew T-Shirt",
     imageUrl:
@@ -435,9 +511,12 @@ export const imgProduct: Product[] = [
     rating: 4,
     status: "new",
     price: 950000,
+    brand: "COLUMBIA",
   },
   {
     id: 31,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Adidas Arsenal Third Club Ball 4-5 - Blue",
     imageUrl:
@@ -449,9 +528,12 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
+    brand: "SKECHERS",
   },
   {
     id: 32,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Adidas Messi Mini Ball - Yellow",
     imageUrl:
@@ -462,9 +544,12 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
+    brand: "SKECHERS",
   },
   {
     id: 33,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Nike Mercurial Fade Football - White",
     imageUrl:
@@ -475,9 +560,12 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
+    brand: "SOFSOLE",
   },
   {
     id: 34,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Nike Premier League Heritage Seitiro Football - White",
     imageUrl:
@@ -488,9 +576,12 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
+    brand: "SOFSOLE",
   },
   {
     id: 35,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Nike Premier League Heritage Ordem 3 Football - Red",
     imageUrl:
@@ -501,9 +592,12 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
+    brand: "SOFSOLE",
   },
   {
     id: 36,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Nike Mercurial Lite Shinguards - Multicolor",
     imageUrl:
@@ -514,9 +608,12 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
+    brand: "TRIGGERPOINT",
   },
   {
     id: 37,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Men's Adidas Real Madrid 24/25 Home Jersey - White",
     imageUrl:
@@ -527,9 +624,12 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
+    brand: "SKECHERS",
   },
   {
     id: 38,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Men's Nike Zoom Vapor 16 Academy Fg/Mg Firmground Football Boots - Red",
     imageUrl:
@@ -540,9 +640,12 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
+    brand: "TRIGGERPOINT",
   },
   {
     id: 39,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Men's Nike Legend 10 Academy Tf Football Boots - Orange",
     imageUrl:
@@ -553,9 +656,12 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
+    brand: "TRIGGERPOINT",
   },
   {
     id: 40,
+    category: "T-shirt",
+    quantity: 9,
     size: "L",
     name: "Men's Nike Legend 10 Academy Fg/Mg Firmground Football Boots - Orange",
     imageUrl:
@@ -566,5 +672,6 @@ export const imgProduct: Product[] = [
     discount: 0,
     rating: 4,
     status: "new",
+    brand: "TRIGGERPOINT",
   },
 ];

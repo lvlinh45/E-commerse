@@ -63,6 +63,7 @@ export default function ProductTable() {
   };
 
   const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+    console.log("TCL: handleClick -> event", event);
     const selectedIndex = selected.indexOf(id);
     let newSelected: readonly number[] = [];
 
@@ -82,6 +83,7 @@ export default function ProductTable() {
   };
 
   const handleChangePage = (event: unknown, newPage: number) => {
+    console.log("TCL: handleChangePage -> event", event);
     setPage(newPage);
   };
 

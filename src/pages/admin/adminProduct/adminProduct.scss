@@ -1,0 +1,178 @@
+._content-container_1d607_10 {
+    background-color: #efefef;
+    min-height: 100vh;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1;
+    padding-bottom: 24px;
+    h2 {
+        margin-bottom: 0;
+        font-weight: 700;
+        font-size: 28px;
+    }
+    button {
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 10px;
+        font-weight: 600;
+        background-color: #d3d3d3;
+        span:first-child {
+            font-size: 24px;
+        }
+    }
+}
+.adminProduct-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    .adminProduct-left {
+        background-color: #fff;
+        padding: 16px;
+        border-radius: 8px;
+        flex: 1;
+        h3 {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0 12px;
+            margin-bottom: 0;
+        }
+        .adminProduct-form {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(2, 1fr);
+            padding: 20px 12px;
+            .adminProduct-form-item {
+                display: flex;
+                flex-direction: column;
+                label {
+                    font-weight: 700;
+                    margin-bottom: 4px;
+                }
+                input,
+                select {
+                    height: 40px;
+                }
+                textarea {
+                    height: 80px;
+                }
+                input,
+                select,
+                textarea {
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    border: 1px solid #ccc;
+                }
+                .adminProduct-size {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    span {
+                        display: block;
+                        border: 1px solid #ccc;
+                        padding: 4px 10px;
+                        border-radius: 6px;
+                        padding: 4px 24px;
+                    }
+                    label {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            .adminProduct-form-textArea {
+                grid-column: span 2;
+            }
+        }
+        .adminProduct-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 12px 0;
+            grid-column: span 2;
+            button {
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                padding: 8px 18px;
+                background-color: #fff;
+                font-weight: 600;
+            }
+
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                button:first-child {
+                    background-color: #ccc;
+                }
+                button:last-child {
+                    background-color: #2979ff;
+                    color: white;
+                }
+            }
+        }
+    }
+    .adminProduct-right {
+        min-width: 400px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .adminProduct-top {
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+        }
+        .adminProduct-bottom {
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            .adminProduct-radio {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+                div {
+                    display: flex;
+                    align-items: center;
+                    label {
+                        font-weight: 400;
+                        margin-left: 4px;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+        .adminProduct-form-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+            div {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                label {
+                    margin-bottom: 0;
+                }
+            }
+            label {
+                font-weight: 700;
+                margin-bottom: 4px;
+            }
+            input,
+            select,
+            textarea {
+                padding: 8px 12px;
+                height: 100%;
+                border-radius: 6px;
+                border: 1px solid #ccc;
+            }
+        }
+    }
+}

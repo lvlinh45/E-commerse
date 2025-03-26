@@ -32,7 +32,7 @@ const CheckoutPage = () => {
   useEffect(() => {
     setCloneCart(cart);
     console.log("TCL: CheckoutPage -> cloneCart", cloneCart);
-  }, [cloneCart]);
+  }, [cart, cloneCart]);
   const subtotal = cart.reduce(
     (total, item) => total + (item.price ?? 0) * (item.quantity ?? 0),
     0

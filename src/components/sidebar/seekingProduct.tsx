@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { imgProduct } from "../../constants/urlProduct";
-import BrandItem from "../brand/BrandItem";
+import { useState, useEffect } from "react";
 import { IconSearch } from "../../assets/icons/Icons";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Filters } from "../../assets/types/Filters";
+import { Product } from "../../assets/types/Products";
+import BrandItem from "../brand/BrandItem";
 
-// Hàm lấy khoảng giá từ chuỗi giá
+// Function to get price range
 const getPriceRange = (priceLabel: string) => {
   if (priceLabel === "UNDER 500.000đ") {
     return { min: 0, max: 500000 };
@@ -24,9 +24,18 @@ const getPriceRange = (priceLabel: string) => {
 const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("manual");
+  const [products, setProducts] = useState<Product[]>([]);
 
-  // Lọc sản phẩm theo bộ lọc và tìm kiếm
-  const filteredProducts = imgProduct.filter((item) => {
+  // Load products from localStorage
+  useEffect(() => {
+    const storedProducts = localStorage.getItem("products");
+    if (storedProducts) {
+      setProducts(JSON.parse(storedProducts)); // Load products from localStorage
+    }
+  }, []);
+
+  // Filter products based on search query and filters
+  const filteredProducts = products.filter((item) => {
     const matchesSearchQuery =
       searchQuery.trim() === "" ||
       item.name?.toLowerCase().includes(searchQuery.toLowerCase().trim());
@@ -53,8 +62,8 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
     return matchesSearchQuery && matchesFilters;
   });
 
-  // Hàm sắp xếp các sản phẩm theo lựa chọn
-  const sortProducts = (products: typeof imgProduct) => {
+  // Sort products based on sort order
+  const sortProducts = (products: Product[]) => {
     switch (sortOrder) {
       case "highToLow":
         return products.sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
@@ -65,17 +74,18 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
       case "Descendant":
         return products.sort((a, b) => b.name.localeCompare(a.name));
       default:
-        return products; // "manual" or no sorting
+        return products;
     }
   };
 
-  // Sắp xếp các sản phẩm đã lọc
   const sortedProducts = sortProducts(filteredProducts);
 
+  // Handle search query change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
+  // Handle sort order change
   const handleChange = (event: SelectChangeEvent) => {
     setSortOrder(event.target.value);
   };

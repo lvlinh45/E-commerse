@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const Text = ({
   text,
   classname = "",
@@ -9,6 +11,7 @@ const Text = ({
   showAll?: string;
   textCenter?: string;
 }) => {
+  const navigate = useNavigate();
   return (
     <div
       className={`text-container ${textCenter} ${
@@ -16,7 +19,12 @@ const Text = ({
       }`}
     >
       <div className={`${classname} heading`}>{text}</div>
-      <p className={`${classname} text-showAll`}>{showAll}</p>
+      <p
+        className={`${classname} text-showAll`}
+        onClick={() => navigate("/collection/all")}
+      >
+        {showAll}
+      </p>
     </div>
   );
 };

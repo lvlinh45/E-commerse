@@ -7,7 +7,7 @@ import BreadScrumbs from "../../../components/Universal/Breadscrumb";
 import { useParams } from "react-router-dom";
 import { imgProduct } from "../../../constants/urlProduct";
 import React, { useEffect, useState } from "react";
-import { useCart } from "../../../context/CartContext"; // Import useCart hook
+import { useCart } from "../../../context/CartContext";
 import { Product } from "../../../assets/types/Products";
 import DrawerSiderBar from "../../../components/drawer";
 
@@ -18,7 +18,6 @@ const ProductDetailPage = () => {
 
   const [cartItems, setCartItems] = React.useState<Product[]>([]);
   const [open, setOpen] = useState(false);
-  console.log("TCL: ProductDetailPage -> drawerOpen", open);
   useEffect(() => {
     if (product) {
       const existingCartItem = cartItems.find((item) => item.id === product.id);

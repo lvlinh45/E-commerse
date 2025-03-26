@@ -8,7 +8,6 @@ import { loadDistricts, loadProvinces, loadWards } from "../../utils";
 import { Product } from "../../assets/types/Products";
 import { useNavigate } from "react-router-dom";
 
-// Yup validation schema
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -31,8 +30,7 @@ const CheckoutPage = () => {
   const [cloneCart, setCloneCart] = useState<Product[]>([]);
   useEffect(() => {
     setCloneCart(cart);
-    console.log("TCL: CheckoutPage -> cloneCart", cloneCart);
-  }, [cart, cloneCart]);
+  }, [cloneCart]);
   const subtotal = cart.reduce(
     (total, item) => total + (item.price ?? 0) * (item.quantity ?? 0),
     0
@@ -44,7 +42,7 @@ const CheckoutPage = () => {
     ) {
       navigate("/");
     }
-  }, [cart, navigate]);
+  }, [cart, cloneCart, navigate]);
   const [provinces, setProvinces] = useState<ILocation[]>([]);
   const [districts, setDistricts] = useState<ILocation[]>([]);
   const [villages, setVillages] = useState<ILocation[]>([]);
@@ -147,7 +145,6 @@ const CheckoutPage = () => {
   return (
     <div className="checkout-container">
       <div className="checkout-left">
-        {/* Contact Information Section */}
         <div className="checkout-heading">
           <h3 className="checkout-title">Contact information</h3>
           <Controller

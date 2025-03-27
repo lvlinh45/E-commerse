@@ -1,0 +1,16 @@
+{
+  "GENDER": "Giới tính",
+  "BRAND": "Thương hiệu",
+  "PRICE": "Giá",
+  "UNDER": "Dưới",
+  "ABOVE": "Trên",
+  "Search options": "Tùy chọn tìm kiếm",
+  "CLEAR": "XÓA TẤT CẢ",
+  "manual": "Sắp xếp",
+  "highToLow": "Giá giảm dần",
+  "LowToHigh": "Giá tăng dần",
+  "ascendant": "A-Z",
+  "descendant": "Z-A",
+  "searchForProducts": "Tìm kiếm sản phẩm trong trang này",
+  "Products": "sản phẩm"
+}

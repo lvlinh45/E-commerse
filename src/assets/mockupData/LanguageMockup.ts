@@ -2,27 +2,27 @@ import { Language } from "../types/languages";
 
 const LanguageMockup: Language[] = [
   {
-    code: "en",
+    lng: "en",
     flag: "",
     name: "English",
   },
   {
-    code: "es",
+    lng: "es",
     flag: "",
     name: "Spanish",
   },
   {
-    code: "fr",
+    lng: "fr",
     name: "French",
     flag: "",
   },
   {
-    code: "de",
+    lng: "de",
     name: "German",
     flag: "",
   },
   {
-    code: "zh",
+    lng: "zh",
     name: "Chinese",
     flag: "",
   },

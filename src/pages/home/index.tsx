@@ -8,8 +8,11 @@ import Trending from "../../components/trending";
 import { imgCollection } from "../../constants/urlCollection";
 import { posterUrl } from "../../constants/urlPoster";
 import { imgProduct } from "../../constants/urlProduct";
+import { imgShopSport } from "../../constants/urlShopSport";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
+  const { t } = useTranslation("homePage");
   return (
     <div className="overflow-hidden">
       <CarouselElement></CarouselElement>
@@ -18,15 +21,15 @@ const HomePage = () => {
         <ProductList
           products={imgCollection.map((item) => ({
             ...item,
-            name: "Default Name",
+            name: "collection",
           }))}
-          textHeading="NEW COLLECTIONS"
-          showAll="SHOW ALL"
+          textHeading={t("NEW_COLLECTIONS")}
+          showAll={t("SHOW_ALL")}
         ></ProductList>
         <Brand
           products={imgProduct.slice(0, 10)}
-          textHeading="NEW ARRIVAL"
-          showAll="SHOW ALL"
+          textHeading={t("NEW_ARRIVAL")}
+          showAll={t("SHOW_ALL")}
         ></Brand>
         <Poster posterUrl={posterUrl[0].url}></Poster>
         <Brand products={imgProduct.slice(11, 20)}></Brand>
@@ -36,12 +39,13 @@ const HomePage = () => {
         <Brand products={imgProduct.slice(31, 40)}></Brand>
         <TopBrand></TopBrand>
         <ProductList
-          products={imgCollection.map((item) => ({
+          products={imgShopSport.map((item) => ({
             ...item,
-            name: "Default Name",
+            name: "shopSport",
           }))}
-          textHeading="NEW COLLECTIONS"
-          showAll="SHOW ALL"
+          textHeading={t("FAVORITE_SPORT")}
+          showAll={t("SHOW_ALL")}
+          quatitySlide={5}
         ></ProductList>
         <Trending></Trending>
       </div>

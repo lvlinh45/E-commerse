@@ -12,6 +12,18 @@
     min-width: 600px;
     max-height: 500px;
     padding: 18px 24px;
+    .product-seeMore {
+        width: fit-content;
+        margin-left: auto !important;
+        font-size: 14px;
+        margin: 0;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.5s all;
+        &:hover {
+            color: $primary-light;
+        }
+    }
     &::after {
         content: "";
         position: absolute;

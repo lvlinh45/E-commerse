@@ -26,6 +26,7 @@ const AppRoute = () => {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/collection/all" element={<SeekingPage />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
 
       <Route
@@ -39,8 +40,6 @@ const AppRoute = () => {
         <Route index element={<AdminProduct />} />
         <Route path="products" element={<AdminAllProduct />} />
       </Route>
-
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

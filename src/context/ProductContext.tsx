@@ -5,7 +5,6 @@ import { imgProduct } from "../constants/urlProduct";
 // Define the structure of the context value
 interface ProductContextType {
   products: Product[];
-  addProduct: (product: Product) => void;
 }
 
 const ProductContext = createContext<ProductContextType | null>(null);
@@ -29,14 +28,8 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
     }
   }, []);
 
-  const addProduct = (product: Product) => {
-    const newProducts = [...products, product];
-    setProducts(newProducts);
-    localStorage.setItem("products", JSON.stringify(newProducts));
-  };
-
   return (
-    <ProductContext.Provider value={{ products, addProduct }}>
+    <ProductContext.Provider value={{ products }}>
       {children}
     </ProductContext.Provider>
   );

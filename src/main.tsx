@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import App from "./App.tsx";
+import "./shared/i18n/i18n";
 import { BrowserRouter } from "react-router-dom";
 import { ProductProvider } from "./context/ProductContext.tsx";
 import { CartProvider } from "./context/CartContext.tsx";

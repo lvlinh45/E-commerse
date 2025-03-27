@@ -9,6 +9,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { useTranslation } from "react-i18next";
 
 const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
   open,
@@ -16,15 +17,12 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
 }) => {
   const navigate = useNavigate();
   const { cart, addToCart, removeFromCart } = useCart();
+  const { t } = useTranslation("cartPage");
 
   const handleQuantityChange = (id: number, change: number) => {
     const item = cart.find((item) => item.id === id);
     if (item) {
       const updatedQuantity = (item.quantity ?? 0) + change;
-      console.log(
-        "TCL: handleQuantityChange -> updatedQuantity",
-        updatedQuantity
-      );
       if (updatedQuantity >= 1) {
         addToCart(item, updatedQuantity);
       }
@@ -45,13 +43,13 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
       return (
         <Box className="cart-drawer">
           <div className="cart-header">
-            <h2>Shopping Cart</h2>
+            <h2>{t("Shopping_Cart")}</h2>
             <button className="cart-icon" onClick={onClose}>
               x
             </button>
           </div>
           <div className="empty-cart-message">
-            <p>Your cart is currently empty.</p>
+            <p>{t("empty")}</p>
           </div>
           <div className="hotline">HOTLINE: 1900 63 64 01</div>
         </Box>
@@ -61,7 +59,7 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
     return (
       <Box className="cart-drawer">
         <div className="cart-header">
-          <h2>Shopping Cart</h2>
+          <h2>{t("Shopping_Cart")}</h2>
           <button className="cart-icon" onClick={onClose}>
             x
           </button>
@@ -102,7 +100,7 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
                         onClick={() => handleRemoveItem(item.id ?? 0)}
                         color="error"
                       >
-                        Remove
+                        {t("Remove")}
                       </button>
                     </div>
                   </div>
@@ -112,7 +110,7 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
           </List>
           <div className="cart-bottom">
             <div className="card-subtotal">
-              <span>Subtotal</span>
+              <span>{t("Subtotal")}</span>
               <span>{subtotal.toLocaleString()}đ</span>
             </div>
             <div>
@@ -122,7 +120,7 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
                 fullWidth
                 onClick={() => navigate("/checkout")}
               >
-                Checkout
+                {t("checkout")}
               </Button>
               <Button
                 variant="contained"
@@ -130,7 +128,7 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
                 fullWidth
                 onClick={() => navigate("/cart")}
               >
-                Shopping Cart
+                {t("Shopping_Cart")}
               </Button>
             </div>
           </div>

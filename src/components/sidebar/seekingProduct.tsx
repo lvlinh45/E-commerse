@@ -6,6 +6,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Filters } from "../../assets/types/Filters";
 import { Product } from "../../assets/types/Products";
 import BrandItem from "../brand/BrandItem";
+import { useTranslation } from "react-i18next";
 
 const getPriceRange = (priceLabel: string) => {
   if (priceLabel === "UNDER 500.000đ") {
@@ -25,11 +26,9 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
   const [sortOrder, setSortOrder] = useState<string>("manual");
   const [products, setProducts] = useState<Product[]>([]);
 
-  // Lấy query từ query string (nếu có)
   const query = new URLSearchParams(window.location.search).get("q");
 
   useEffect(() => {
-    // Nếu có query từ URL thì tự động điền vào searchQuery
     if (query) {
       setSearchQuery(query);
     }
@@ -38,7 +37,7 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
     if (storedProducts) {
       setProducts(JSON.parse(storedProducts));
     }
-  }, [query]); // Chạy lại effect khi query thay đổi
+  }, [query]);
 
   const filteredProducts = products.filter((item) => {
     const matchesSearchQuery =
@@ -75,7 +74,7 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
         return products.sort((a, b) => (a.price ?? 0) - (b.price ?? 0));
       case "ascendant":
         return products.sort((a, b) => a.name.localeCompare(b.name));
-      case "Descendant":
+      case "descendant":
         return products.sort((a, b) => b.name.localeCompare(a.name));
       default:
         return products;
@@ -91,6 +90,7 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
   const handleChange = (event: SelectChangeEvent) => {
     setSortOrder(event.target.value);
   };
+  const { t } = useTranslation("seekingPage");
 
   return (
     <div className="search-container">
@@ -98,7 +98,7 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
         <input
           type="text"
           className="search-input"
-          placeholder="Search for products in this collection"
+          placeholder={t("searchForProducts")}
           value={searchQuery}
           onChange={handleSearchChange}
         />
@@ -107,7 +107,9 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
         </div>
       </div>
       <div className="seeking-filter">
-        <p className="seeking-filter-count">{sortedProducts.length} Products</p>
+        <p className="seeking-filter-count">
+          {sortedProducts.length} {t("Products")}
+        </p>
         <div className="seeking-filter-control">
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
             <Select
@@ -116,11 +118,11 @@ const SeekingProduct: React.FC<{ filters: Filters }> = ({ filters }) => {
               value={sortOrder}
               onChange={handleChange}
             >
-              <MenuItem value="manual">Manual</MenuItem>
-              <MenuItem value="highToLow">Price (high to low)</MenuItem>
-              <MenuItem value="LowToHight">Price (low to high)</MenuItem>
-              <MenuItem value="ascendant">Title ascending</MenuItem>
-              <MenuItem value="Descendant">Title descending</MenuItem>
+              <MenuItem value="manual">{t("manual")}</MenuItem>
+              <MenuItem value="highToLow">{t("highToLow")}</MenuItem>
+              <MenuItem value="LowToHight">{t("LowToHigh")}</MenuItem>
+              <MenuItem value="ascendant">{t("ascendant")}</MenuItem>
+              <MenuItem value="descendant">{t("descendant")}</MenuItem>
             </Select>
           </FormControl>
         </div>

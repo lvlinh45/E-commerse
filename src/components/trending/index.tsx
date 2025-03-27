@@ -4,13 +4,16 @@ import { trendingTab } from "../../constants/urlTrending";
 import Button from "../Universal/Button";
 import { IconAngleRight } from "../../assets/icons/Icons";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Trending = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation("homePage");
+
   return (
     <div className="trending-container mt-5 ">
       <Text
-        text="TRENDING NEWS"
+        text={t("TRENDING_NEWS")}
         classname="mb-3 "
         textCenter="justify-content-center"
       ></Text>
@@ -42,7 +45,7 @@ const Trending = () => {
                         href="#"
                         className="read-more d-flex align-items-center gap-1 "
                       >
-                        <span> Read more</span>
+                        <span> {t("READ_MORE")}</span>
                         <IconAngleRight></IconAngleRight>
                       </a>
                     </Card.Body>
@@ -54,7 +57,10 @@ const Trending = () => {
         ))}
       </Tabs>
       <div className="d-flex justify-content-center">
-        <Button text="Show all" onClick={() => navigate("/collection/all")} />
+        <Button
+          text={t("SHOW_ALL")}
+          onClick={() => navigate("/collection/all")}
+        />
       </div>
     </div>
   );

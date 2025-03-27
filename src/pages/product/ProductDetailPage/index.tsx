@@ -10,14 +10,22 @@ import React, { useEffect, useState } from "react";
 import { useCart } from "../../../context/CartContext";
 import { Product } from "../../../assets/types/Products";
 import DrawerSiderBar from "../../../components/drawer";
+import { useTranslation } from "react-i18next";
 
+import { useNavigate } from "react-router-dom";
+
+// Inside ProductDetailPage component
 const ProductDetailPage = () => {
   const { id } = useParams();
+  const { t } = useTranslation("detailPage");
+  const navigate = useNavigate(); // For navigation
+
   const product = imgProduct.find((item) => item.id === parseInt(id ?? "0"));
-  const { cart, addToCart } = useCart(); // Destructure useCart
+  const { cart, addToCart } = useCart();
 
   const [cartItems, setCartItems] = React.useState<Product[]>([]);
   const [open, setOpen] = useState(false);
+
   useEffect(() => {
     if (product) {
       const existingCartItem = cartItems.find((item) => item.id === product.id);
@@ -64,6 +72,14 @@ const ProductDetailPage = () => {
     }
   };
 
+  const handleBuyNow = () => {
+    if (product) {
+      const newCart = [{ ...product, quantity: currentQuantity }];
+      addToCart(product, currentQuantity);
+      navigate("/checkout", { state: { cart: newCart } });
+    }
+  };
+
   if (!product) {
     return <div>Product not found</div>;
   }
@@ -97,7 +113,7 @@ const ProductDetailPage = () => {
           <h3 className="product-vendor">{product.vendor}</h3>
           <h2 className="product-title">{product.name}</h2>
           <h3 className="product-brand">
-            <span>T-Shirts</span>
+            <span>{product.category}</span>
             <span>SKU A15164</span>
           </h3>
           <div className="icon-star product-star">
@@ -109,15 +125,15 @@ const ProductDetailPage = () => {
               )
             )}
             <span>
-              ({product?.rating} /5 đánh giá) Xem {product?.numberOfReviews}{" "}
-              đánh giá
+              ({product?.rating} /5) {t("Watch")} {product?.numberOfReviews}{" "}
+              {t("Reviews")}
             </span>
           </div>
           <div className="product-price">
-            {product?.price?.toLocaleString()} VNĐ
+            {product?.price?.toLocaleString()} ₫
           </div>
           <div>
-            <p className="product-quantity">Size</p>
+            <p className="product-quantity">{t("Size")}</p>
             <div className="product-size">
               <div>A/XS</div>
               <div className="product-disable">A/S</div>
@@ -126,7 +142,7 @@ const ProductDetailPage = () => {
             </div>
           </div>
           <div>
-            <p className="product-quantity">Quantity</p>
+            <p className="product-quantity"> {t("Quantity")}</p>
             <div className="product-actions">
               <div className="product-calculate">
                 <IconButton
@@ -149,8 +165,8 @@ const ProductDetailPage = () => {
             </div>
           </div>
           <div className="product-button">
-            <button>Buy it now</button>
-            <button onClick={handleAddToCart}>Add to cart</button>
+            <button onClick={handleBuyNow}> {t("Buy it now")}</button>{" "}
+            <button onClick={handleAddToCart}> {t("Add to cart")}</button>
           </div>
         </div>
       </div>

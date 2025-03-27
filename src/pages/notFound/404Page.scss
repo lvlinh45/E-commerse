@@ -1,0 +1,38 @@
+$error-container-bg: #fff;
+$error-code-color: #333;
+$error-message-color: #666;
+$button-bg: #007bff;
+$button-text-color: white;
+
+.error-container {
+    text-align: center;
+    background-color: $error-container-bg;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.error-code {
+    font-size: 48px;
+    color: $error-code-color;
+}
+
+.error-message {
+    font-size: 18px;
+    color: $error-message-color;
+    margin: 20px 0;
+}
+
+.continue-shopping-button {
+    background-color: $button-bg;
+    color: $button-text-color;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+        background-color: darken($button-bg, 10%);
+    }
+}

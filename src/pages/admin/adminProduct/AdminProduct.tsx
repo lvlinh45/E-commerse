@@ -43,9 +43,7 @@ const AdminProduct: React.FC = () => {
       rating: 0,
       status: "new",
     };
-    console.log("TCL: onSubmit -> newProduct", newProduct);
-
-    const storedProducts = JSON.parse(localStorage.getItem("products") || "[]");
+    const storedProducts = JSON.parse(localStorage.getItem("products") || "");
     storedProducts.unshift(newProduct);
     localStorage.setItem("products", JSON.stringify(storedProducts));
     Swal.fire({

@@ -1,5 +1,4 @@
 export type FilterCategory = "gender" | "brand" | "price";
-
 export const filterData = [
   {
     category: "gender" as FilterCategory,

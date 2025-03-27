@@ -95,6 +95,7 @@
                     }
                     span {
                         padding: 11px 0;
+                        min-width: 20px;
                     }
                 }
             }
@@ -230,5 +231,11 @@
     }
     .cart-item-wrapper {
         flex-direction: row !important;
+        flex: 1;
+        gap: 20px;
+        justify-content: space-between;
+        .cart-item-info {
+            max-width: 250px;
+        }
     }
 }

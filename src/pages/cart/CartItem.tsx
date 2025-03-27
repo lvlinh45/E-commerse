@@ -5,9 +5,11 @@ import IconButton from "@mui/material/IconButton";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { useCart } from "../../context/CartContext";
+import { useTranslation } from "react-i18next";
 
 const CartItem = () => {
   const { cart, addToCart, removeFromCart } = useCart();
+  const { t } = useTranslation("cartPage");
 
   const handleQuantityChange = (id: number, change: number) => {
     const item = cart.find((item) => item.id === id);
@@ -31,7 +33,7 @@ const CartItem = () => {
       <Box className="cart-drawer">
         <div className="cart-header"></div>
         <div className="empty-cart-message">
-          <p>Your cart is currently empty.</p>
+          <p> {t("empty")}</p>
         </div>
       </Box>
     );
@@ -90,7 +92,7 @@ const CartItem = () => {
                           item.id !== undefined && handleRemoveItem(item.id)
                         }
                       >
-                        Remove
+                        {t("Remove")}
                       </button>
                     </div>
                   </div>

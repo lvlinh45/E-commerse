@@ -1,0 +1,16 @@
+{
+  "GENDER": "GENDER",
+  "BRAND": "BRAND",
+  "PRICE": "PRICE",
+  "UNDER": "UNDER",
+  "ABOVE": "ABOVE",
+  "Search options": "Search options",
+  "CLEAR": "CLEAR",
+  "manual": "Manual",
+  "highToLow": "Price (high to low)",
+  "LowToHigh": "Price (low to high)",
+  "ascendant": "Title ascending",
+  "descendant": "Title descending",
+  "searchForProducts": "Search for products in this collection",
+  "Products": "Products"
+}

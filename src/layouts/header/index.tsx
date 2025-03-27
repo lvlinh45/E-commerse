@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Dropdown } from "react-bootstrap"; // Import Dropdown component
+import { Dropdown } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import {
   IconCart,
   IconLocation,
@@ -16,22 +17,55 @@ import { Product } from "../../assets/types/Products";
 import { imgProduct } from "../../constants/urlProduct";
 
 const HeaderLayout = () => {
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const { cart } = useCart();
+  const totalQuantity = cart.reduce(
+    (total, item) => total + (item.quantity ?? 0),
+    0
+  );
+  useEffect(() => {
+    const savedLang = localStorage.getItem("lng");
+    if (savedLang) {
+      i18n.changeLanguage(savedLang);
+      setSelectedLang(getLanguageDetails(savedLang));
+    }
+  }, [i18n]);
+
   const [selectedLang, setSelectedLang] = useState<Language>({
-    code: "en",
+    lng: "en",
     flag: "//supersports.com.vn/cdn/shop/t/230/assets/en.png?v=94828056452989466101720174907",
     name: "English",
   });
-  const navigate = useNavigate();
-  const { cart } = useCart();
+
+  const getLanguageDetails = (lng: string) => {
+    switch (lng) {
+      case "vi":
+        return {
+          lng: "vi",
+          flag: "//supersports.com.vn/cdn/shop/t/230/assets/vi.png?v=78388546421581796491720174908",
+          name: "Vietnamese",
+        };
+      case "en":
+      default:
+        return {
+          lng: "en",
+          flag: "//supersports.com.vn/cdn/shop/t/230/assets/en.png?v=94828056452989466101720174907",
+          name: "English",
+        };
+    }
+  };
+
+  const changeLanguages = (lng: string, flag: string, name: string) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("lng", lng);
+    setSelectedLang({ lng, flag, name });
+  };
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [showSearchResults, setShowSearchResults] = useState<boolean>(false);
-
-  const handleLanguageSelect = (code: string, flag: string, name: string) => {
-    setSelectedLang({ code, flag, name });
-  };
 
   const toggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open);
@@ -98,7 +132,7 @@ const HeaderLayout = () => {
             <div className="header-search">
               <input
                 type="text"
-                placeholder="Search"
+                placeholder={t("SEARCH")}
                 value={searchTerm}
                 onChange={handleSearch}
                 onFocus={handleFocus}
@@ -117,13 +151,13 @@ const HeaderLayout = () => {
             filteredProducts.length === 0 ? (
               <div className="product-grid-wrapper">
                 <p className="text-center" style={{ marginBottom: 0 }}>
-                  Not Found Product
+                  {t("Not Found Product")}
                 </p>
               </div>
             ) : (
               showSearchResults && (
                 <div className="product-grid-wrapper">
-                  <h4>PRODUCT</h4>
+                  <h4>{t("PRODUCT")}</h4>
                   <div className="product-grid">
                     {productsToDisplay.slice(0, 8).map((product) => (
                       <div
@@ -146,6 +180,12 @@ const HeaderLayout = () => {
                       </div>
                     ))}
                   </div>
+                  <p
+                    className="product-seeMore"
+                    onClick={() => navigate("/collection/all")}
+                  >
+                    Xem thêm
+                  </p>
                 </div>
               )
             )}
@@ -159,7 +199,7 @@ const HeaderLayout = () => {
                 onClick={toggleDrawer(true)}
               >
                 <IconCart />
-                <p>{cart.length}</p>
+                <p>{totalQuantity}</p>
               </span>
               <span
                 className="header-icon location-icon"
@@ -192,7 +232,7 @@ const HeaderLayout = () => {
                   href="#"
                   className="d-flex align-items-center gap-1"
                   onClick={() =>
-                    handleLanguageSelect(
+                    changeLanguages(
                       "vi",
                       "//supersports.com.vn/cdn/shop/t/230/assets/vi.png?v=78388546421581796491720174908",
                       "Tiếng Việt"
@@ -207,14 +247,14 @@ const HeaderLayout = () => {
                     src="//supersports.com.vn/cdn/shop/t/230/assets/vi.png?v=78388546421581796491720174908"
                     loading="lazy"
                   />
-                  <span>Tiếng Việt</span>
+                  <span>{t("Vietnamese")}</span>
                 </Dropdown.Item>
 
                 <Dropdown.Item
                   href="#"
                   className="d-flex align-items-center gap-1"
                   onClick={() =>
-                    handleLanguageSelect(
+                    changeLanguages(
                       "en",
                       "//supersports.com.vn/cdn/shop/t/230/assets/en.png?v=94828056452989466101720174907",
                       "English"
@@ -229,7 +269,7 @@ const HeaderLayout = () => {
                     src="//supersports.com.vn/cdn/shop/t/230/assets/en.png?v=94828056452989466101720174907"
                     loading="lazy"
                   />
-                  <span>English</span>
+                  <span>{t("English")}</span>
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

@@ -10,6 +10,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FilterCategory, filterData } from "../../constants/filter";
 import { Filters } from "../../assets/types/Filters";
+import { useTranslation } from "react-i18next";
 
 const SidebarSeeking: React.FC<{
   onFilterChange: (filters: Filters) => void;
@@ -71,6 +72,8 @@ const SidebarSeeking: React.FC<{
   const isFilterSelected = (category: FilterCategory) =>
     selectedFilters[category].length > 0;
 
+  const { t } = useTranslation("seekingPage");
+
   return (
     <div className="sidebar-seeking">
       {filterData.map(({ category, options }) => (
@@ -92,7 +95,7 @@ const SidebarSeeking: React.FC<{
                     clearFilter(category);
                   }}
                 >
-                  CLEAR
+                  {t("CLEAR")}
                 </p>
               )}
             </div>
@@ -101,7 +104,7 @@ const SidebarSeeking: React.FC<{
             {category === "brand" || category === "price" ? (
               <TextField
                 variant="outlined"
-                placeholder="Search options"
+                placeholder={t("Search options")}
                 className="sidebarSeeking-input"
                 fullWidth
                 value={searchQueries[category]}

@@ -53,15 +53,6 @@ export default function ProductTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [selected, setSelected] = React.useState<readonly number[]>([]);
 
-  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const newSelected = rows.map((n: Product) => n.id!);
-      setSelected(newSelected);
-      return;
-    }
-    setSelected([]);
-  };
-
   const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
     console.log("TCL: handleClick -> event", event);
     const selectedIndex = selected.indexOf(id);
@@ -118,18 +109,7 @@ export default function ProductTable() {
             >
               <TableHead>
                 <TableRow>
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      color="primary"
-                      indeterminate={
-                        selected.length > 0 && selected.length < rows.length
-                      }
-                      checked={
-                        rows.length > 0 && selected.length === rows.length
-                      }
-                      onChange={handleSelectAllClick}
-                    />
-                  </TableCell>
+                  <TableCell padding="checkbox"></TableCell>
                   {headCells.map((headCell) => (
                     <TableCell key={headCell.id} align="left">
                       {headCell.label}
@@ -161,7 +141,10 @@ export default function ProductTable() {
                       <TableCell>{row.status}</TableCell>
                       <TableCell>
                         <IconButton
-                          onClick={() => handleDelete(row.id!)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(row.id!);
+                          }}
                           color="error"
                         >
                           <DeleteIcon />

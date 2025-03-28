@@ -183,7 +183,7 @@ const ProductDetailPage = () => {
           </div>
         </div>
       </div>
-      <div style={{ padding: "0 100px" }}>
+      <div className="product-detail-related">
         <Brand
           textCenter="justify-content-center mt-4 mb-2"
           products={imgProduct.slice(21, 30)}

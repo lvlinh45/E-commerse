@@ -137,6 +137,9 @@
         }
     }
 }
+.product-detail-related {
+    padding: 0 40px;
+}
 
 @media (min-width: 768px) {
     .product-detail-container {
@@ -145,5 +148,10 @@
         .product-wrapper {
             width: 60%;
         }
+    }
+}
+@media (min-width: 992px) {
+    .product-detail-related {
+        padding: 0 80px;
     }
 }

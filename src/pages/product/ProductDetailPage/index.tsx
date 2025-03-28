@@ -13,6 +13,7 @@ import { Product } from "../../../assets/types/Products";
 import DrawerSiderBar from "../../../components/drawer";
 import { useTranslation } from "react-i18next";
 import NotFoundPage from "../../notFound";
+import Brand from "../../../components/brand";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const ProductDetailPage = () => {
 
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [open, setOpen] = useState(false);
-  const [selectedSize, setSelectedSize] = useState<string>("A/XS"); // Kích thước mặc định
+  const [selectedSize, setSelectedSize] = useState<string>("A/XS");
 
   useEffect(() => {
     if (product) {
@@ -84,7 +85,8 @@ const ProductDetailPage = () => {
     event: React.MouseEvent<HTMLElement>,
     newSize: string
   ) => {
-    setSelectedSize(newSize); // Cập nhật kích thước khi người dùng chọn
+    console.log("TCL: ProductDetailPage -> event", event);
+    setSelectedSize(newSize);
   };
 
   if (!product) {
@@ -180,6 +182,13 @@ const ProductDetailPage = () => {
             <button onClick={handleAddToCart}>{t("Add to cart")}</button>
           </div>
         </div>
+      </div>
+      <div style={{ padding: "0 100px" }}>
+        <Brand
+          textCenter="justify-content-center mt-4 mb-2"
+          products={imgProduct.slice(21, 30)}
+          textHeading="Related Items"
+        ></Brand>
       </div>
     </>
   );

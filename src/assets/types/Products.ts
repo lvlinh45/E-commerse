@@ -22,6 +22,7 @@ export interface ProductListProps {
   textHeading?: string;
   showAll?: string;
   quatitySlide?: number;
+  textCenter?: string;
 }
 export interface IFormInput {
   productName: string;

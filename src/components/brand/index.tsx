@@ -8,11 +8,17 @@ const Brand = ({
   products,
   textHeading = "",
   showAll = "",
+  textCenter = "",
 }: ProductListProps) => {
   return (
     <>
       <div className="mt-5">
-        <Text text={textHeading} classname="mb-3" showAll={showAll}></Text>
+        <Text
+          text={textHeading}
+          textCenter={textCenter}
+          classname="mb-3"
+          showAll={showAll}
+        ></Text>
         <Swiper
           // loop={true}
           navigation={true}

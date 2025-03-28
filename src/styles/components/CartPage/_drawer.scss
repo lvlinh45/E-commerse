@@ -90,6 +90,7 @@
                 .cart-calculate {
                     border: 1px solid #b7b7b7;
                     height: fit-content;
+                    width: 120px;
                     button {
                         padding: 6px 12px;
                     }
@@ -100,6 +101,7 @@
                 }
             }
             .cartItem-utils {
+                width: 100px;
                 margin-left: 20px;
                 .cartItem-total {
                     font-weight: 700;

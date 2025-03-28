@@ -227,7 +227,6 @@ const CheckoutPage = () => {
               style={{
                 display: "flex",
                 gap: "16px",
-                alignItems: "center",
                 justifyContent: "space-between",
               }}
             >

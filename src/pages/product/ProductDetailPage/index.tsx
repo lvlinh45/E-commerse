@@ -13,6 +13,7 @@ import DrawerSiderBar from "../../../components/drawer";
 import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
+import NotFoundPage from "../../notFound";
 
 // Inside ProductDetailPage component
 const ProductDetailPage = () => {
@@ -81,7 +82,11 @@ const ProductDetailPage = () => {
   };
 
   if (!product) {
-    return <div>Product not found</div>;
+    return (
+      <>
+        <NotFoundPage></NotFoundPage>
+      </>
+    );
   }
 
   return (

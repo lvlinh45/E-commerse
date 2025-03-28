@@ -50,7 +50,8 @@
 
         .brandItem-review {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            flex-direction: column;
             margin-bottom: 10px;
             .brand-reviews {
                 font-size: 13px;
@@ -115,5 +116,12 @@
             font-size: 18px;
             font-weight: 600;
         }
+    }
+}
+
+@media (min-width: 400px) {
+    .brandItem-review {
+        flex-direction: row;
+        align-items: center;
     }
 }

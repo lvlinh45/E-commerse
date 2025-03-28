@@ -17,6 +17,7 @@ export const IconCart = () => (
     ></path>
   </svg>
 );
+
 export const IconSearch = () => (
   <svg
     width="16px"

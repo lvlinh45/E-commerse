@@ -1,22 +1,21 @@
 import { useNavigate } from "react-router-dom";
 
 import "./404Page.scss";
+import { useTranslation } from "react-i18next";
 
-const NotFound = () => {
+const NotFoundPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation("notFoundPage");
 
   return (
     <div className="error-container">
-      <h1 className="error-code">404 Page Not Found</h1>
-      <p className="error-message">Trang bạn yêu cầu không tồn tại.</p>
-      <button
-        className="continue-shopping-button"
-        onClick={() => navigate("/collection/all")}
-      >
-        TIẾP TỤC MUA SẮM
+      <h1>404 Page Not Found</h1>
+      <p>{t("The page you requested does not exist.")}.</p>
+      <button onClick={() => navigate("/collection/all")}>
+        {t("Continue shopping")}
       </button>
     </div>
   );
 };
 
-export default NotFound;
+export default NotFoundPage;

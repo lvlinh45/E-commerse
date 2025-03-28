@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import MainLayout from "../layouts/mainLayout/MainLayout";
-import NotFound from "../pages/notFound";
+import NotFoundPage from "../pages/notFound";
 import AdminPage from "../pages/admin"; // Import AdminPage
 import ProtectedRoute from "./ProtectedRoute";
 import HomePage from "../pages/home";
@@ -11,6 +11,7 @@ import SeekingPage from "../pages/seeking";
 import AdminProduct from "../pages/admin/adminProduct/AdminProduct";
 import AdminAllProduct from "../pages/admin/adminAllProduct/AdminAllProduct";
 import { useEffect } from "react";
+import HeaderCheckout from "../layouts/headerCheckout";
 
 const AppRoute = () => {
   const { pathname } = useLocation();
@@ -24,11 +25,12 @@ const AppRoute = () => {
         <Route index element={<HomePage />} />
         <Route path="/products/:id" element={<ProducDetailPage />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/collection/all" element={<SeekingPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
-
+      <Route path="/checkout" element={<HeaderCheckout />}>
+        <Route index element={<CheckoutPage />} />
+      </Route>
       <Route
         path="/auth/admin"
         element={

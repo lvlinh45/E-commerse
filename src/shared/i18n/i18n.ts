@@ -10,6 +10,8 @@ import DETAILPAGE__EN from "../locales/en/detailPage.json";
 import DETAILPAGE__VI from "../locales/vi/detailPage.json";
 import SEEKINGPAGE__EN from "../locales/en/seekingPage.json";
 import SEEKINGPAGE__VI from "../locales/vi/seekingPage.json";
+import NOTFOUNDPAGE__EN from "../locales/en/notFoundPage.json";
+import NOTFOUNDPAGE__VI from "../locales/vi/notFoundPage.json";
 
 const resources = {
   en: {
@@ -18,6 +20,7 @@ const resources = {
     checkoutPage: CHECKOUTPAGE__EN,
     detailPage: DETAILPAGE__EN,
     seekingPage: SEEKINGPAGE__EN,
+    notFoundPage: NOTFOUNDPAGE__EN,
   },
   vi: {
     homePage: HOMEPAGE__VI,
@@ -25,6 +28,7 @@ const resources = {
     checkoutPage: CHECKOUTPAGE__VI,
     detailPage: DETAILPAGE__VI,
     seekingPage: SEEKINGPAGE__VI,
+    notFoundPage: NOTFOUNDPAGE__VI,
   },
 };
 

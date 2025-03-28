@@ -76,9 +76,9 @@ const SidebarSeeking: React.FC<{
 
   return (
     <div className="sidebar-seeking">
-      {filterData.map(({ category, options }) => (
+      {filterData.map(({ category, options }, index) => (
         <Accordion
-          defaultExpanded
+          defaultExpanded={index === 0}
           className="sidebarSeeking-main"
           key={category}
         >

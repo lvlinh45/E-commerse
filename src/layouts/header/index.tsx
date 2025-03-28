@@ -199,7 +199,9 @@ const HeaderLayout = () => {
                 onClick={toggleDrawer(true)}
               >
                 <IconCart />
-                <p>{totalQuantity}</p>
+                <p className={totalQuantity === 0 ? "d-none" : "d-block"}>
+                  {totalQuantity}
+                </p>
               </span>
               <span
                 className="header-icon location-icon"

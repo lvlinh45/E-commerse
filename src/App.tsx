@@ -1,11 +1,11 @@
 import { Fragment, Suspense } from "react";
-import NotFound from "./pages/notFound";
+import NotFoundPage from "./pages/notFound";
 import AppRoute from "./routes/AppRoute";
 
 function App() {
   return (
     <>
-      <Suspense fallback={<NotFound></NotFound>}>
+      <Suspense fallback={<NotFoundPage></NotFoundPage>}>
         <Fragment>
           <AppRoute></AppRoute>
         </Fragment>

@@ -45,7 +45,10 @@ const Trending = () => {
                         href="#"
                         className="read-more d-flex align-items-center gap-1 "
                       >
-                        <span> {t("READ_MORE")}</span>
+                        <span onClick={() => navigate("/collection/all")}>
+                          {" "}
+                          {t("READ_MORE")}
+                        </span>
                         <IconAngleRight></IconAngleRight>
                       </a>
                     </Card.Body>

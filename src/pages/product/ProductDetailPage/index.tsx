@@ -1,31 +1,30 @@
+import { useState, useEffect } from "react";
 import { IconButton } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import EmblaCarousel from "../../../components/EmblaCarousel/EmblaCarousel";
 import { IconNotRatingStar, IconStar } from "../../../assets/icons/Icons";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import BreadScrumbs from "../../../components/Universal/Breadscrumb";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { imgProduct } from "../../../constants/urlProduct";
-import React, { useEffect, useState } from "react";
 import { useCart } from "../../../context/CartContext";
 import { Product } from "../../../assets/types/Products";
 import DrawerSiderBar from "../../../components/drawer";
 import { useTranslation } from "react-i18next";
-
-import { useNavigate } from "react-router-dom";
 import NotFoundPage from "../../notFound";
 
-// Inside ProductDetailPage component
 const ProductDetailPage = () => {
   const { id } = useParams();
   const { t } = useTranslation("detailPage");
-  const navigate = useNavigate(); // For navigation
+  const navigate = useNavigate();
 
   const product = imgProduct.find((item) => item.id === parseInt(id ?? "0"));
   const { cart, addToCart } = useCart();
 
-  const [cartItems, setCartItems] = React.useState<Product[]>([]);
+  const [cartItems, setCartItems] = useState<Product[]>([]);
   const [open, setOpen] = useState(false);
+  const [selectedSize, setSelectedSize] = useState<string>("A/XS"); // Kích thước mặc định
 
   useEffect(() => {
     if (product) {
@@ -33,11 +32,11 @@ const ProductDetailPage = () => {
       if (!existingCartItem) {
         setCartItems((prevItems) => [
           ...prevItems,
-          { ...product, quantity: 1 },
+          { ...product, quantity: 1, selectedSize },
         ]);
       }
     }
-  }, [product, cartItems]);
+  }, [product, cartItems, selectedSize]);
 
   const handleQuantityChange = (id: number, change: number) => {
     setCartItems((prevItems) =>
@@ -75,18 +74,21 @@ const ProductDetailPage = () => {
 
   const handleBuyNow = () => {
     if (product) {
-      const newCart = [{ ...product, quantity: currentQuantity }];
+      const newCart = [{ ...product, quantity: currentQuantity, selectedSize }];
       addToCart(product, currentQuantity);
       navigate("/checkout", { state: { cart: newCart } });
     }
   };
 
+  const handleSizeChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newSize: string
+  ) => {
+    setSelectedSize(newSize); // Cập nhật kích thước khi người dùng chọn
+  };
+
   if (!product) {
-    return (
-      <>
-        <NotFoundPage></NotFoundPage>
-      </>
-    );
+    return <NotFoundPage />;
   }
 
   return (
@@ -95,11 +97,8 @@ const ProductDetailPage = () => {
         page={"Home"}
         subPage={"Collection"}
         destination={product?.name ?? "Product"}
-      ></BreadScrumbs>
-      <DrawerSiderBar
-        open={open}
-        onClose={() => setOpen(false)}
-      ></DrawerSiderBar>
+      />
+      <DrawerSiderBar open={open} onClose={() => setOpen(false)} />
       <div className="product-detail-container">
         <div className="product-wrapper">
           <EmblaCarousel slides={SLIDES}>
@@ -137,17 +136,24 @@ const ProductDetailPage = () => {
           <div className="product-price">
             {product?.price?.toLocaleString()} ₫
           </div>
+
           <div>
             <p className="product-quantity">{t("Size")}</p>
-            <div className="product-size">
-              <div>A/XS</div>
-              <div className="product-disable">A/S</div>
-              <div>A/L</div>
-              <div>A/XL</div>
-            </div>
+            <ToggleButtonGroup
+              value={selectedSize}
+              exclusive
+              onChange={handleSizeChange}
+              className="product-size"
+            >
+              <ToggleButton value="A/XS">A/XS</ToggleButton>
+              <ToggleButton value="A/S">A/S</ToggleButton>
+              <ToggleButton value="A/L">A/L</ToggleButton>
+              <ToggleButton value="A/XL">A/XL</ToggleButton>
+            </ToggleButtonGroup>
           </div>
+
           <div>
-            <p className="product-quantity"> {t("Quantity")}</p>
+            <p className="product-quantity">{t("Quantity")}</p>
             <div className="product-actions">
               <div className="product-calculate">
                 <IconButton
@@ -170,8 +176,8 @@ const ProductDetailPage = () => {
             </div>
           </div>
           <div className="product-button">
-            <button onClick={handleBuyNow}> {t("Buy it now")}</button>{" "}
-            <button onClick={handleAddToCart}> {t("Add to cart")}</button>
+            <button onClick={handleBuyNow}>{t("Buy it now")}</button>
+            <button onClick={handleAddToCart}>{t("Add to cart")}</button>
           </div>
         </div>
       </div>

@@ -2,10 +2,11 @@ import { useTranslation } from "react-i18next";
 import { imgCategory } from "../../constants/urlCategory";
 import Text from "../Universal/text";
 import CategoryItem from "./CategoryItem";
+import { useNavigate } from "react-router-dom";
 
 const Category = () => {
   const { t } = useTranslation("homePage");
-
+  const navigate = useNavigate();
   return (
     <div className="text-center">
       <Text
@@ -15,11 +16,13 @@ const Category = () => {
       ></Text>
       <div className="category-container">
         {imgCategory.map((item) => (
-          <CategoryItem
-            key={item.id}
-            url={item.url}
-            name={item.name}
-          ></CategoryItem>
+          <div onClick={() => navigate("/collection/all")}>
+            <CategoryItem
+              key={item.id}
+              url={item.url}
+              name={item.name}
+            ></CategoryItem>
+          </div>
         ))}
       </div>
     </div>

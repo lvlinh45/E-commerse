@@ -21,6 +21,8 @@
 @use "../src/styles/components/CheckoutPage/checkoutPage" as *;
 // SEEKING PAGE
 @use "../src/styles/components/SeekingPage/seeking" as *;
+// LOGIN PAGE
+@use "../src/styles/components/LoginPage/login" as *;
 
 body {
     font-family: "Nunito Sans", sans-serif !important;

@@ -12,6 +12,8 @@ import SEEKINGPAGE__EN from "../locales/en/seekingPage.json";
 import SEEKINGPAGE__VI from "../locales/vi/seekingPage.json";
 import NOTFOUNDPAGE__EN from "../locales/en/notFoundPage.json";
 import NOTFOUNDPAGE__VI from "../locales/vi/notFoundPage.json";
+import LOGINPAGE__EN from "../locales/en/loginPage.json";
+import LOGINPAGE__VI from "../locales/vi/loginPage.json";
 
 const resources = {
   en: {
@@ -21,6 +23,7 @@ const resources = {
     detailPage: DETAILPAGE__EN,
     seekingPage: SEEKINGPAGE__EN,
     notFoundPage: NOTFOUNDPAGE__EN,
+    loginPage: LOGINPAGE__EN,
   },
   vi: {
     homePage: HOMEPAGE__VI,
@@ -29,6 +32,7 @@ const resources = {
     detailPage: DETAILPAGE__VI,
     seekingPage: SEEKINGPAGE__VI,
     notFoundPage: NOTFOUNDPAGE__VI,
+    loginPage: LOGINPAGE__VI,
   },
 };
 

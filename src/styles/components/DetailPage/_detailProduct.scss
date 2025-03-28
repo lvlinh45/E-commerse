@@ -58,15 +58,16 @@
     .product-size {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 12px !important;
         margin-bottom: 14px;
-        div {
+        button {
             border: 1px solid $black;
             width: fit-content;
             padding: 8px 16px;
             cursor: pointer;
             font-weight: 600;
             font-size: 13px;
+            border-radius: 4px;
             &.product-disable {
                 opacity: 0.3;
                 font-weight: 600;

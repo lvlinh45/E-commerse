@@ -12,6 +12,7 @@ import AdminProduct from "../pages/admin/adminProduct/AdminProduct";
 import AdminAllProduct from "../pages/admin/adminAllProduct/AdminAllProduct";
 import { useEffect } from "react";
 import HeaderCheckout from "../layouts/headerCheckout";
+import LoginPage from "../pages/login";
 
 const AppRoute = () => {
   const { pathname } = useLocation();
@@ -24,6 +25,7 @@ const AppRoute = () => {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/products/:id" element={<ProducDetailPage />} />
+        <Route path="/auth/login" element={<LoginPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/collection/all" element={<SeekingPage />} />
         <Route path="*" element={<NotFoundPage />} />

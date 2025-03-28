@@ -187,7 +187,7 @@ const ProductDetailPage = () => {
         <Brand
           textCenter="justify-content-center mt-4 mb-2"
           products={imgProduct.slice(21, 30)}
-          textHeading="Related Items"
+          textHeading={t("Related Items")}
         ></Brand>
       </div>
     </>

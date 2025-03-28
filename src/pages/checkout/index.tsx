@@ -391,7 +391,7 @@ const CheckoutPage = () => {
             <div className="d-flex" style={{ gap: "18px" }}>
               <div className="checkout-wrapperImg">
                 <img src={item.imageUrl} alt={item.name} />
-                <p>{totalQuantity}</p>
+                <p>{item.quantity}</p>
               </div>
               <div>
                 <h4>{item.name}</h4>

@@ -15,16 +15,27 @@ import { AccountAdmin } from "../../../assets/types/Users";
 const AdminSidebar = () => {
   const location = useLocation();
   const userIdParam = location.state?.userId;
+
+  const storedUserId = localStorage.getItem("userId");
+  console.log("TCL: AdminSidebar -> storedUserId", storedUserId);
+
   useEffect(() => {
-    setUserId(userIdParam);
-  }, [userIdParam]);
-  const [userId, setUserId] = useState<string>("");
+    if (userIdParam) {
+      setUserId(userIdParam);
+      localStorage.setItem("userId", userIdParam);
+    } else if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, [userIdParam, storedUserId]);
+
+  const [userId, setUserId] = useState<string>(storedUserId || "");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const handleCloseSidebar = () => setIsOpen(false);
   const handleToggleSidebar = () => setIsOpen(!isOpen);
   const [userInfo, setUserInfo] = useState<AccountAdmin>();
+
   useEffect(() => {
     const user = accountAdmin.find(
       (account) => account.id === parseInt(userId)
@@ -36,6 +47,7 @@ const AdminSidebar = () => {
       });
     }
   }, [userId]);
+
   const handleLogout = () => {
     Swal.fire({
       title: "Bạn có chắc chắn muốn đăng xuất?",
@@ -46,6 +58,7 @@ const AdminSidebar = () => {
       cancelButtonText: "Hủy",
     }).then((result) => {
       if (result.isConfirmed) {
+        localStorage.removeItem("userId");
         localStorage.setItem("auth", "false");
         navigate("/auth/login");
       }

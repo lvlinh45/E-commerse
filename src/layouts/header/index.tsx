@@ -184,7 +184,7 @@ const HeaderLayout = () => {
                     className="product-seeMore"
                     onClick={() => navigate("/collection/all")}
                   >
-                    Xem thêm
+                    {t("See more")}
                   </p>
                 </div>
               )

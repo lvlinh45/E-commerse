@@ -8,7 +8,6 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Swal from "sweetalert2";
@@ -109,7 +108,7 @@ export default function ProductTable() {
             >
               <TableHead>
                 <TableRow>
-                  <TableCell padding="checkbox"></TableCell>
+                  <TableCell padding="checkbox">STT</TableCell>
                   {headCells.map((headCell) => (
                     <TableCell key={headCell.id} align="left">
                       {headCell.label}
@@ -118,7 +117,7 @@ export default function ProductTable() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {visibleRows.map((row: Product) => {
+                {visibleRows.map((row: Product, index) => {
                   const isItemSelected = selected.indexOf(row.id!) !== -1;
                   return (
                     <TableRow
@@ -131,10 +130,10 @@ export default function ProductTable() {
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
-                        <Checkbox color="primary" checked={isItemSelected} />
+                        <TableCell>{index + 1}</TableCell>
                       </TableCell>
                       <TableCell>{row.name}</TableCell>
-                      <TableCell>{row.price}</TableCell>
+                      <TableCell>{row.price?.toLocaleString()}</TableCell>
                       <TableCell>{row.category}</TableCell>
                       <TableCell>{row.quantity}</TableCell>
                       <TableCell>{row.brand}</TableCell>

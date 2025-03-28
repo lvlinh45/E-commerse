@@ -49,7 +49,7 @@ const handleDelete = (id: number) => {
 
 export default function ProductTable() {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [selected, setSelected] = React.useState<readonly number[]>([]);
 
   const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
@@ -108,7 +108,7 @@ export default function ProductTable() {
             >
               <TableHead>
                 <TableRow>
-                  <TableCell padding="checkbox">STT</TableCell>
+                  <TableCell padding="checkbox">ID</TableCell>
                   {headCells.map((headCell) => (
                     <TableCell key={headCell.id} align="left">
                       {headCell.label}
@@ -117,7 +117,7 @@ export default function ProductTable() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {visibleRows.map((row: Product, index) => {
+                {visibleRows.map((row: Product) => {
                   const isItemSelected = selected.indexOf(row.id!) !== -1;
                   return (
                     <TableRow
@@ -130,7 +130,7 @@ export default function ProductTable() {
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
-                        <TableCell>{index + 1}</TableCell>
+                        <TableCell>{row.id}</TableCell>
                       </TableCell>
                       <TableCell>{row.name}</TableCell>
                       <TableCell>{row.price?.toLocaleString()}</TableCell>
@@ -161,7 +161,7 @@ export default function ProductTable() {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[10, 25, 50, 100]}
             component="div"
             count={rows.length}
             rowsPerPage={rowsPerPage}

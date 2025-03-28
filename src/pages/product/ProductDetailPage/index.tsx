@@ -19,8 +19,13 @@ const ProductDetailPage = () => {
   const { id } = useParams();
   const { t } = useTranslation("detailPage");
   const navigate = useNavigate();
+  const storedProduct = localStorage.getItem("products");
 
-  const product = imgProduct.find((item) => item.id === parseInt(id ?? "0"));
+  const products = storedProduct ? JSON.parse(storedProduct) : [];
+
+  const product = products.find(
+    (item: Product) => item.id === parseInt(id ?? "0")
+  );
   const { cart, addToCart } = useCart();
 
   const [cartItems, setCartItems] = useState<Product[]>([]);

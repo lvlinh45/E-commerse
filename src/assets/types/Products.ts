@@ -29,7 +29,7 @@ export interface IFormInput {
   brand: string;
   description: string;
   salePrice: string;
-  discount: string;
+  discount: number;
   size: string;
   tags: string;
   imageUrl: string;

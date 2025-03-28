@@ -16,7 +16,7 @@ const AdminProduct: React.FC = () => {
       brand: "",
       description: "",
       salePrice: "",
-      discount: "",
+      discount: 0,
       size: "",
       tags: "",
       imageUrl: "",
@@ -24,24 +24,26 @@ const AdminProduct: React.FC = () => {
       publishCategory: "",
     },
   });
+  const storedProduct = JSON.parse(localStorage.getItem("products") ?? "");
+  console.log("TCL: AdminProduct:React.FC -> storedProduct", storedProduct);
 
-  // Handle form submission
   const onSubmit = (data: IFormInput) => {
+    console.log("TCL: onSubmit -> data", data);
     const newProduct = {
-      id: new Date().getTime(),
-      name: data.productName,
-      brand: data.brand,
-      description: data.description,
-      price: parseFloat(data.salePrice),
-      discount: parseFloat(data.discount),
-      size: data.size,
-      tags: data.tags,
-      imageUrl: data.imageUrl,
-      visibility: data.visibility,
+      id: storedProduct.length + 1,
       category: data.publishCategory,
+      quantity: 1,
+      size: data.size,
+      name: data.productName,
+      imageUrl: data.imageUrl,
+      description: data.description,
       numberOfReviews: 0,
+      price: parseFloat(data.salePrice),
+      discount: data.discount,
       rating: 0,
       status: "new",
+      gender: "MEN",
+      brand: data.brand,
     };
     const storedProducts = JSON.parse(localStorage.getItem("products") || "");
     storedProducts.unshift(newProduct);
@@ -151,6 +153,7 @@ const AdminProduct: React.FC = () => {
                 type="number"
                 id="discount"
                 placeholder="Enter discount percentage"
+                {...register("discount", { required: "Discount is required" })}
               />
             </div>
 
@@ -159,6 +162,7 @@ const AdminProduct: React.FC = () => {
               <div className="adminProduct-size" id="size">
                 <input
                   type="radio"
+                  checked
                   id="size-s"
                   value="S"
                   {...register("size", { required: "Size is required" })}
@@ -244,6 +248,7 @@ const AdminProduct: React.FC = () => {
                   {...register("visibility", {
                     required: "Visibility is required",
                   })}
+                  checked
                   type="radio"
                   id="published"
                   value="published"

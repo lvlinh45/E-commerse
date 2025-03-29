@@ -14,3 +14,25 @@ h3 {
 .css-1e9a4b0-MuiTableCell-root:not(:nth-child(2)) {
     text-align: center !important;
 }
+.admin-export-wrapper {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+    .admin-export {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 10px;
+        border-radius: 6px;
+        margin-top: 20px;
+        color: #fff;
+        background-color: #0000ff;
+        border: none;
+        font-weight: 600;
+        span:last-child {
+            width: 20px;
+        }
+    }
+}

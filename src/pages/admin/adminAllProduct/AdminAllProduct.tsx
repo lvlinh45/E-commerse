@@ -13,6 +13,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Swal from "sweetalert2";
 import { Product } from "../../../assets/types/Products";
 import "./adminAllProduct.scss";
+import { ExportIcon } from "../../../assets/icons/Icons";
+import { CSVLink } from "react-csv";
 const rows = JSON.parse(localStorage.getItem("products") || "[]");
 
 const headCells = [
@@ -98,7 +100,6 @@ export default function ProductTable() {
   return (
     <>
       <h3>General Information</h3>
-
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
           <TableContainer>
@@ -174,6 +175,18 @@ export default function ProductTable() {
           />
         </Paper>
       </Box>
+      <CSVLink
+        data={rows}
+        filename={"product-list.csv"}
+        className="admin-export-wrapper"
+      >
+        <button className="admin-export" onClick={() => ""}>
+          <span>Export</span>
+          <span>
+            <ExportIcon></ExportIcon>
+          </span>
+        </button>
+      </CSVLink>
     </>
   );
 }

@@ -140,8 +140,29 @@ const ProductDetailPage = () => {
               {t("Reviews")}
             </span>
           </div>
-          <div className="product-price">
-            {product?.price?.toLocaleString()} ₫
+          <div className={`d-flex align-items-center gap-2 product-price`}>
+            {product.discount > 0 && (
+              <>
+                <span className="product-price-final">
+                  {(product?.discount > 0
+                    ? (product.price ?? 0) * (1 - product?.discount / 100)
+                    : product?.price ?? 0
+                  ).toLocaleString("de-DE")}
+                  đ
+                </span>
+                <span className="product-price-original">
+                  {product?.price.toLocaleString("de-DE")}đ
+                </span>
+                <span className="product-price-discount">
+                  -{product?.discount}%
+                </span>
+              </>
+            )}
+            {product.discount === 0 && (
+              <span className="product-price-noDiscount">
+                {product?.price.toLocaleString("de-DE")}đ
+              </span>
+            )}
           </div>
 
           <div>

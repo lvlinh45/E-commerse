@@ -119,9 +119,9 @@
     }
 }
 
-@media (min-width: 400px) {
+@media (min-width: 1025px) {
     .brandItem-review {
-        flex-direction: row;
-        align-items: center;
+        flex-direction: row !important;
+        align-items: center !important;
     }
 }

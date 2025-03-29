@@ -97,13 +97,21 @@
                 color: #110a0a;
                 text-wrap: nowrap;
             }
-            h4 {
-                font-size: 14px;
-                width: 90%;
-            }
-            h5 {
-                font-size: 12px;
-                color: #110a0a8f;
+            div {
+                h4 {
+                    display: block;
+                    font-size: 14px;
+                    max-width: 300px;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                h5 {
+                    font-size: 12px;
+                    color: #110a0a8f;
+                }
             }
             .checkout-wrapperImg {
                 position: relative;
@@ -255,16 +263,19 @@
 
                     .product-name {
                         font-size: 16px;
+                        font-weight: 700;
                         color: $primary-text;
                     }
 
                     .product-price {
                         font-size: 14px;
+                        font-weight: 600;
                         color: $secondary;
                     }
 
                     .product-quantity {
                         font-size: 14px;
+                        font-weight: 600;
                         color: $quantity;
                     }
                 }

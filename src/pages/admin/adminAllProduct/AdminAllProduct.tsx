@@ -98,6 +98,7 @@ export default function ProductTable() {
   return (
     <>
       <h3>General Information</h3>
+
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
           <TableContainer>
@@ -133,7 +134,9 @@ export default function ProductTable() {
                         <TableCell>{row.id}</TableCell>
                       </TableCell>
                       <TableCell>{row.name}</TableCell>
-                      <TableCell>{row.price?.toLocaleString()}</TableCell>
+                      <TableCell>
+                        {row.price?.toLocaleString("de-DE")}
+                      </TableCell>
                       <TableCell>{row.category}</TableCell>
                       <TableCell>{row.quantity}</TableCell>
                       <TableCell>{row.brand}</TableCell>

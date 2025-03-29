@@ -16,7 +16,7 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
   onClose,
 }) => {
   const navigate = useNavigate();
-  const { cart, addToCart, removeFromCart } = useCart();
+  const { cart, addToCart, removeFromCart, calculateTotal } = useCart();
   const { t } = useTranslation("cartPage");
 
   const handleQuantityChange = (id: number, change: number) => {
@@ -32,11 +32,6 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
   const handleRemoveItem = (id: number) => {
     removeFromCart(id);
   };
-
-  const subtotal = cart.reduce(
-    (total, item) => total + (item.price ?? 0) * (item.quantity ?? 0),
-    0
-  );
 
   const list = () => {
     if (cart.length === 0) {
@@ -75,8 +70,27 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
                   <div className="cart-item-info">
                     <div className="item-vendor">{item.vendor}</div>
                     <div className="item-name">{item.name}</div>
-                    <div className="item-price">
-                      {item.price?.toLocaleString()}đ
+                    <div className="item-price d-flex align-items-center gap-2 product-price">
+                      {(item.discount ?? 0) > 0 && (
+                        <>
+                          <span>
+                            {((item.discount ?? 0) > 0
+                              ? (item.price ?? 0) *
+                                (1 - (item.discount ?? 0) / 100)
+                              : item?.price ?? 0
+                            ).toLocaleString("de-DE")}
+                            đ
+                          </span>
+                          <span className="item-price-discount">
+                            {(item?.price ?? 0).toLocaleString("de-DE")}đ
+                          </span>
+                        </>
+                      )}
+                      {item.discount === 0 && (
+                        <span>
+                          {(item?.price ?? 0).toLocaleString("de-DE")}đ
+                        </span>
+                      )}
                     </div>
                   </div>
                   <div>
@@ -111,7 +125,7 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
           <div className="cart-bottom">
             <div className="card-subtotal">
               <span>{t("Subtotal")}</span>
-              <span>{subtotal.toLocaleString()}đ</span>
+              <span>{calculateTotal(cart).toLocaleString("de-DE")}đ</span>
             </div>
             <div>
               <Button

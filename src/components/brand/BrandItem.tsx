@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { IconNotRatingStar, IconStar } from "../../assets/icons/Icons";
 import { Product } from "../../assets/types/Products";
+import { useTranslation } from "react-i18next";
 
 const BrandItem = ({
   id,
@@ -16,6 +17,8 @@ const BrandItem = ({
   const finalPrice =
     discount > 0 ? (price ?? 0) * (1 - discount / 100) : price ?? 0;
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   return (
     <div className="brand-item" onClick={() => navigate(`/products/${id}`)}>
       <div style={{ position: "relative" }}>
@@ -33,7 +36,7 @@ const BrandItem = ({
                 : "brandItem-status-discount"
             }`}
           >
-            {status === "new" && status}
+            {status === "new" && t("NEW")}
             {status !== "new" && <>-{discount}%</>}
           </div>
         )}
@@ -57,25 +60,28 @@ const BrandItem = ({
               )
             )}
           </div>
-          <div className="brand-reviews">{numberOfReviews} reviews</div>
+          <div className="brand-reviews">
+            {numberOfReviews} {t("reviews")}
+          </div>
         </div>
 
         <div className="d-flex align-items-center gap-2">
           {discount > 0 && (
-            <span className="brandItem-original-price">
-              {finalPrice?.toLocaleString("de-DE")}đ
-            </span>
-          )}
-
-          {discount > 0 && (
-            <span className="brandItem-discount">
-              {price?.toLocaleString("de-DE")}đ
-            </span>
+            <>
+              <span className="brandItem-original-price">
+                {finalPrice?.toLocaleString("de-DE")}đ
+              </span>
+              <span className="brandItem-discount">
+                {price?.toLocaleString("de-DE")}đ
+              </span>
+            </>
           )}
         </div>
 
         {discount === 0 && (
-          <span className="brandItem-original">{price?.toLocaleString()}đ</span>
+          <span className="brandItem-original">
+            {price?.toLocaleString("de-DE")}đ
+          </span>
         )}
       </div>
     </div>

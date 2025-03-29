@@ -125,6 +125,7 @@
     font-weight: 700;
     transition: 0.5s all;
     cursor: pointer;
+    max-width: 200px;
     &:hover {
         color: $primary-light;
     }
@@ -138,6 +139,8 @@
         transition: 0.5s all;
         text-align: center;
         cursor: pointer;
+        max-width: unset;
+
         &:hover {
             color: $primary-light;
         }

@@ -25,10 +25,7 @@ const AdminProduct: React.FC = () => {
     },
   });
   const storedProduct = JSON.parse(localStorage.getItem("products") ?? "");
-  console.log("TCL: AdminProduct:React.FC -> storedProduct", storedProduct);
-
   const onSubmit = (data: IFormInput) => {
-    console.log("TCL: onSubmit -> data", data);
     const newProduct = {
       id: storedProduct.length + 1,
       category: data.publishCategory,
@@ -147,7 +144,10 @@ const AdminProduct: React.FC = () => {
                 </p>
               )}
             </div>
-            <div className="adminProduct-form-item">
+            <div
+              className="adminProduct-form-item "
+              style={{ position: "relative" }}
+            >
               <label htmlFor="discount">Discount</label>
               <input
                 type="number"
@@ -155,6 +155,7 @@ const AdminProduct: React.FC = () => {
                 placeholder="Enter discount percentage"
                 {...register("discount", { required: "Discount is required" })}
               />
+              <div className="adminProduct-form-item--discount">%</div>
             </div>
 
             <div className="adminProduct-form-item">
@@ -162,7 +163,6 @@ const AdminProduct: React.FC = () => {
               <div className="adminProduct-size" id="size">
                 <input
                   type="radio"
-                  checked
                   id="size-s"
                   value="S"
                   {...register("size", { required: "Size is required" })}

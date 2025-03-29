@@ -153,6 +153,7 @@ header {
             display: flex;
             flex-direction: column;
             margin-bottom: 16px;
+
             div {
                 display: flex;
                 gap: 10px;
@@ -174,6 +175,17 @@ header {
                 border: 1px solid #ccc;
             }
         }
+    }
+    .adminProduct-form-item--discount {
+        position: absolute;
+        right: 0px;
+        top: 42%;
+        padding: 8px 14px;
+        background: purple;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        color: white;
+        font-weight: 800;
     }
 }
 

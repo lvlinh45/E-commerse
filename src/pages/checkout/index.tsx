@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useCart } from "../../context/CartContext";
 import { ILocation } from "../../assets/types/Location";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { loadDistricts, loadProvinces, loadWards } from "../../utils";
+import {
+  loadDistricts,
+  loadProvinces,
+  loadWards,
+} from "../../shared/i18n/utils";
 import { Product } from "../../assets/types/Products";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -28,7 +32,7 @@ const schema = yup.object().shape({
 const CheckoutPage = () => {
   const { t } = useTranslation("checkoutPage");
   const navigate = useNavigate();
-  const { cart, clearCart } = useCart();
+  const { cart, clearCart, calculateTotal } = useCart();
   const totalQuantity = cart.reduce(
     (total, item) => total + (item.quantity ?? 0),
     0
@@ -59,8 +63,9 @@ const CheckoutPage = () => {
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
 
-  const [orderSuccess, setOrderSuccess] = useState(false);
-
+  const [orderSuccess, setOrderSuccess] = useState<boolean>(false);
+  const [ship, setShip] = useState<number>(0);
+  console.log("TCL: CheckoutPage -> ship", ship);
   const {
     control,
     handleSubmit,
@@ -87,16 +92,22 @@ const CheckoutPage = () => {
     });
   };
 
-  useEffect(() => {
-    loadProvinces("").then((data) => setProvinces(data));
-  }, []);
-
   const onSubmit = (data: { email: string }) => {
     console.log(data);
     setOrderSuccess(true);
     clearCart();
   };
 
+  const handleShip = useCallback(() => {
+    if (calculateTotal(cart) < 300000) {
+      return setShip(30000);
+    }
+    return setShip(0);
+  }, [cloneCart, calculateTotal]);
+  useEffect(() => {
+    loadProvinces("").then((data) => setProvinces(data));
+    handleShip();
+  }, [handleShip]);
   if (orderSuccess) {
     return (
       <div className="order-success-container">
@@ -105,7 +116,8 @@ const CheckoutPage = () => {
           {t("Your order is being processed. Thank you for shopping with us!")}
         </p>
         <p>
-          {t("Your order ID")}: <strong>HAB123456</strong>
+          {t("Your order ID")}:{" "}
+          <strong>MVĐ{Math.floor(100000 + Math.random() * 900000)}</strong>
         </p>
 
         <div className="order-details">
@@ -121,10 +133,23 @@ const CheckoutPage = () => {
                 <div className="product-info">
                   <p className="product-name">{item.name}</p>
                   <p className="product-price">
-                    {(
-                      (item.price ?? 0) * (item.quantity ?? 0)
-                    ).toLocaleString()}{" "}
-                    ₫
+                    {(item.discount ?? 0) > 0 && (
+                      <>
+                        <span className="product-price-final">
+                          {((item.discount ?? 0) > 0
+                            ? (item.price ?? 0) *
+                              (1 - (item.discount ?? 0) / 100)
+                            : item?.price ?? 0
+                          ).toLocaleString("de-DE")}
+                          đ
+                        </span>
+                      </>
+                    )}
+                    {item.discount === 0 && (
+                      <span className="product-price-noDiscount">
+                        {(item?.price ?? 0).toLocaleString("de-DE")}đ
+                      </span>
+                    )}
                   </p>
                   <p className="product-quantity">
                     {t("Quantity")}: {item.quantity}
@@ -136,14 +161,7 @@ const CheckoutPage = () => {
           <div className="order-total">
             <span>{t("Total")}</span>
             <span>
-              {cloneCart
-                .reduce(
-                  (total, item) =>
-                    total + (item.price ?? 0) * (item.quantity ?? 0),
-                  0
-                )
-                .toLocaleString()}{" "}
-              ₫
+              {(calculateTotal(cloneCart) + ship).toLocaleString("de-DE")} ₫
             </span>
           </div>
         </div>
@@ -346,7 +364,15 @@ const CheckoutPage = () => {
           <h4>{t("Shipping method")}</h4>
           <p>
             <span>{t("Shipping fee")}</span>
-            <span>{t("FREE")}</span>
+            <span>
+              {ship !== 0 ? (
+                <span style={{ fontWeight: 600 }}>
+                  {ship.toLocaleString("de-DE")} ₫
+                </span>
+              ) : (
+                <span style={{ fontWeight: 600 }}>{t("FREE")}</span>
+              )}
+            </span>
           </p>
         </div>
 
@@ -398,8 +424,26 @@ const CheckoutPage = () => {
                 <h5>Size {item?.size || "L"}</h5>
               </div>
             </div>
-            <div className="checkout-total">
-              {((item.price ?? 0) * (item.quantity ?? 0)).toLocaleString()} ₫
+            <div className="checkout-total" style={{ fontWeight: 500 }}>
+              {(item.discount ?? 0) > 0 && (
+                <div className="d-flex flex-column">
+                  <span style={{ color: "#FF0000", fontWeight: 600 }}>
+                    {((item.discount ?? 0) > 0
+                      ? (item.price ?? 0) * (1 - (item.discount ?? 0) / 100)
+                      : item?.price ?? 0
+                    ).toLocaleString("de-DE")}
+                    đ
+                  </span>
+                  <span className="item-price-discount">
+                    {(item?.price ?? 0).toLocaleString("de-DE")}đ
+                  </span>
+                </div>
+              )}
+              {item.discount === 0 && (
+                <span style={{ fontWeight: 600 }}>
+                  {(item?.price ?? 0).toLocaleString("de-DE")}đ
+                </span>
+              )}
             </div>
           </div>
         ))}
@@ -419,15 +463,39 @@ const CheckoutPage = () => {
             <span>
               {t("Subtotal")} · {totalQuantity} mặt hàng
             </span>
-            <span>{subtotal.toLocaleString()} ₫</span>
+            <span style={{ fontWeight: 600 }}>
+              {subtotal.toLocaleString("de-DE")} ₫
+            </span>
           </div>
+          {Number(subtotal) - Number(calculateTotal(cart)) === 0 ? (
+            ""
+          ) : (
+            <div>
+              <span>{t("Total amount with discount")}</span>
+              <span style={{ color: "red", fontWeight: 600 }}>
+                -{" "}
+                {(
+                  Number(subtotal) - Number(calculateTotal(cart))
+                ).toLocaleString("de-DE")}{" "}
+                ₫
+              </span>
+            </div>
+          )}
           <div>
             <span>{t("Shipping costs")}</span>
-            <span>{t("FREE")}</span>
+            {ship !== 0 ? (
+              <span style={{ fontWeight: 600 }}>
+                {ship.toLocaleString("de-DE")} ₫
+              </span>
+            ) : (
+              <span style={{ fontWeight: 600 }}>{t("FREE")}</span>
+            )}
           </div>
           <div className="checkout-totalCost">
             <span>{t("Total")}</span>
-            <span>{subtotal.toLocaleString()} ₫</span>
+            <span>
+              {(calculateTotal(cart) + ship).toLocaleString("de-DE")} ₫
+            </span>
           </div>
         </div>
       </div>

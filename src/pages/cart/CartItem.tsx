@@ -8,7 +8,7 @@ import { useCart } from "../../context/CartContext";
 import { useTranslation } from "react-i18next";
 
 const CartItem = () => {
-  const { cart, addToCart, removeFromCart } = useCart();
+  const { cart, addToCart, removeFromCart, calculateTotal } = useCart();
   const { t } = useTranslation("cartPage");
 
   const handleQuantityChange = (id: number, change: number) => {
@@ -55,7 +55,24 @@ const CartItem = () => {
                 </div>
                 <div className="d-flex item-custom">
                   <div className="item-price">
-                    {(item.price ?? 0).toLocaleString()}đ
+                    {(item.discount ?? 0) > 0 && (
+                      <div className="d-flex flex-column">
+                        <span>
+                          {((item.discount ?? 0) > 0
+                            ? (item.price ?? 0) *
+                              (1 - (item.discount ?? 0) / 100)
+                            : item?.price ?? 0
+                          ).toLocaleString("de-DE")}
+                          đ
+                        </span>
+                        <span className="item-price-discount">
+                          {(item?.price ?? 0).toLocaleString("de-DE")}đ
+                        </span>
+                      </div>
+                    )}
+                    {item.discount === 0 && (
+                      <span>{(item?.price ?? 0).toLocaleString("de-DE")}đ</span>
+                    )}
                   </div>
                   <div className="item-subCustomWrapper">
                     <div className="cart-actions">
@@ -82,9 +99,7 @@ const CartItem = () => {
                     </div>
                     <div className="cartItem-utils">
                       <p className="cartItem-total">
-                        {(
-                          (item.price ?? 0) * (item.quantity ?? 0)
-                        ).toLocaleString()}
+                        {calculateTotal(cart).toLocaleString("de-DE")}đ
                       </p>
                       <button
                         className="remove-button"

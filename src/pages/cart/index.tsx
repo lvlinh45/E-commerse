@@ -5,14 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const CartPage = () => {
-  const { cart } = useCart();
+  const { cart, calculateTotal } = useCart();
   const navigate = useNavigate();
   const { t } = useTranslation("cartPage");
-
-  const subtotal = cart.reduce(
-    (total, item) => total + (item?.price ?? 0) * (item.quantity ?? 0),
-    0
-  );
 
   return (
     <>
@@ -54,18 +49,15 @@ const CartPage = () => {
                 </p>
               </div>
               <div className="cartPage-information">
-                {/* Display number of products in the cart */}
                 <div>
                   <span className="cartPage-subHeading">
                     ({cart.length}) {t("product")}
-                    {cart.length > 1 ? "s" : ""}
                   </span>
                   <span className="cartPage-total">
-                    {subtotal.toLocaleString()}₫
+                    {calculateTotal(cart).toLocaleString("de-DE")}₫
                   </span>
                 </div>
 
-                {/* Display discount and shipping fee */}
                 <div>
                   <span className="cartPage-subHeading">{t("Discount")}</span>
                   <span className="cartPage-span">
@@ -84,7 +76,7 @@ const CartPage = () => {
                 <p>
                   <span className="cartPage-subHeading">{t("Subtotal")}:</span>
                   <span className="cartPage-total">
-                    {subtotal.toLocaleString()}₫
+                    {calculateTotal(cart).toLocaleString("de-DE")}₫
                   </span>
                 </p>
                 <button onClick={() => navigate("/checkout")}>

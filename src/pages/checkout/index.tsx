@@ -13,6 +13,52 @@ import { Product } from "../../assets/types/Products";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+interface IDiscountCode {
+  code: string;
+  discountAmount: number;
+  description: string;
+  minOrder: number;
+  expiry: string;
+}
+
+const discountCodes: IDiscountCode[] = [
+  {
+    code: "SALE10",
+    discountAmount: 50000,
+    description: "Giảm 50,000đ cho đơn hàng từ 500,000đ trở lên",
+    minOrder: 500000,
+    expiry: "2025-12-31",
+  },
+  {
+    code: "SALE15",
+    discountAmount: 75000,
+    description: "Giảm 75,000đ cho đơn hàng từ 1,000,000đ trở lên",
+    minOrder: 1000000,
+    expiry: "2025-11-30",
+  },
+  {
+    code: "SAVE20",
+    discountAmount: 100000,
+    description: "Giảm 100,000đ cho đơn hàng từ 2,000,000đ trở lên",
+    minOrder: 2000000,
+    expiry: "2025-10-31",
+  },
+  {
+    code: "OFF5",
+    discountAmount: 25000,
+    description: "Giảm 25,000đ cho mọi đơn hàng",
+    minOrder: 0,
+    expiry: "2025-12-31",
+  },
+  {
+    code: "VIP30",
+    discountAmount: 150000,
+    description: "Giảm 150,000đ cho khách hàng VIP",
+    minOrder: 0,
+    expiry: "2025-09-30",
+  },
+];
+
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -66,6 +112,12 @@ const CheckoutPage = () => {
   const [orderSuccess, setOrderSuccess] = useState<boolean>(false);
   const [ship, setShip] = useState<number>(0);
   console.log("TCL: CheckoutPage -> ship", ship);
+
+  // State cho discount code
+  const [discountInput, setDiscountInput] = useState("");
+  const [appliedDiscount, setAppliedDiscount] = useState(0);
+  const [discountError, setDiscountError] = useState("");
+
   const {
     control,
     handleSubmit,
@@ -108,6 +160,35 @@ const CheckoutPage = () => {
     loadProvinces("").then((data) => setProvinces(data));
     handleShip();
   }, [handleShip]);
+
+  const handleApplyDiscount = () => {
+    const code = discountInput.trim().toUpperCase();
+    const foundDiscount = discountCodes.find((dc) => dc.code === code);
+    if (!foundDiscount) {
+      setDiscountError(t("Invalid discount code"));
+      setAppliedDiscount(0);
+      return;
+    }
+    const currentDate = new Date();
+    const expiryDate = new Date(foundDiscount.expiry);
+    if (currentDate > expiryDate) {
+      setDiscountError(t("Discount code expired"));
+      setAppliedDiscount(0);
+      return;
+    }
+    if (calculateTotal(cart) < foundDiscount.minOrder) {
+      setDiscountError(
+        t("Order must be at least ") +
+          foundDiscount.minOrder.toLocaleString("de-DE") +
+          t(" ₫ to use this discount code")
+      );
+      setAppliedDiscount(0);
+      return;
+    }
+    setDiscountError("");
+    setAppliedDiscount(foundDiscount.discountAmount);
+  };
+
   if (orderSuccess) {
     return (
       <div className="order-success-container">
@@ -454,9 +535,27 @@ const CheckoutPage = () => {
             className="checkout-input"
             style={{ marginBottom: 0 }}
             placeholder={t("Discount code or gift card")}
+            value={discountInput}
+            onChange={(e) => setDiscountInput(e.target.value)}
           />
-          <button className="checkout-discount--apply">{t("Apply")}</button>
+          <button
+            className="checkout-discount--apply"
+            onClick={() => {
+              if (discountInput.trim() !== "") {
+                handleApplyDiscount();
+              }
+            }}
+            style={{
+              opacity: discountInput.trim() === "" ? 0.6 : 1,
+              cursor: discountInput.trim() === "" ? "not-allowed" : "pointer",
+            }}
+          >
+            {t("Apply")}
+          </button>
         </div>
+        {discountError && (
+          <p style={{ color: "red", margin: 0 }}>{discountError}</p>
+        )}
 
         <div className="checkout-information">
           <div>
@@ -481,6 +580,14 @@ const CheckoutPage = () => {
               </span>
             </div>
           )}
+          {appliedDiscount > 0 && (
+            <div>
+              <span>{t("Voucher")}</span>
+              <span style={{ color: "red", fontWeight: 600 }}>
+                - {appliedDiscount.toLocaleString("de-DE")} ₫
+              </span>
+            </div>
+          )}
           <div>
             <span>{t("Shipping costs")}</span>
             {ship !== 0 ? (
@@ -494,7 +601,10 @@ const CheckoutPage = () => {
           <div className="checkout-totalCost">
             <span>{t("Total")}</span>
             <span>
-              {(calculateTotal(cart) + ship).toLocaleString("de-DE")} ₫
+              {(calculateTotal(cart) + ship - appliedDiscount).toLocaleString(
+                "de-DE"
+              )}{" "}
+              ₫
             </span>
           </div>
         </div>

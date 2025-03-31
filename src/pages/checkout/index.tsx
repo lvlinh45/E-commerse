@@ -23,8 +23,7 @@ const schema = yup.object().shape({
 
 const CheckoutPage = () => {
   const { t } = useTranslation("checkoutPage");
-  const savedVouchers = JSON.parse(localStorage.getItem("vouchers") || "");
-
+  const savedVouchers = JSON.parse(localStorage.getItem("vouchers") || "[]");
   const navigate = useNavigate();
   const { cart, clearCart, calculateTotal } = useCart();
   const totalQuantity = cart.reduce(

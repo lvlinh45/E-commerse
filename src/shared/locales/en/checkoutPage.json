@@ -28,5 +28,16 @@
   "Order Details": "Order Details",
   "Return to Home": "Return to Home",
   "Quantity": "Quantity",
-  "Total amount with discount": "Total amount with discount"
+  "Total amount with discount": "Total amount with discount",
+  "Invalid discount code": "Invalid discount code",
+  "invalid_email": "Invalid email address",
+  "email_required": "Email is required",
+  "first_name_optional": "First name (optional)",
+  "last_name_required": "Last name is required",
+  "address_required": "Address is required",
+  "province_required": "Province is required",
+  "district_required": "District is required",
+  "village_required": "Village is required",
+  "agree_terms_required": "You must agree to the terms and policies",
+  "unknown_error": "This field is required"
 }

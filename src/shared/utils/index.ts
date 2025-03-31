@@ -1,4 +1,4 @@
-import { ILocation } from "../../../assets/types/Location";
+import { ILocation } from "../../assets/types/Location";
 
 export const loadProvinces = (inputValue: string) =>
   new Promise<ILocation[]>((resolve) => {

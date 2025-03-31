@@ -1,6 +1,13 @@
 {
-  "Login": "Login",
-  "Email Address": "Email Address",
-  "Password": "Password",
-  "LOG IN": "LOG IN"
+  "login": "Login",
+  "email_address": "Email Address",
+  "password": "Password",
+  "log_in": "LOG IN",
+  "incorrect_login_info": "Incorrect login information",
+  "invalid_email": "Invalid email",
+  "email_required": "Email is required",
+  "password_min_length": "Password must be at least 6 characters long",
+  "password_required": "Password is required",
+  "login_successful": "Login successful!",
+  "welcome": "Welcome"
 }

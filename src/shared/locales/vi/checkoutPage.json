@@ -28,5 +28,16 @@
   "Order Details": "Chi tiết đơn hàng",
   "Return to Home": "Trở về trang chủ",
   "Quantity": "Số lượng",
-  "Total amount with discount": "Giảm giá"
+  "Total amount with discount": "Giảm giá",
+  "Invalid discount code": "Mã giảm giá không hợp lệ.",
+  "invalid_email": "Địa chỉ email không hợp lệ",
+  "email_required": "Email là bắt buộc",
+  "first_name_optional": "Tên đầu tiên (tùy chọn)",
+  "last_name_required": "Họ là bắt buộc",
+  "address_required": "Địa chỉ là bắt buộc",
+  "province_required": "Tỉnh là bắt buộc",
+  "district_required": "Quận/Huyện là bắt buộc",
+  "village_required": "Xã/Phường là bắt buộc",
+  "agree_terms_required": "Bạn phải đồng ý với các điều khoản và chính sách",
+  "unknown_error": "Trường này bắt buộc nhập"
 }

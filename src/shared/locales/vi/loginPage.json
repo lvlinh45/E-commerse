@@ -1,6 +1,13 @@
 {
-  "Login": "Đăng nhập",
-  "Email Address": "Địa chỉ Email",
-  "Password": "Mật khẩu",
-  "LOG IN": "Đăng nhập"
+  "login": "Đăng nhập",
+  "email_address": "Địa chỉ email",
+  "password": "Mật khẩu",
+  "log_in": "ĐĂNG NHẬP",
+  "incorrect_login_info": "Thông tin đăng nhập không chính xác",
+  "invalid_email": "Email không hợp lệ",
+  "email_required": "Email là bắt buộc",
+  "password_min_length": "Mật khẩu phải có ít nhất 6 ký tự",
+  "password_required": "Mật khẩu là bắt buộc",
+  "login_successful": "Đăng nhập thành công!",
+  "welcome": "Chào mừng"
 }

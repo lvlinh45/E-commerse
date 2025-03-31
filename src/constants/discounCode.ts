@@ -1,10 +1,5 @@
-interface IDiscountCode {
-  code: string;
-  discountAmount: number;
-  description: string;
-  minOrder: number;
-  expiry: string;
-}
+import { IDiscountCode } from "../assets/types/Discount";
+
 export const discountCodes: IDiscountCode[] = [
   {
     code: "SALE10",
@@ -38,6 +33,13 @@ export const discountCodes: IDiscountCode[] = [
     code: "VIP30",
     discountAmount: 150000,
     description: "Giảm 150,000đ cho khách hàng VIP",
+    minOrder: 0,
+    expiry: "2025-09-30",
+  },
+  {
+    code: "FRIEND",
+    discountAmount: 1_000_000,
+    description: "Giảm 1,000,000đ cho khách hàng Friend",
     minOrder: 0,
     expiry: "2025-09-30",
   },

@@ -4,75 +4,21 @@ import { ILocation } from "../../assets/types/Location";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {
-  loadDistricts,
-  loadProvinces,
-  loadWards,
-} from "../../shared/i18n/utils";
+import { loadDistricts, loadProvinces, loadWards } from "../../shared/utils";
 import { Product } from "../../assets/types/Products";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
-interface IDiscountCode {
-  code: string;
-  discountAmount: number;
-  description: string;
-  minOrder: number;
-  expiry: string;
-}
-
-const discountCodes: IDiscountCode[] = [
-  {
-    code: "SALE10",
-    discountAmount: 50000,
-    description: "Giảm 50,000đ cho đơn hàng từ 500,000đ trở lên",
-    minOrder: 500000,
-    expiry: "2025-12-31",
-  },
-  {
-    code: "SALE15",
-    discountAmount: 75000,
-    description: "Giảm 75,000đ cho đơn hàng từ 1,000,000đ trở lên",
-    minOrder: 1000000,
-    expiry: "2025-11-30",
-  },
-  {
-    code: "SAVE20",
-    discountAmount: 100000,
-    description: "Giảm 100,000đ cho đơn hàng từ 2,000,000đ trở lên",
-    minOrder: 2000000,
-    expiry: "2025-10-31",
-  },
-  {
-    code: "OFF5",
-    discountAmount: 25000,
-    description: "Giảm 25,000đ cho mọi đơn hàng",
-    minOrder: 0,
-    expiry: "2025-12-31",
-  },
-  {
-    code: "VIP30",
-    discountAmount: 150000,
-    description: "Giảm 150,000đ cho khách hàng VIP",
-    minOrder: 0,
-    expiry: "2025-09-30",
-  },
-];
+import { discountCodes } from "../../constants/discounCode";
 
 const schema = yup.object().shape({
-  email: yup
-    .string()
-    .email("Invalid email address")
-    .required("Email is required"),
+  email: yup.string().email("invalid_email").required("email_required"),
   firstName: yup.string().optional(),
-  lastName: yup.string().required("Last name is required"),
-  address: yup.string().required("Address is required"),
-  province: yup.string().required("Province is required"),
-  district: yup.string().required("District is required"),
-  village: yup.string().required("Village is required"),
-  agreeTerms: yup
-    .boolean()
-    .oneOf([true], "You must agree to the terms and policies"),
+  lastName: yup.string().required("last_name_required"),
+  address: yup.string().required("address_required"),
+  province: yup.string().required("province_required"),
+  district: yup.string().required("district_required"),
+  village: yup.string().required("village_required"),
+  agreeTerms: yup.boolean().oneOf([true], "agree_terms_required"),
 });
 
 const CheckoutPage = () => {
@@ -111,12 +57,10 @@ const CheckoutPage = () => {
 
   const [orderSuccess, setOrderSuccess] = useState<boolean>(false);
   const [ship, setShip] = useState<number>(0);
-  console.log("TCL: CheckoutPage -> ship", ship);
 
-  // State cho discount code
-  const [discountInput, setDiscountInput] = useState("");
-  const [appliedDiscount, setAppliedDiscount] = useState(0);
-  const [discountError, setDiscountError] = useState("");
+  const [discountInput, setDiscountInput] = useState<string>("");
+  const [appliedDiscount, setAppliedDiscount] = useState<number>(0);
+  const [discountError, setDiscountError] = useState<string>("");
 
   const {
     control,
@@ -187,6 +131,7 @@ const CheckoutPage = () => {
     }
     setDiscountError("");
     setAppliedDiscount(foundDiscount.discountAmount);
+    setDiscountInput("");
   };
 
   if (orderSuccess) {
@@ -277,7 +222,9 @@ const CheckoutPage = () => {
             )}
           />
           {errors.email && (
-            <p style={{ color: "red" }}>{errors.email.message}</p>
+            <p className="checkout-error-yup">
+              {t(errors.email.message || "unknown_error")}
+            </p>
           )}
 
           <div className="checkout-heading--notification">
@@ -319,7 +266,9 @@ const CheckoutPage = () => {
               )}
             />
             {errors.province && (
-              <p style={{ color: "red" }}>{errors.province.message}</p>
+              <p className="checkout-error-yup">
+                {t(errors.province.message || "unknown_error")}
+              </p>
             )}
 
             <div
@@ -354,7 +303,9 @@ const CheckoutPage = () => {
                   )}
                 />
                 {errors.district && (
-                  <p style={{ color: "red" }}>{errors.district.message}</p>
+                  <p className="checkout-error-yup">
+                    {t(errors.district.message || "unknown_error")}
+                  </p>
                 )}
               </div>
 
@@ -376,7 +327,9 @@ const CheckoutPage = () => {
                   )}
                 />
                 {errors.village && (
-                  <p style={{ color: "red" }}>{errors.village.message}</p>
+                  <p className="checkout-error-yup">
+                    {t(errors.village.message || "unknown_error")}
+                  </p>
                 )}
               </div>
             </div>
@@ -408,7 +361,9 @@ const CheckoutPage = () => {
               />
             </div>
             {errors.lastName && (
-              <p style={{ color: "red" }}>{errors.lastName.message}</p>
+              <p className="checkout-error-yup">
+                {t(errors.lastName.message || "unknown_error")}
+              </p>
             )}
 
             <div>
@@ -425,7 +380,9 @@ const CheckoutPage = () => {
                 )}
               />
               {errors.address && (
-                <p style={{ color: "red" }}>{errors.address.message}</p>
+                <p className="checkout-error-yup">
+                  {t(errors.address.message || "unknown_error")}
+                </p>
               )}
             </div>
             <div className="checkout-heading--notification">
@@ -484,7 +441,9 @@ const CheckoutPage = () => {
             </label>
           </div>
           {errors.agreeTerms && (
-            <p style={{ color: "red" }}>{errors.agreeTerms.message}</p>
+            <p className="checkout-error-yup" style={{ marginTop: "8px" }}>
+              {t(errors.agreeTerms.message || "unknown_error")}
+            </p>
           )}
         </div>
         <button className="checkout-button" onClick={handleSubmit(onSubmit)}>
@@ -529,33 +488,42 @@ const CheckoutPage = () => {
           </div>
         ))}
 
-        <div className="checkout-discount">
-          <input
-            type="text"
-            className="checkout-input"
-            style={{ marginBottom: 0 }}
-            placeholder={t("Discount code or gift card")}
-            value={discountInput}
-            onChange={(e) => setDiscountInput(e.target.value)}
-          />
-          <button
-            className="checkout-discount--apply"
-            onClick={() => {
-              if (discountInput.trim() !== "") {
-                handleApplyDiscount();
-              }
-            }}
-            style={{
-              opacity: discountInput.trim() === "" ? 0.6 : 1,
-              cursor: discountInput.trim() === "" ? "not-allowed" : "pointer",
-            }}
-          >
-            {t("Apply")}
-          </button>
+        <div className="checkout-discount-wrapper">
+          <div className="checkout-discount">
+            <input
+              type="text"
+              className="checkout-input"
+              style={{ marginBottom: 0 }}
+              placeholder={t("Discount code or gift card")}
+              value={discountInput}
+              onChange={(e) => {
+                setDiscountInput(e.target.value);
+                if (e.target.value.trim() === "") {
+                  setDiscountError("");
+                }
+              }}
+            />
+            <button
+              className="checkout-discount--apply"
+              onClick={() => {
+                if (discountInput.trim() !== "") {
+                  handleApplyDiscount();
+                }
+              }}
+              style={{
+                opacity: discountInput.trim() === "" ? 0.6 : 1,
+                cursor: discountInput.trim() === "" ? "not-allowed" : "pointer",
+              }}
+            >
+              {t("Apply")}
+            </button>
+          </div>
+          {discountError && (
+            <p className="discountCode-error" style={{}}>
+              {discountError}
+            </p>
+          )}
         </div>
-        {discountError && (
-          <p style={{ color: "red", margin: 0 }}>{discountError}</p>
-        )}
 
         <div className="checkout-information">
           <div>
@@ -601,9 +569,10 @@ const CheckoutPage = () => {
           <div className="checkout-totalCost">
             <span>{t("Total")}</span>
             <span>
-              {(calculateTotal(cart) + ship - appliedDiscount).toLocaleString(
-                "de-DE"
-              )}{" "}
+              {Math.max(
+                0,
+                calculateTotal(cart) + ship - appliedDiscount
+              ).toLocaleString("de-DE")}{" "}
               ₫
             </span>
           </div>

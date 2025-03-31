@@ -8,7 +8,7 @@ import { loadDistricts, loadProvinces, loadWards } from "../../shared/utils";
 import { Product } from "../../assets/types/Products";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { discountCodes } from "../../constants/discounCode";
+import { IDiscountCode } from "../../assets/types/Discount";
 
 const schema = yup.object().shape({
   email: yup.string().email("invalid_email").required("email_required"),
@@ -23,6 +23,8 @@ const schema = yup.object().shape({
 
 const CheckoutPage = () => {
   const { t } = useTranslation("checkoutPage");
+  const savedVouchers = JSON.parse(localStorage.getItem("vouchers") || "");
+
   const navigate = useNavigate();
   const { cart, clearCart, calculateTotal } = useCart();
   const totalQuantity = cart.reduce(
@@ -88,8 +90,7 @@ const CheckoutPage = () => {
     });
   };
 
-  const onSubmit = (data: { email: string }) => {
-    console.log(data);
+  const onSubmit = () => {
     setOrderSuccess(true);
     clearCart();
   };
@@ -107,7 +108,9 @@ const CheckoutPage = () => {
 
   const handleApplyDiscount = () => {
     const code = discountInput.trim().toUpperCase();
-    const foundDiscount = discountCodes.find((dc) => dc.code === code);
+    const foundDiscount = savedVouchers.find(
+      (dc: IDiscountCode) => dc.code === code
+    );
     if (!foundDiscount) {
       setDiscountError(t("Invalid discount code"));
       setAppliedDiscount(0);
@@ -120,7 +123,7 @@ const CheckoutPage = () => {
       setAppliedDiscount(0);
       return;
     }
-    if (calculateTotal(cart) < foundDiscount.minOrder) {
+    if (calculateTotal(cart) < Number(foundDiscount.minOrder)) {
       setDiscountError(
         t("Order must be at least ") +
           foundDiscount.minOrder.toLocaleString("de-DE") +
@@ -130,7 +133,7 @@ const CheckoutPage = () => {
       return;
     }
     setDiscountError("");
-    setAppliedDiscount(foundDiscount.discountAmount);
+    setAppliedDiscount(Number(foundDiscount.discountAmount));
     setDiscountInput("");
   };
 
@@ -187,7 +190,11 @@ const CheckoutPage = () => {
           <div className="order-total">
             <span>{t("Total")}</span>
             <span>
-              {(calculateTotal(cloneCart) + ship).toLocaleString("de-DE")} ₫
+              {Math.max(
+                0,
+                calculateTotal(cart) + ship - appliedDiscount
+              ).toLocaleString("de-DE")}{" "}
+              ₫
             </span>
           </div>
         </div>
@@ -528,7 +535,7 @@ const CheckoutPage = () => {
         <div className="checkout-information">
           <div>
             <span>
-              {t("Subtotal")} · {totalQuantity} mặt hàng
+              {t("Subtotal")} · {totalQuantity} {t("commodity")}
             </span>
             <span style={{ fontWeight: 600 }}>
               {subtotal.toLocaleString("de-DE")} ₫
@@ -548,11 +555,11 @@ const CheckoutPage = () => {
               </span>
             </div>
           )}
-          {appliedDiscount > 0 && (
+          {Number(appliedDiscount) > 0 && (
             <div>
               <span>{t("Voucher")}</span>
               <span style={{ color: "red", fontWeight: 600 }}>
-                - {appliedDiscount.toLocaleString("de-DE")} ₫
+                - {Number(appliedDiscount).toLocaleString("de-DE")} ₫
               </span>
             </div>
           )}

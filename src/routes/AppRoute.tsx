@@ -13,6 +13,7 @@ import AdminAllProduct from "../pages/admin/adminAllProduct/AdminAllProduct";
 import { useEffect } from "react";
 import HeaderCheckout from "../layouts/headerCheckout";
 import LoginPage from "../pages/login";
+import AdminVoucher from "../pages/admin/adminVoucher/AdminVoucher";
 
 const AppRoute = () => {
   const { pathname } = useLocation();
@@ -43,6 +44,7 @@ const AppRoute = () => {
       >
         <Route index element={<AdminProduct />} />
         <Route path="products" element={<AdminAllProduct />} />
+        <Route path="voucher" element={<AdminVoucher />} />
       </Route>
     </Routes>
   );

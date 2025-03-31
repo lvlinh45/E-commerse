@@ -39,5 +39,6 @@
   "district_required": "District is required",
   "village_required": "Village is required",
   "agree_terms_required": "You must agree to the terms and policies",
-  "unknown_error": "This field is required"
+  "unknown_error": "This field is required",
+  "commodity": "commodity"
 }

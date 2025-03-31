@@ -39,5 +39,6 @@
   "district_required": "Quận/Huyện là bắt buộc",
   "village_required": "Xã/Phường là bắt buộc",
   "agree_terms_required": "Bạn phải đồng ý với các điều khoản và chính sách",
-  "unknown_error": "Trường này bắt buộc nhập"
+  "unknown_error": "Trường này bắt buộc nhập",
+  "commodity": "mặt hàng"
 }

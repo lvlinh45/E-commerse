@@ -7,6 +7,8 @@ import {
   SquareIcons,
   HamburgerIcon,
   LogOutIcon,
+  ProductIcons,
+  GiftIcons,
 } from "../../../assets/icons/Icons";
 import { accountAdmin } from "../../../constants/accountAdmin";
 import Swal from "sweetalert2";
@@ -17,7 +19,6 @@ const AdminSidebar = () => {
   const userIdParam = location.state?.userId;
 
   const storedUserId = localStorage.getItem("userId");
-  console.log("TCL: AdminSidebar -> storedUserId", storedUserId);
 
   useEffect(() => {
     if (userIdParam) {
@@ -119,8 +120,20 @@ const AdminSidebar = () => {
                     color: isActive ? "#2979ff" : "inherit",
                   })}
                 >
-                  <SquareIcons />
+                  <ProductIcons />
                   All Product
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/auth/admin/voucher"
+                  className="flex gap-2 font-medium hover:text-blue-400"
+                  style={({ isActive }) => ({
+                    color: isActive ? "#2979ff" : "inherit",
+                  })}
+                >
+                  <GiftIcons />
+                  Add Voucher
                 </NavLink>
               </li>
             </ul>

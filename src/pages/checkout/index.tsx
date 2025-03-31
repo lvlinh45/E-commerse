@@ -192,7 +192,7 @@ const CheckoutPage = () => {
             <span>
               {Math.max(
                 0,
-                calculateTotal(cart) + ship - appliedDiscount
+                calculateTotal(cloneCart) + ship - appliedDiscount
               ).toLocaleString("de-DE")}{" "}
               ₫
             </span>

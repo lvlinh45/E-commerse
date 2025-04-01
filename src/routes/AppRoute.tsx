@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import HeaderCheckout from "../layouts/headerCheckout";
 import LoginPage from "../pages/login";
 import AdminVoucher from "../pages/admin/adminVoucher/AdminVoucher";
+import ImageUploader from "../pages/uploadedImage/ImageUploader";
 
 const AppRoute = () => {
   const { pathname } = useLocation();
@@ -29,6 +30,7 @@ const AppRoute = () => {
         <Route path="/auth/login" element={<LoginPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/collection/all" element={<SeekingPage />} />
+        <Route path="/uploaded" element={<ImageUploader />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
       <Route path="/checkout" element={<HeaderCheckout />}>

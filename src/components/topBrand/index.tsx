@@ -13,7 +13,7 @@ const TopBrand = () => {
         <Text text={t("TOP_BRANDS")} classname="mb-3"></Text>
         <div className="top-brand">
           {imgTopBrand.map((brand) => (
-            <div onClick={() => navigate("/collection/all")}>
+            <div key={brand.id} onClick={() => navigate("/collection/all")}>
               <img
                 className="w-100"
                 key={brand.id}

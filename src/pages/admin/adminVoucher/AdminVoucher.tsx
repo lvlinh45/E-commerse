@@ -54,7 +54,6 @@ const AdminVoucher: React.FC = () => {
   };
 
   useEffect(() => {
-    // Set default value for expiry to 1 week from today
     setValue("expiry", getNextWeekDate());
 
     const savedVouchers = localStorage.getItem("vouchers");

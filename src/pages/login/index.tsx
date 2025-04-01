@@ -34,7 +34,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isAuth = JSON.parse(localStorage.getItem("auth") || "");
+    const isAuth = JSON.parse(localStorage.getItem("auth") || "false");
     if (isAuth) {
       navigate("/auth/admin");
     }

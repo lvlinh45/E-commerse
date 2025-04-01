@@ -43,6 +43,7 @@ const AdminVoucher: React.FC = () => {
     handleSubmit,
     formState: { errors },
     setValue,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -55,7 +56,6 @@ const AdminVoucher: React.FC = () => {
 
   useEffect(() => {
     setValue("expiry", getNextWeekDate());
-
     const savedVouchers = localStorage.getItem("vouchers");
     if (!savedVouchers) {
       localStorage.setItem("vouchers", JSON.stringify(discountCodes));
@@ -72,6 +72,13 @@ const AdminVoucher: React.FC = () => {
     setVouchersList(updatedVouchers);
     localStorage.setItem("vouchers", JSON.stringify(updatedVouchers));
     setOpenModal(false);
+    Swal.fire({
+      title: "Add voucher successfully!",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+    reset();
+    setValue("expiry", getNextWeekDate());
   };
 
   const handleOpenModal = () => setOpenModal(true);

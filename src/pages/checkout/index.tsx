@@ -9,6 +9,7 @@ import { Product } from "../../assets/types/Products";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { IDiscountCode } from "../../assets/types/Discount";
+import Swal from "sweetalert2";
 
 const schema = yup.object().shape({
   email: yup.string().email("invalid_email").required("email_required"),
@@ -22,33 +23,19 @@ const schema = yup.object().shape({
 });
 
 const CheckoutPage = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      agreeTerms: true as boolean,
+    },
+  });
   const { t } = useTranslation("checkoutPage");
   const savedVouchers = JSON.parse(localStorage.getItem("vouchers") || "[]");
   const navigate = useNavigate();
-  const { cart, clearCart, calculateTotal } = useCart();
-  const totalQuantity = cart.reduce(
-    (total, item) => total + (item.quantity ?? 0),
-    0
-  );
-  const [cloneCart, setCloneCart] = useState<Product[]>([]);
-  useEffect(() => {
-    setCloneCart(cart);
-  }, [cloneCart]);
-
-  const subtotal = cart.reduce(
-    (total, item) => total + (item.price ?? 0) * (item.quantity ?? 0),
-    0
-  );
-
-  useEffect(() => {
-    if (
-      (!cloneCart && !cart) ||
-      (cart.length === 0 && cloneCart.length === 0)
-    ) {
-      navigate("/");
-    }
-  }, [cart, cloneCart, navigate]);
-
   const [provinces, setProvinces] = useState<ILocation[]>([]);
   const [districts, setDistricts] = useState<ILocation[]>([]);
   const [villages, setVillages] = useState<ILocation[]>([]);
@@ -63,16 +50,39 @@ const CheckoutPage = () => {
   const [appliedDiscount, setAppliedDiscount] = useState<number>(0);
   const [discountError, setDiscountError] = useState<string>("");
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      agreeTerms: true,
-    },
-  });
+  const { cart, clearCart, calculateTotal } = useCart();
+  const totalQuantity = cart.reduce(
+    (total, item) => total + (item.quantity ?? 0),
+    0
+  );
+
+  const [cloneCart, setCloneCart] = useState<Product[]>([]);
+  const totalCheckoutQuantity = cloneCart.reduce(
+    (total, item) => total + (item.quantity ?? 0),
+    0
+  );
+  const [voucherName, setVoucherName] = useState<string>("");
+  useEffect(() => {
+    setCloneCart(cart);
+  }, [cloneCart]);
+
+  const subtotal = cart.reduce(
+    (total, item) => total + (item.price ?? 0) * (item.quantity ?? 0),
+    0
+  );
+  const subtotalCloneCart = cloneCart.reduce(
+    (total, item) => total + (item.price ?? 0) * (item.quantity ?? 0),
+    0
+  );
+
+  useEffect(() => {
+    if (
+      (!cloneCart && !cart) ||
+      (cart.length === 0 && cloneCart.length === 0)
+    ) {
+      navigate("/");
+    }
+  }, [cart, cloneCart, navigate]);
 
   const handleProvinceChange = (provinceCode: string) => {
     setSelectedProvince(provinceCode);
@@ -110,11 +120,14 @@ const CheckoutPage = () => {
     const foundDiscount = savedVouchers.find(
       (dc: IDiscountCode) => dc.code === code
     );
+
     if (!foundDiscount) {
       setDiscountError(t("Invalid discount code"));
       setAppliedDiscount(0);
+      setVoucherName("");
       return;
     }
+    setVoucherName(foundDiscount.code);
     const currentDate = new Date();
     const expiryDate = new Date(foundDiscount.expiry);
     if (currentDate > expiryDate) {
@@ -134,6 +147,31 @@ const CheckoutPage = () => {
     setDiscountError("");
     setAppliedDiscount(Number(foundDiscount.discountAmount));
     setDiscountInput("");
+  };
+  const handleConfirmPayment = () => {
+    window.scrollTo(0, 0);
+    Swal.fire({
+      title: t("Are you sure?"),
+      text: t(
+        "Please confirm your order details before proceeding with payment."
+      ),
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: t("Yes, pay now"),
+      cancelButtonText: t("Cancel"),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: t("Order placed successfully!"),
+          text: t(
+            "Your order is being processed. Thank you for shopping with us!"
+          ),
+          icon: "success",
+          confirmButtonText: t("OK"),
+        });
+        onSubmit();
+      }
+    });
   };
 
   if (orderSuccess) {
@@ -162,8 +200,11 @@ const CheckoutPage = () => {
                   <p className="product-name">{item.name}</p>
                   <p className="product-price">
                     {(item.discount ?? 0) > 0 && (
-                      <>
-                        <span className="product-price-final">
+                      <div
+                        className="d-flex align-items-center gap-1"
+                        style={{ lineHeight: 1 }}
+                      >
+                        <span style={{ color: "#FF0000", fontWeight: 600 }}>
                           {((item.discount ?? 0) > 0
                             ? (item.price ?? 0) *
                               (1 - (item.discount ?? 0) / 100)
@@ -171,10 +212,13 @@ const CheckoutPage = () => {
                           ).toLocaleString("de-DE")}
                           đ
                         </span>
-                      </>
+                        <span className="item-price-discount">
+                          {(item?.price ?? 0).toLocaleString("de-DE")}đ
+                        </span>
+                      </div>
                     )}
                     {item.discount === 0 && (
-                      <span className="product-price-noDiscount">
+                      <span style={{ fontWeight: 600 }}>
                         {(item?.price ?? 0).toLocaleString("de-DE")}đ
                       </span>
                     )}
@@ -186,15 +230,68 @@ const CheckoutPage = () => {
               </div>
             ))}
           </div>
-          <div className="order-total">
-            <span>{t("Total")}</span>
-            <span>
-              {Math.max(
-                0,
-                calculateTotal(cloneCart) + ship - appliedDiscount
-              ).toLocaleString("de-DE")}{" "}
-              ₫
-            </span>
+          <div className="order-information">
+            <div>
+              <span>
+                {t("Subtotal")} · {totalCheckoutQuantity} {t("commodity")}
+              </span>
+              <span style={{ fontWeight: 600 }}>
+                {subtotalCloneCart.toLocaleString("de-DE")} ₫
+              </span>
+            </div>
+            {Number(subtotalCloneCart) - Number(calculateTotal(cloneCart)) ===
+            0 ? (
+              ""
+            ) : (
+              <div>
+                <span>{t("Total amount with discount")}</span>
+                <span style={{ color: "red", fontWeight: 600 }}>
+                  -{" "}
+                  {(
+                    Number(subtotalCloneCart) -
+                    Number(calculateTotal(cloneCart))
+                  ).toLocaleString("de-DE")}{" "}
+                  ₫
+                </span>
+              </div>
+            )}
+            {Number(appliedDiscount) > 0 && (
+              <div>
+                <span className="d-flex align-items-center gap-1">
+                  {t("Voucher")}
+                  {voucherName ? (
+                    <span style={{ fontWeight: "bold", color: "red" }}>
+                      ({voucherName})
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </span>
+                <span style={{ color: "red", fontWeight: 600 }}>
+                  - {Number(appliedDiscount).toLocaleString("de-DE")} ₫
+                </span>
+              </div>
+            )}
+            <div>
+              <span>{t("Shipping costs")}</span>
+              {ship !== 0 ? (
+                <span style={{ fontWeight: 600 }}>
+                  {ship.toLocaleString("de-DE")} ₫
+                </span>
+              ) : (
+                <span style={{ fontWeight: 600 }}>{t("FREE")}</span>
+              )}
+            </div>
+            <div className="checkout-totalCost">
+              <span>{t("Total")}</span>
+              <span>
+                {Math.max(
+                  0,
+                  calculateTotal(cloneCart) + ship - appliedDiscount
+                ).toLocaleString("de-DE")}{" "}
+                ₫
+              </span>
+            </div>
           </div>
         </div>
 
@@ -367,9 +464,18 @@ const CheckoutPage = () => {
               />
             </div>
             {errors.lastName && (
-              <p className="checkout-error-yup">
-                {t(errors.lastName.message || "unknown_error")}
-              </p>
+              <div
+                className="d-grid"
+                style={{ gridTemplateColumns: "repeat(2,1fr)" }}
+              >
+                <p></p>
+                <p
+                  style={{ marginLeft: "8px", marginTop: "4px" }}
+                  className="checkout-error-yup"
+                >
+                  {t(errors.lastName.message || "unknown_error")}
+                </p>
+              </div>
             )}
 
             <div>
@@ -452,7 +558,10 @@ const CheckoutPage = () => {
             </p>
           )}
         </div>
-        <button className="checkout-button" onClick={handleSubmit(onSubmit)}>
+        <button
+          className="checkout-button"
+          onClick={handleSubmit(handleConfirmPayment)}
+        >
           {t("Pay now")}
         </button>
       </div>
@@ -556,7 +665,16 @@ const CheckoutPage = () => {
           )}
           {Number(appliedDiscount) > 0 && (
             <div>
-              <span>{t("Voucher")}</span>
+              <span className="d-flex align-items-center gap-1">
+                {t("Voucher")}
+                {voucherName ? (
+                  <span style={{ fontWeight: "bold", color: "red" }}>
+                    ({voucherName})
+                  </span>
+                ) : (
+                  ""
+                )}
+              </span>
               <span style={{ color: "red", fontWeight: 600 }}>
                 - {Number(appliedDiscount).toLocaleString("de-DE")} ₫
               </span>

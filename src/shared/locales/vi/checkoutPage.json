@@ -22,8 +22,6 @@
   "Subtotal": "Tổng phụ",
   "Shipping costs": "Chi phí vận chuyển",
   "Total": "Tổng cộng",
-  "Order placed successfully!": "Đơn hàng đã được đặt thành công!",
-  "Your order is being processed. Thank you for shopping with us!": "Đơn hàng của bạn đang được xử lý. Cảm ơn bạn đã mua sắm với chúng tôi!",
   "Your order ID": "Mã đơn hàng của bạn",
   "Order Details": "Chi tiết đơn hàng",
   "Return to Home": "Trở về trang chủ",
@@ -40,5 +38,15 @@
   "village_required": "Xã/Phường là bắt buộc",
   "agree_terms_required": "Bạn phải đồng ý với các điều khoản và chính sách",
   "unknown_error": "Trường này bắt buộc nhập",
-  "commodity": "mặt hàng"
+  "commodity": "mặt hàng",
+  "Are you sure?": "Bạn có chắc chắn không?",
+  "Please confirm your order details before proceeding with payment.": "Vui lòng xác nhận thông tin đơn hàng của bạn trước khi tiến hành thanh toán.",
+  "Yes, pay now": "Có, thanh toán ngay",
+  "Cancel": "Hủy",
+  "Order placed successfully!": "Đơn hàng đã được đặt thành công!",
+  "Your order is being processed. Thank you for shopping with us!": "Đơn hàng của bạn đang được xử lý. Cảm ơn bạn đã mua sắm cùng chúng tôi!",
+  "OK": "OK",
+  "Discount code expired": "Mã giảm giá đã hết hạn",
+  "Order must be at least ": "Đơn hàng phải có giá trị tối thiểu là ",
+  " ₫ to use this discount code": " ₫ để sử dụng mã giảm giá này"
 }

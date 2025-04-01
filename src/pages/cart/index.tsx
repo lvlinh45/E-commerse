@@ -1,4 +1,4 @@
-import BreadScrumbs from "../../components/Universal/Breadscrumb";
+import Breadcrumb from "../../components/Universal/Breadscrumb";
 import CartItem from "./CartItem";
 import { useCart } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ const CartPage = () => {
 
   return (
     <>
-      <BreadScrumbs page={"Home"} destination={"Shopping Cart"} />
+      <Breadcrumb page={"Home"} destination={"Shopping Cart"} />
       {cart.length === 0 && (
         <>
           <div className="cartPage-emptyWrapper">

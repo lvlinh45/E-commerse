@@ -5,7 +5,7 @@ import EmblaCarousel from "../../../components/EmblaCarousel/EmblaCarousel";
 import { IconNotRatingStar, IconStar } from "../../../assets/icons/Icons";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-import BreadScrumbs from "../../../components/Universal/Breadscrumb";
+import Breadcrumb from "../../../components/Universal/Breadscrumb";
 import { useParams, useNavigate } from "react-router-dom";
 import { imgProduct } from "../../../constants/urlProduct";
 import { useCart } from "../../../context/CartContext";
@@ -100,7 +100,7 @@ const ProductDetailPage = () => {
 
   return (
     <>
-      <BreadScrumbs
+      <Breadcrumb
         page={"Home"}
         subPage={"Collection"}
         destination={product?.name ?? "Product"}

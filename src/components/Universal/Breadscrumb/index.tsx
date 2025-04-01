@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { useNavigate } from "react-router-dom";
 
-export default function BreadScrumbs({
+export default function Breadcrumb({
   page = "Home",
   subPage,
   destination,

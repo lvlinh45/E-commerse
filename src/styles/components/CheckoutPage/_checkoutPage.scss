@@ -332,6 +332,23 @@
                 font-size: 18px;
             }
         }
+        .order-information {
+            margin-top: 10px;
+            font-size: 16px;
+            div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 14px;
+            }
+            .checkout-totalCost {
+                span {
+                    color: #110a0a;
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+            }
+        }
     }
 
     .order-success-link {

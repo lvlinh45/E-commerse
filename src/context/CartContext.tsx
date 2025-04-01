@@ -63,28 +63,28 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
     return cart.reduce((total, item) => {
       const { id, price, quantity, discount } = item;
 
-      if (!id) return total;
+      if (!id || !price || (quantity ?? 0) <= 0) return total;
+
       if (!productCounts[id]) {
         productCounts[id] = 0;
       }
+
       let priceToAdd = 0;
-      let discountApplied = false;
 
-      for (let i = 0; i < (quantity ?? 0); i++) {
-        if (productCounts[id] === 0 && discount && !discountApplied) {
-          priceToAdd = price! * (1 - discount / 100);
-          discountApplied = true;
-        } else {
-          priceToAdd = price!;
-        }
-
-        total += priceToAdd;
-        productCounts[id] += 1;
+      if (discount) {
+        priceToAdd = price * (1 - discount / 100);
+      } else {
+        priceToAdd = price;
       }
+
+      total += priceToAdd * (quantity ?? 0);
+
+      productCounts[id] += quantity ?? 0;
 
       return total;
     }, 0);
   }, []);
+
   return (
     <CartContext.Provider
       value={{ cart, addToCart, removeFromCart, clearCart, calculateTotal }}

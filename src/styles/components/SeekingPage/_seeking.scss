@@ -140,6 +140,9 @@
         cursor: pointer;
     }
 }
+.sidebar-seeking .MuiPaper-root .css-19opgx6-MuiFormControlLabel-root {
+    align-items: center !important;
+}
 @media (min-width: 399px) {
     .seeking-listProduct {
         grid-template-columns: repeat(2, 1fr);

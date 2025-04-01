@@ -6,11 +6,12 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { useCart } from "../../context/CartContext";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const CartItem = () => {
-  const { cart, addToCart, removeFromCart, calculateTotal } = useCart();
+  const { cart, addToCart, removeFromCart } = useCart();
   const { t } = useTranslation("cartPage");
-
+  const navigate = useNavigate();
   const handleQuantityChange = (id: number, change: number) => {
     const item = cart.find((item) => item.id === id);
     if (item) {
@@ -45,19 +46,27 @@ const CartItem = () => {
         <List className="cart-top">
           {cart.map((item) => (
             <ListItem key={item.id} className="cart-item cartPage-item">
-              <div className="cart-imgWrapper">
+              <div
+                className="cart-imgWrapper"
+                onClick={() => navigate(`/products/${item.id}`)}
+              >
                 <img src={item.imageUrl} alt={item.name} />
               </div>
               <div className="cart-item-wrapper cartPage-item-wrapper">
                 <div className="cart-item-info">
-                  <div className="item-vendor">{item.vendor}</div>
-                  <div className="item-name">{item.name}</div>
+                  <div className="item-vendor">{item.brand}</div>
+                  <div
+                    className="item-name"
+                    onClick={() => navigate(`/products/${item.id}`)}
+                  >
+                    {item.name}
+                  </div>
                 </div>
-                <div className="d-flex item-custom">
+                <div className="d-flex item-custom" style={{ lineHeight: 1 }}>
                   <div className="item-price">
                     {(item.discount ?? 0) > 0 && (
                       <div className="d-flex flex-column">
-                        <span>
+                        <span style={{ marginBottom: "10px" }}>
                           {((item.discount ?? 0) > 0
                             ? (item.price ?? 0) *
                               (1 - (item.discount ?? 0) / 100)
@@ -65,7 +74,10 @@ const CartItem = () => {
                           ).toLocaleString("de-DE")}
                           đ
                         </span>
-                        <span className="item-price-discount">
+                        <span
+                          style={{ marginBottom: "10px" }}
+                          className="item-price-discount"
+                        >
                           {(item?.price ?? 0).toLocaleString("de-DE")}đ
                         </span>
                       </div>
@@ -99,7 +111,10 @@ const CartItem = () => {
                     </div>
                     <div className="cartItem-utils">
                       <p className="cartItem-total">
-                        {calculateTotal(cart).toLocaleString("de-DE")}đ
+                        {(
+                          (item?.price ?? 0) * (item?.quantity ?? 0)
+                        ).toLocaleString("de-DE")}
+                        đ
                       </p>
                       <button
                         className="remove-button"

@@ -63,13 +63,21 @@ const DrawerSiderBar: React.FC<{ open: boolean; onClose: () => void }> = ({
           <List className="cart-top">
             {cart.map((item) => (
               <ListItem key={item.id} className="cart-item">
-                <div className="cart-imgWrapper">
+                <div
+                  className="cart-imgWrapper"
+                  onClick={() => navigate(`/products/${item.id}`)}
+                >
                   <img src={item.imageUrl} alt={item.name} />
                 </div>
                 <div className="cart-item-wrapper">
                   <div className="cart-item-info">
                     <div className="item-vendor">{item.vendor}</div>
-                    <div className="item-name">{item.name}</div>
+                    <div
+                      className="item-name"
+                      onClick={() => navigate(`/products/${item.id}`)}
+                    >
+                      {item.name}
+                    </div>
                     <div className="item-price d-flex align-items-center gap-2 product-price">
                       {(item.discount ?? 0) > 0 && (
                         <>

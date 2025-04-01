@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SeekingProduct from "../../components/sidebar/seekingProduct";
 import SidebarSeeking from "../../components/sidebar/sidebarSeeking";
-import BreadScrumbs from "../../components/Universal/Breadscrumb";
+import Breadcrumb from "../../components/Universal/Breadscrumb";
 import { Filters } from "../../assets/types/Filters";
 
 const SeekingPage = () => {
@@ -17,7 +17,7 @@ const SeekingPage = () => {
 
   return (
     <>
-      <BreadScrumbs page={"Home"} destination={"Search Page"} />
+      <Breadcrumb page={"Home"} destination={"Search Page"} />
       <div className="seekingPage-container">
         <SidebarSeeking onFilterChange={handleFilterChange} />
         <SeekingProduct filters={filters} />

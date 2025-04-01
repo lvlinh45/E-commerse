@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { accountAdmin } from "../../constants/accountAdmin";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -33,6 +33,12 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const isAuth = JSON.parse(localStorage.getItem("auth") || "");
+    if (isAuth) {
+      navigate("/auth/admin");
+    }
+  }, [navigate]);
   const onSubmit = (data: FormData) => {
     const account = accountAdmin.find(
       (account) =>

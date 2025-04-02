@@ -18,7 +18,6 @@ const AdminProduct: React.FC = () => {
       brand: "",
       description: "",
       salePrice: "",
-      discount: 0,
       size: "",
       tags: "",
       imageUrl: [],
@@ -145,6 +144,11 @@ const AdminProduct: React.FC = () => {
               <input
                 {...register("salePrice", {
                   required: "Sale price is required",
+                  valueAsNumber: true,
+                  min: {
+                    value: 0,
+                    message: "Sale price must be greater than 0",
+                  },
                 })}
                 type="number"
                 id="sale-price"
@@ -156,18 +160,35 @@ const AdminProduct: React.FC = () => {
                 </p>
               )}
             </div>
+
             <div
               className="adminProduct-form-item "
               style={{ position: "relative" }}
             >
-              <label htmlFor="discount">Discount</label>
+              <label htmlFor="discount">Discount (%)</label>
               <input
                 type="number"
                 id="discount"
                 placeholder="Enter discount percentage"
-                {...register("discount", { required: "Discount is required" })}
+                {...register("discount", {
+                  required: "Discount is required",
+                  valueAsNumber: true,
+                  min: {
+                    value: 0,
+                    message: "Discount must be greater than 0",
+                  },
+                  max: {
+                    value: 100,
+                    message: "Discount must be lesser than 100",
+                  },
+                })}
               />
-              <div className="adminProduct-form-item--discount">%</div>
+              {/* <div className="adminProduct-form-item--discount">%</div> */}
+              {errors.discount && (
+                <p style={{ marginBottom: 0, marginTop: "3px", color: "red" }}>
+                  {errors.discount.message}
+                </p>
+              )}
             </div>
 
             <div className="adminProduct-form-item">

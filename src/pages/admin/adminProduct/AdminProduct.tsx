@@ -3,12 +3,14 @@ import { useForm } from "react-hook-form";
 import "./adminProduct.scss";
 import Swal from "sweetalert2";
 import { IFormInput } from "../../../assets/types/Products";
+import ImageUploader from "../../uploadedImage/ImageUploader";
 
 const AdminProduct: React.FC = () => {
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<IFormInput>({
     defaultValues: {
@@ -19,13 +21,23 @@ const AdminProduct: React.FC = () => {
       discount: 0,
       size: "",
       tags: "",
-      imageUrl: "",
+      imageUrl: [],
       visibility: "",
       publishCategory: "",
     },
   });
-  const storedProduct = JSON.parse(localStorage.getItem("products") ?? "");
+
+  const storedProduct = JSON.parse(localStorage.getItem("products") ?? "[]");
   const onSubmit = (data: IFormInput) => {
+    if (!data.imageUrl) {
+      Swal.fire({
+        title: "Error!",
+        text: "Product image is required!",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
     const newProduct = {
       id: storedProduct.length + 1,
       category: data.publishCategory,
@@ -222,22 +234,7 @@ const AdminProduct: React.FC = () => {
                 </p>
               )}
             </div>
-            <div className="adminProduct-form-item">
-              <label htmlFor="product-image">Product Image</label>
-              <input
-                {...register("imageUrl", {
-                  required: "Product Image is required",
-                })}
-                type="text"
-                id="product-image"
-                placeholder="Enter image URL"
-              />
-              {errors.imageUrl && (
-                <p style={{ marginBottom: 0, marginTop: "3px", color: "red" }}>
-                  {errors.imageUrl.message}
-                </p>
-              )}
-            </div>
+            <ImageUploader setValue={setValue} errors={errors} />
           </div>
 
           <div className="adminProduct-bottom">

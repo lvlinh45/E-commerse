@@ -7,8 +7,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Kids' Zoggs Zoggy Armbands - Multicolor",
-    imageUrl:
+    imageUrl: [
       "//cdn.shopify.com/s/files/1/0456/5070/6581/files/ly_465387-en_1714721240.jpg?v=1695279317&width=1000",
+    ],
     description: "Comfortable and stylish armbands for kids.",
     numberOfReviews: 3,
     price: 950000,
@@ -24,8 +25,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "XL",
     name: "Women's Speedo Biofuse 2.0 Goggle - Purple",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/8-00377516738-1.jpg?v=1702021267&width=1000",
+    ],
     description: "High-performance goggles for women with Biofuse technology.",
     numberOfReviews: 3,
     price: 940000,
@@ -41,8 +43,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "S",
     name: "Kids' Speedo Biofuse 2.0 Goggle - Blue",
-    imageUrl:
+    imageUrl: [
       "//cdn.shopify.com/s/files/1/0456/5070/6581/files/ly_8-00336315946-1_1704438036.jpg?v=1704275084&width=1000",
+    ],
     description: "Comfortable and durable goggles for kids.",
     numberOfReviews: 3,
     price: 950000,
@@ -58,8 +61,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "XLL",
     name: "Men's Under Armour Sportstyle Nylon Cap - Orange",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1389692-847-1.jpg?v=1739428860&width=1000",
+    ],
     description: "Stylish and breathable nylon cap for men.",
     numberOfReviews: 3,
     price: 950000,
@@ -75,8 +79,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "M",
     name: "Women's Columbia Zero Rules™ Light Short Sleeve Crew T-Shirt",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/2131722010-1.jpg?v=1741765140&width=1000",
+    ],
     description: "Lightweight and comfortable short-sleeve T-shirt for women.",
     numberOfReviews: 3,
     price: 950000,
@@ -92,8 +97,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "M",
     name: "Men's Under Armour Project Rock Duffel Bag - Black",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1376459-002-1.jpg?v=1721813483&width=1000",
+    ],
     description: "Spacious and durable duffel bag for men.",
     numberOfReviews: 3,
     price: 950000,
@@ -109,8 +115,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "XS",
     name: "Unisex Hoka Cielo X1 2.0 Running Shoes - White",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1162053-FLV-1.jpg?v=1739789372&width=1000",
+    ],
     description: "High-performance running shoes for both men and women.",
     numberOfReviews: 3,
     price: 6199000,
@@ -126,8 +133,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "XXL",
     name: "Women's Hoka Clifton 10 Running Shoes - Multicolor",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1162031-FGZ-1.jpg?v=1739788921&width=1000",
+    ],
     description: "Comfortable running shoes for women with vibrant colors.",
     numberOfReviews: 3,
     price: 3250000,
@@ -143,8 +151,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "M",
     name: "Men's Hoka Clifton 10 Running Shoes - Multicolor",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1162030-FGZ-1.jpg?v=1739788832&width=1000",
+    ],
     description: "Performance running shoes designed for men.",
     numberOfReviews: 3,
     price: 950000,
@@ -160,8 +169,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "XXL",
     name: "Women's Hoka Bondi 9 Running Shoes - White",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1162012-FNF-1.jpg?v=1739530296&width=1000",
+    ],
     description: "Durable running shoes with great comfort for women.",
     numberOfReviews: 3,
     price: 950000,
@@ -177,8 +187,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Women's Speedo Placement Swimsuit - Navy",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/8-00376817707-1.jpg?v=1723188160&width=1000",
+    ],
     description:
       "A comfortable swimsuit designed for women with a stylish navy color.",
     numberOfReviews: 3,
@@ -195,8 +206,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "M",
     name: "Men's Teva Hurricane Xlt2 Sandals - Black",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1019234-MHD-1.jpg?v=1708328209&width=1000",
+    ],
     description:
       "Durable and versatile sandals perfect for outdoor adventures.",
     numberOfReviews: 4,
@@ -213,8 +225,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "XL",
     name: "Men's Teva Original Universal Sandals - Gray",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1004006-RPS-1.jpg?v=1711528592&width=1000",
+    ],
     description:
       "Classic sandals offering comfort and support for everyday wear.",
     numberOfReviews: 6,
@@ -231,8 +244,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Speedo Biofuse 2.0 Goggle - Gray",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/products/8-002331A273-1.jpg?v=1670386713&width=2000",
+    ],
     description:
       "High-performance goggles for swimming with advanced Biofuse technology.",
     numberOfReviews: 8,
@@ -248,8 +262,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Women's Speedo Hydraline Colourblock Zip Sunprotect Swimsuit - Black",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/8-00442017373-1.jpg?v=1724987660&width=1000",
+    ],
     description:
       "Sunprotect swimsuit designed for comfort and durability in the water.",
     numberOfReviews: 13,
@@ -265,8 +280,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Men's Under Armour Project Rock Duffel Bag - Black",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1376459-002-1.jpg?v=1721813483&width=1000",
+    ],
     description:
       "A rugged and spacious duffel bag for men, perfect for the gym or travel.",
     numberOfReviews: 5,
@@ -282,8 +298,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Unisex Hoka Cielo X1 2.0 Running Shoes - White",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1162053-FLV-1.jpg?v=1739789372&width=1000",
+    ],
     description:
       "High-performance running shoes designed for both men and women.",
     numberOfReviews: 3,
@@ -299,8 +316,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Men's Under Armour Sportstyle Nylon Cap - Orange",
-    imageUrl:
+    imageUrl: [
       "//cdn.shopify.com/s/files/1/0456/5070/6581/files/ly_8-00336315946-1_1704438036.jpg?v=1704275084&width=1000",
+    ],
     description:
       "Stylish and comfortable nylon cap for men with an adjustable fit.",
     numberOfReviews: 12,
@@ -316,8 +334,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Women's Columbia Zero Rules™ Light Short Sleeve Crew T-Shirt",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/2131722010-1.jpg?v=1741765140&width=1000",
+    ],
     description:
       "Light and breathable short-sleeve T-shirt, perfect for hot days.",
     numberOfReviews: 12,
@@ -333,8 +352,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Women's Hoka Clifton 10 Running Shoes - Multicolor",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1162031-FGZ-1.jpg?v=1739788921&width=1000",
+    ],
     description: "Comfortable running shoes for women with vibrant colors.",
     numberOfReviews: 3,
     price: 3250000,
@@ -349,8 +369,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Women's Speedo Placement Swimsuit - Navy",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/8-00376817707-1.jpg?v=1723188160&width=1000",
+    ],
     description:
       "A comfortable swimsuit designed for women with a stylish navy color.",
     numberOfReviews: 3,
@@ -366,8 +387,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Men's Teva Hurricane Xlt2 Sandals - Black",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1019234-MHD-1.jpg?v=1708328209&width=1000",
+    ],
     description:
       "Durable and versatile sandals perfect for outdoor adventures.",
     numberOfReviews: 4,
@@ -383,8 +405,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "M",
     name: "Men's Teva Hurricane Xlt2 Sandals - Black",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1361588-001-1.jpg?v=1700612903&width=2000",
+    ],
     description:
       "Comfortable sandals with excellent grip for outdoor activities.",
     numberOfReviews: 5,
@@ -400,8 +423,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Men's Teva Original Universal Sandals - Gray",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1004006-RPS-1.jpg?v=1711528592&width=1000",
+    ],
     description:
       "Classic sandals offering comfort and support for everyday wear.",
     numberOfReviews: 6,
@@ -417,8 +441,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Speedo Biofuse 2.0 Goggle - Gray",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/products/8-002331A273-1.jpg?v=1670386713&width=2000",
+    ],
     description:
       "High-performance goggles for swimming with advanced Biofuse technology.",
     numberOfReviews: 8,
@@ -434,8 +459,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Women's Speedo Hydraline Colourblock Zip Sunprotect Swimsuit - Black",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/8-00442017373-1.jpg?v=1724987660&width=1000",
+    ],
     description:
       "Sunprotect swimsuit designed for comfort and durability in the water.",
     numberOfReviews: 13,
@@ -451,8 +477,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Men's Under Armour Project Rock Duffel Bag - Black",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1376459-002-1.jpg?v=1721813483&width=1000",
+    ],
     description:
       "A rugged and spacious duffel bag for men, perfect for the gym or travel.",
     numberOfReviews: 5,
@@ -468,8 +495,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Unisex Hoka Cielo X1 2.0 Running Shoes - White",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/1162053-FLV-1.jpg?v=1739789372&width=1000",
+    ],
     description:
       "High-performance running shoes designed for both men and women.",
     numberOfReviews: 3,
@@ -485,8 +513,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Men's Under Armour Sportstyle Nylon Cap - Orange",
-    imageUrl:
+    imageUrl: [
       "//cdn.shopify.com/s/files/1/0456/5070/6581/files/ly_8-00336315946-1_1704438036.jpg?v=1704275084&width=1000",
+    ],
     description:
       "Stylish and comfortable nylon cap for men with an adjustable fit.",
     numberOfReviews: 12,
@@ -502,8 +531,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Women's Columbia Zero Rules™ Light Short Sleeve Crew T-Shirt",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/2131722010-1.jpg?v=1741765140&width=1000",
+    ],
     description:
       "Light and breathable short-sleeve T-shirt, perfect for hot days.",
     numberOfReviews: 12,
@@ -519,8 +549,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Adidas Arsenal Third Club Ball 4-5 - Blue",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/IX4034-1.jpg?v=1722920156&width=1000",
+    ],
     description:
       "A comfortable swimsuit designed for women with a stylish navy color.",
     numberOfReviews: 3,
@@ -536,8 +567,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Adidas Messi Mini Ball - Yellow",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/IX4071-1.jpg?v=1721812011&width=1000",
+    ],
     description: "A mini ball designed for Messi fans.",
     numberOfReviews: 3,
     price: 950000,
@@ -552,8 +584,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Nike Mercurial Fade Football - White",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/FB2983-103-1.jpg?v=1721988904&width=1000",
+    ],
     description: "A high-performance football for serious players.",
     numberOfReviews: 3,
     price: 950000,
@@ -568,8 +601,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Nike Premier League Heritage Seitiro Football - White",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/HQ0336-100-1.jpg?v=1740736596&width=1000",
+    ],
     description: "Official Premier League ball for all levels of play.",
     numberOfReviews: 3,
     price: 950000,
@@ -584,8 +618,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Nike Premier League Heritage Ordem 3 Football - Red",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/HQ0325-100-1.jpg?v=1740736574&width=1000",
+    ],
     description: "The official ball of the Premier League.",
     numberOfReviews: 3,
     price: 950000,
@@ -600,8 +635,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Nike Mercurial Lite Shinguards - Multicolor",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/DN3611-850-1.jpg?v=1740566168&width=1000",
+    ],
     description: "Lightweight and comfortable shinguards for all players.",
     numberOfReviews: 3,
     price: 950000,
@@ -616,8 +652,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Men's Adidas Real Madrid 24/25 Home Jersey - White",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/IU5011-1.jpg?v=1717756428&width=1000",
+    ],
     description: "Official Real Madrid home jersey for the 24/25 season.",
     numberOfReviews: 3,
     price: 950000,
@@ -632,8 +669,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Men's Nike Zoom Vapor 16 Academy Fg/Mg Firmground Football Boots - Red",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/FQ8374-800-1.jpg?v=1737453543&width=1000",
+    ],
     description: "High-performance football boots designed for firm ground.",
     numberOfReviews: 3,
     price: 950000,
@@ -648,8 +686,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Men's Nike Legend 10 Academy Tf Football Boots - Orange",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/DV4342-800-1.jpg?v=1737452840&width=1000",
+    ],
     description: "Classic football boots for training on turf fields.",
     numberOfReviews: 3,
     price: 950000,
@@ -664,8 +703,9 @@ export const imgProduct: Product[] = [
     quantity: 9,
     size: "L",
     name: "Men's Nike Legend 10 Academy Fg/Mg Firmground Football Boots - Orange",
-    imageUrl:
+    imageUrl: [
       "//supersports.com.vn/cdn/shop/files/DV4337-800-1.jpg?v=1737452814&width=1000",
+    ],
     description: "Durable football boots designed for firm ground play.",
     numberOfReviews: 3,
     price: 950000,

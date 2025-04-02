@@ -27,7 +27,11 @@ const BrandItem = ({
           alt=""
           className="brandItem-frame"
         />
-        <img className="brandItem-imgPrimary" src={imageUrl} alt={name} />
+        <img
+          className="brandItem-imgPrimary"
+          src={Array.isArray(imageUrl) ? imageUrl[0] : imageUrl}
+          alt={name}
+        />
         {(status === "new" || discount !== 0) && (
           <div
             className={`brandItem-status ${

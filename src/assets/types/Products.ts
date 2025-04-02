@@ -1,7 +1,7 @@
 export interface Product {
   id?: number;
   name: string;
-  imageUrl?: string;
+  imageUrl?: string[];
   price?: number;
   description?: string;
   category?: string;
@@ -32,7 +32,7 @@ export interface IFormInput {
   discount: number;
   size: string;
   tags: string;
-  imageUrl: string;
+  imageUrl: string[];
   visibility: string;
   publishCategory: string;
 }

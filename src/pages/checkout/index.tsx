@@ -192,7 +192,11 @@ const CheckoutPage = () => {
             {cloneCart.map((item) => (
               <div className="order-product" key={item.id}>
                 <img
-                  src={item.imageUrl}
+                  src={
+                    Array.isArray(item.imageUrl)
+                      ? item.imageUrl[0]
+                      : item.imageUrl
+                  }
                   alt={item.name}
                   className="product-image"
                 />
@@ -571,7 +575,14 @@ const CheckoutPage = () => {
           <div className="checkout-product" key={item.id}>
             <div className="d-flex" style={{ gap: "18px" }}>
               <div className="checkout-wrapperImg">
-                <img src={item.imageUrl} alt={item.name} />
+                <img
+                  src={
+                    Array.isArray(item.imageUrl)
+                      ? item.imageUrl[0]
+                      : item.imageUrl || ""
+                  }
+                  alt={item.name}
+                />
                 <p>{item.quantity}</p>
               </div>
               <div>

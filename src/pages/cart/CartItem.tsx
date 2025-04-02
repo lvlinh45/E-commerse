@@ -50,7 +50,14 @@ const CartItem = () => {
                 className="cart-imgWrapper"
                 onClick={() => navigate(`/products/${item.id}`)}
               >
-                <img src={item.imageUrl} alt={item.name} />
+                <img
+                  src={
+                    Array.isArray(item.imageUrl)
+                      ? item.imageUrl[0]
+                      : item.imageUrl
+                  }
+                  alt={item.name}
+                />
               </div>
               <div className="cart-item-wrapper cartPage-item-wrapper">
                 <div className="cart-item-info">

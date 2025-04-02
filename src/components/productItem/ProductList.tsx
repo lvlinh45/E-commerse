@@ -43,7 +43,14 @@ const ProductList = ({
             <div key={item.id}>
               <div>
                 <SwiperSlide>
-                  <ProductItem key={item.id} url={item.imageUrl}></ProductItem>
+                  <ProductItem
+                    key={item.id}
+                    url={
+                      Array.isArray(item.imageUrl)
+                        ? item.imageUrl.join(", ")
+                        : item.imageUrl
+                    }
+                  ></ProductItem>
                 </SwiperSlide>
               </div>
             </div>

@@ -165,7 +165,14 @@ const HeaderLayout = () => {
                         key={product.id}
                         onClick={() => handleProductClick(product?.id || 0)}
                       >
-                        <img src={product.imageUrl} alt={product.name} />
+                        <img
+                          src={
+                            Array.isArray(product.imageUrl)
+                              ? product.imageUrl[0]
+                              : product.imageUrl
+                          }
+                          alt={product.name}
+                        />
                         <div>
                           <p>{product.name}</p>
                           <p>

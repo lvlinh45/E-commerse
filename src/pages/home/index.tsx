@@ -22,6 +22,7 @@ const HomePage = () => {
           products={imgCollection.map((item) => ({
             ...item,
             name: "collection",
+            imageUrl: [item.imageUrl],
           }))}
           textHeading={t("NEW_COLLECTIONS")}
           showAll={t("SHOW_ALL")}
@@ -42,6 +43,7 @@ const HomePage = () => {
           products={imgShopSport.map((item) => ({
             ...item,
             name: "shopSport",
+            imageUrl: [item.imageUrl],
           }))}
           textHeading={t("FAVORITE_SPORT")}
           showAll={t("SHOW_ALL")}

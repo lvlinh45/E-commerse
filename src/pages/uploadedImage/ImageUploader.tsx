@@ -1,148 +1,82 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
+import "./_imageUploaded.scss";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ImageUploader: React.FC<{ setValue: any; errors: any }> = ({
+  setValue,
+  errors,
+}) => {
+  const [images, setImages] = useState<(string | null)[]>([null, null, null]);
 
-const ImageUploader: React.FC = () => {
-  const [images, setImages] = useState<(File | null)[]>([null, null, null]);
-
-  // Hàm xử lý khi người dùng chọn ảnh
   const onDrop = (acceptedFiles: File[], index: number) => {
-    const updatedImages = [...images];
-    updatedImages[index] = acceptedFiles[0]; // Lưu ảnh vào vị trí tương ứng
-    setImages(updatedImages); // Cập nhật danh sách ảnh
-  };
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
 
-  // Hàm xóa ảnh
-  const handleDeleteImage = (index: number) => {
-    const updatedImages = [...images];
-    updatedImages[index] = null; // Đặt lại vùng này thành null (vùng upload ban đầu)
-    setImages(updatedImages); // Cập nhật lại danh sách ảnh
-  };
-
-  // Hàm lưu ảnh vào localStorage
-  const handleSave = () => {
-    // Chuyển ảnh thành Base64 và lưu vào localStorage
-    const base64Images = images.map((image) =>
-      image ? URL.createObjectURL(image) : null
-    );
-    localStorage.setItem("uploadedImages", JSON.stringify(base64Images));
-    alert("Ảnh đã được lưu vào localStorage!");
-  };
-
-  // Đọc ảnh từ localStorage khi component được mount
-  useEffect(() => {
-    const savedImages = localStorage.getItem("uploadedImages");
-    if (savedImages) {
-      const parsedImages = JSON.parse(savedImages);
-      const updatedImages = parsedImages.map((image: string) =>
-        image ? new File([image], "image", { type: "image/jpeg" }) : null
-      );
+    reader.onloadend = () => {
+      const imageUrl = reader.result as string;
+      const updatedImages = [...images];
+      updatedImages[index] = imageUrl;
       setImages(updatedImages);
+      setValue(`imageUrl[${index}]`, imageUrl);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
     }
-  }, []);
+  };
 
-  return (
-    <div>
-      <h1>Tải lên tối đa 3 ảnh</h1>
+  const handleDelete = (index: number) => {
+    const updatedImages = [...images];
+    updatedImages[index] = null;
+    setImages(updatedImages);
+    setValue(`imageUrl[${index}]`, null);
+  };
 
-      {/* Hiển thị 3 vùng upload ảnh */}
-      <div style={{ display: "flex", gap: "20px" }}>
-        {images.map((file, index) => (
-          <div
-            key={index}
-            style={{ position: "relative", width: "120px", height: "120px" }}
-          >
-            {/* Nếu có ảnh, hiển thị ảnh đó, nếu không có ảnh thì hiển thị vùng drop */}
-            {file ? (
-              <img
-                src={URL.createObjectURL(file)} // Tạo URL tạm thời cho ảnh
-                alt={`Uploaded ${index}`}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                  border: "1px solid #ddd",
-                }}
-              />
-            ) : (
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  border: "2px dashed #007bff",
-                  borderRadius: "8px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                }}
-              >
-                <DropzoneArea onDrop={onDrop} index={index} />
-              </div>
-            )}
+  const ImageDropzone = (index: number) => {
+    const { getRootProps, getInputProps } = useDropzone({
+      onDrop: (acceptedFiles) => onDrop(acceptedFiles, index),
+      accept: { "image/*": [] },
+      multiple: false,
+    });
 
-            {/* Nút xóa ảnh */}
-            {file && (
-              <div
-                onClick={() => handleDeleteImage(index)}
-                style={{
-                  position: "absolute",
-                  top: "5px",
-                  right: "5px",
-                  backgroundColor: "#fff",
-                  borderRadius: "50%",
-                  width: "20px",
-                  height: "20px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  fontSize: "14px",
-                  color: "#ff0000",
-                  border: "1px solid #ff0000",
-                }}
-              >
-                X
-              </div>
-            )}
-          </div>
-        ))}
+    return (
+      <div {...getRootProps()} className="image-dropzone">
+        <input {...getInputProps()} />
+        {images[index] ? (
+          <>
+            <img src={images[index]} alt={`Uploaded Image ${index + 1}`} />
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(index);
+              }}
+              className="delete-icon"
+            >
+              X
+            </span>
+          </>
+        ) : (
+          <p>Upload Image {index + 1}</p>
+        )}
       </div>
-
-      {/* Nút save */}
-      <button
-        onClick={handleSave}
-        style={{
-          marginTop: "20px",
-          padding: "10px 20px",
-          backgroundColor: "#28a745",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
-        Save
-      </button>
-    </div>
-  );
-};
-
-// Component DropzoneArea cho từng vùng upload
-const DropzoneArea: React.FC<{
-  onDrop: (acceptedFiles: File[], index: number) => void;
-  index: number;
-}> = ({ onDrop, index }) => {
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop: (acceptedFiles: File[]) => onDrop(acceptedFiles, index),
-    accept: { "image/*": [] },
-    multiple: false, // Chỉ cho phép chọn một ảnh
-  });
+    );
+  };
 
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} style={{ display: "none" }} />
-      <p>Drop your images or selected click to browse</p>
+    <div className="admin-product-form-item">
+      <label htmlFor="product-image" style={{ fontWeight: "bold" }}>
+        Product Images
+      </label>
+      <div className="image-dropzone-container">
+        <div className="image-dropzone-left">{ImageDropzone(0)}</div>
+        <div className="image-dropzone-right">
+          {ImageDropzone(1)}
+          {ImageDropzone(2)}
+        </div>
+      </div>
+      {errors.imageUrl && (
+        <p className="error-message"> {errors.imageUrl.message}</p>
+      )}
     </div>
   );
 };

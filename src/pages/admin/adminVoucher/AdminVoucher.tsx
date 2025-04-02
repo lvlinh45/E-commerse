@@ -26,7 +26,6 @@ const schema = yup.object().shape({
   discountAmount: yup
     .number()
     .min(1, "Discount amount must be greater than 0")
-    .max(99, "Discount amount must be lesser than 100")
     .required("Discount amount is required"),
   description: yup.string().required("Description is required"),
   minOrder: yup

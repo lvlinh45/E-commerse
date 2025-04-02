@@ -118,7 +118,7 @@ const HeaderLayout = () => {
         >
           <img
             src="files/LOGO_SSP_RGB-02.jpg"
-            srcSet="//supersports.com.vn/cdn/shop/files/LOGO_SSP_RGB-02.jpg?v=1718952262&width=2082 768w, //supersports.com.vn/cdn/shop/files/LOGO_SSP_RGB-02.jpg?v=1718952262&width=2082 500w"
+            srcSet="https://www.centralretail.com/storage/brand/fashion/supersports/logo.png"
             alt="Logo"
             className="header-logo"
           />

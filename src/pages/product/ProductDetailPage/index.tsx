@@ -144,9 +144,10 @@ const ProductDetailPage = () => {
             {product.discount > 0 && (
               <>
                 <span className="product-price-final">
-                  {(product?.discount > 0
-                    ? (product.price ?? 0) * (1 - product?.discount / 100)
-                    : product?.price ?? 0
+                  {Math.ceil(
+                    product?.discount > 0
+                      ? (product.price ?? 0) * (1 - product?.discount / 100)
+                      : product?.price ?? 0
                   ).toLocaleString("de-DE")}
                   đ
                 </span>

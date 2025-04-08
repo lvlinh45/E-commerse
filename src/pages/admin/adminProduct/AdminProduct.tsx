@@ -230,7 +230,6 @@ const AdminProduct: React.FC = () => {
                 Cancel
               </button>
               <div>
-                <button type="submit">Save as Draft</button>
                 <button type="submit">Publish</button>
               </div>
             </div>

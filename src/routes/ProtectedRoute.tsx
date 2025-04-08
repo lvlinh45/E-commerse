@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
+import ProgressBar from "../components/progressBar/ProgressBar";
 
 type PrivateRouteProps = {
   children: ReactNode;
@@ -12,7 +13,12 @@ const ProtectedRoute = ({ children }: PrivateRouteProps) => {
     return <Navigate to="/" />;
   }
 
-  return <div>{children}</div>;
+  return (
+    <div>
+      <ProgressBar></ProgressBar>
+      {children}
+    </div>
+  );
 };
 
 export default ProtectedRoute;

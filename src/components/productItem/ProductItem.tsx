@@ -3,6 +3,7 @@ const ProductItem = ({ url }: { url?: string }) => {
     <div
       style={{
         width: "100%",
+        paddingRight: "16px",
       }}
     >
       <img

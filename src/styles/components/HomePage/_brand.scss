@@ -95,30 +95,6 @@
     }
 }
 
-.swiper {
-    overflow: hidden !important;
-    .swiper-button-next {
-        color: $black;
-        right: 0;
-        top: 50%;
-        transform: translateY(-150%);
-        &::after {
-            font-size: 18px;
-            font-weight: 600;
-        }
-    }
-    .swiper-button-prev {
-        color: $black;
-        left: 0;
-        top: 50%;
-        transform: translateY(-150%);
-        &::after {
-            font-size: 18px;
-            font-weight: 600;
-        }
-    }
-}
-
 @media (min-width: 1025px) {
     .brandItem-review {
         flex-direction: row !important;

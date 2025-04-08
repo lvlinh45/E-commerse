@@ -33,7 +33,6 @@
     "sass": "^1.85.1",
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.17.2",
-    "swiper": "^10.3.1",
     "yup": "^1.6.1"
   },
   "devDependencies": {
@@ -42,7 +41,6 @@
     "@types/react-csv": "^1.1.10",
     "@types/react-dom": "^19.0.4",
     "@types/react-slick": "^0.23.13",
-    "@types/swiper": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.8.0",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",

@@ -1,6 +1,31 @@
 .homepage-wrapper {
     padding: 0 10px;
 }
+.slick-prev.slick-prev--brand::before,
+.slick-next.slick-next--brand::before,
+.slick-next:before {
+    display: none !important;
+}
+.brand-main {
+    .slick-initialized .slick-slide {
+        padding-right: 30px;
+    }
+    .slick-slider {
+        width: calc(100% + 31px);
+    }
+    .slick-prev,
+    .slick-next {
+        svg {
+            stroke: black;
+        }
+    }
+    .slick-prev {
+        left: -40px;
+    }
+    .slick-next {
+        right: 0px;
+    }
+}
 
 @media (min-width: 768px) {
     .homepage-wrapper {

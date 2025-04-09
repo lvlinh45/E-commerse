@@ -1,12 +1,8 @@
-import React from "react";
 import Slider from "react-slick";
 import ProductItem from "./ProductItem";
 import Text from "../Universal/text";
 import { ProductListProps } from "../../assets/types/Products";
 
-// Slick Carousel CSS
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { IconNext, IconPrev } from "../../assets/icons/Icons";
 
 const ProductList = ({

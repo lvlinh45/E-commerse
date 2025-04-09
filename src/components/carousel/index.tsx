@@ -13,12 +13,12 @@ const CarouselElement = () => {
     autoplaySpeed: 3000,
     nextArrow: (
       <div className="slick-prev">
-        <IconPrev size="40px"></IconPrev>
+        <IconPrev size="48px"></IconPrev>
       </div>
     ),
     prevArrow: (
       <div className="slick-next">
-        <IconNext size="40px"></IconNext>
+        <IconNext size="48px"></IconNext>
       </div>
     ),
   };

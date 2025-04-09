@@ -3,9 +3,6 @@ import Text from "../Universal/text";
 import BrandItem from "./BrandItem";
 import { ProductListProps } from "../../assets/types/Products";
 
-// Slick Carousel CSS
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { IconNext, IconPrev } from "../../assets/icons/Icons";
 
 const Brand = ({

@@ -70,7 +70,7 @@ const Reviewers = ({ reviews }: { reviews: Review[] }) => {
       setSubmitError(t("reviews.oneReview"));
       return;
     }
-    const newId = reviewsFromLocalStorage.length + 1;
+    const newId = reviewsFromLocalStorage?.length ?? 0 + 1;
     const newDate = new Date().toLocaleDateString();
     const reviewToSubmit: Review = {
       id: newId,
@@ -95,10 +95,10 @@ const Reviewers = ({ reviews }: { reviews: Review[] }) => {
       reviewsFromLocalStorage?.reduce(
         (acc, review) => acc + review?.rating,
         0
-      ) / reviewsFromLocalStorage.length
+      ) / reviewsFromLocalStorage?.length
     ).toFixed(2)
   );
-  const totalReviews = reviewsFromLocalStorage.length;
+  const totalReviews = reviewsFromLocalStorage?.length;
 
   return (
     <div className="review-container overflow-hidden">

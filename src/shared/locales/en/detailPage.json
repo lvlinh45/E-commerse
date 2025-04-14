@@ -5,5 +5,16 @@
   "Quantity": "Quantity",
   "Add to cart": "Add to cart",
   "Buy it now": "Buy it now",
-  "Related Items": "Related Items"
+  "Related Items": "Related Items",
+  "reviews": {
+    "CustomerReview": "Customer Review",
+    "AddAReview": "Add a Review",
+    "YourName": "Your Name",
+    "YourReview": "Your Review",
+    "SubmitReview": "Submit Review",
+    "Name_is_required": "Name is required",
+    "Review_is_required": "Review is required",
+    "Rating_is_required": "Rating is required",
+    "oneReview": "You can only submit one review."
+  }
 }

@@ -1,5 +1,15 @@
+export interface Review {
+  id: number;
+  name: string;
+  rating: number;
+  text: string;
+  date: string;
+  likes: number;
+  dislikes: number;
+}
 export interface Product {
   id?: number;
+  reviews?: Review[];
   name: string;
   imageUrl?: string[];
   price?: number;

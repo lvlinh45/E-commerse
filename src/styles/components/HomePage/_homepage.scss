@@ -1,9 +1,15 @@
 .homepage-wrapper {
     padding: 0 10px;
 }
+.slick-arrow.slick-next,
+.slick-arrow.slick-prev {
+    width: 30px !important;
+    height: 30px !important;
+}
 .slick-prev.slick-prev--brand::before,
 .slick-next.slick-next--brand::before,
-.slick-next:before {
+.slick-next:before,
+.slick-prev:before {
     display: none !important;
 }
 .brand-main {

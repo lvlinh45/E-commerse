@@ -16,8 +16,8 @@ const Brand = ({
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 5,
-    // autoplay: true,
-    autoplaySpeed: 1000,
+    autoplay: true,
+    autoplaySpeed: 3000,
     pauseOnHover: true,
     responsive: [
       {
@@ -43,12 +43,12 @@ const Brand = ({
       },
     ],
     nextArrow: (
-      <div className="slick-prev slick-prev--brand">
+      <div className="slick-prev slick-prev--brand z-3">
         <IconPrev></IconPrev>
       </div>
     ),
     prevArrow: (
-      <div className="slick-next slick-next--brand">
+      <div className="slick-next slick-next--brand z-3">
         <IconNext></IconNext>
       </div>
     ),

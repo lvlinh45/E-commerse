@@ -14,6 +14,7 @@ import DrawerSiderBar from "../../../components/drawer";
 import { useTranslation } from "react-i18next";
 import NotFoundPage from "../../notFound";
 import Brand from "../../../components/brand";
+import Reviewers from "../../../components/reviewer";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -26,6 +27,7 @@ const ProductDetailPage = () => {
   const product = products.find(
     (item: Product) => item.id === parseInt(id ?? "0")
   );
+
   const { cart, addToCart } = useCart();
 
   const [cartItems, setCartItems] = useState<Product[]>([]);
@@ -210,12 +212,15 @@ const ProductDetailPage = () => {
           </div>
         </div>
       </div>
-      <div className="product-detail-related">
+      <div className="product-detail-related overflow-hidden">
         <Brand
           textCenter="justify-content-center mt-4 mb-2"
           products={imgProduct.slice(21, 30)}
           textHeading={t("Related Items")}
         ></Brand>
+      </div>
+      <div style={{ padding: "24px 80px", marginTop: "24px" }}>
+        <Reviewers reviews={product.reviews}></Reviewers>
       </div>
     </>
   );

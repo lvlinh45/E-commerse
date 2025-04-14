@@ -5,5 +5,16 @@
   "Quantity": "Số lượng",
   "Add to cart": "Thêm vào giỏ hàng",
   "Buy it now": "Mua ngay",
-  "Related Items": "Sản phẩm liên quan"
+  "Related Items": "Sản phẩm liên quan",
+  "reviews": {
+    "CustomerReview": "Đánh giá sản phẩm",
+    "AddAReview": "Thêm đánh giá",
+    "YourName": "Tên của bạn",
+    "YourReview": "Đánh giá của bạn",
+    "SubmitReview": "Gửi đánh giá",
+    "Name_is_required": "Tên là bắt buộc",
+    "Review_is_required": "Nội dung đánh giá là bắt buộc",
+    "Rating_is_required": "Đánh giá là bắt buộc",
+    "oneReview": "Bạn chỉ có thể gửi một đánh giá."
+  }
 }

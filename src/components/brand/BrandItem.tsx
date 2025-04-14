@@ -20,7 +20,11 @@ const BrandItem = ({
   const { t } = useTranslation();
 
   return (
-    <div className="brand-item" onClick={() => navigate(`/products/${id}`)}>
+    <div
+      className="brand-item"
+      style={{ cursor: "pointer" }}
+      onClick={() => navigate(`/products/${id}`)}
+    >
       <div style={{ position: "relative", overflow: "hidden" }}>
         <img
           src="https://cdn.shopify.com/s/files/1/0456/5070/6581/files/1741510674992-138236095-frame_EN.png?v=1741510724"

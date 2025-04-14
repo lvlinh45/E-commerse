@@ -16,6 +16,7 @@ import {
 import "./reivewer.scss";
 import Text from "../Universal/text";
 import { useTranslation } from "react-i18next";
+import { Review } from "../../assets/types/Products";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("reviews.Name_is_required"),
@@ -24,16 +25,6 @@ const validationSchema = Yup.object().shape({
     .min(1, "reviews.Rating_is_required")
     .required("reviews.Rating_is_required"),
 });
-
-interface Review {
-  id: number;
-  name: string;
-  rating: number;
-  text: string;
-  date: string;
-  likes: number;
-  dislikes: number;
-}
 
 const Reviewers = ({ reviews }: { reviews: Review[] }) => {
   const { t } = useTranslation("detailPage");
@@ -103,7 +94,7 @@ const Reviewers = ({ reviews }: { reviews: Review[] }) => {
   return (
     <div className="review-container overflow-hidden">
       <Text
-        text={"Customer Review"}
+        text={t("reviews.CustomerReview")}
         textCenter={"justify-content-center mt-2 mb-2"}
         classname="mb-3"
       ></Text>
@@ -120,13 +111,13 @@ const Reviewers = ({ reviews }: { reviews: Review[] }) => {
                   )
                 )}
               </div>
-              <span>{averageRating} / 5</span>
+              <span>{Number(averageRating ?? 0)} / 5</span>
             </div>
             <p>{totalReviews} đánh giá</p>
           </div>
           <div className="review-wrapper__button">
             <button onClick={handleOpenModal}>
-              {t("reviews.CustomerReview")}
+              {t("reviews.WriteReview")}
             </button>
           </div>
         </div>

@@ -48,7 +48,7 @@ const ProductDetailPage = () => {
 
   const handleQuantityChange = (id: number, change: number) => {
     setCartItems((prevItems) =>
-      prevItems.map((item) =>
+      prevItems?.map((item) =>
         item.id === id
           ? { ...item, quantity: Math.max(1, (item.quantity ?? 0) + change) }
           : item
@@ -111,7 +111,7 @@ const ProductDetailPage = () => {
       <div className="product-detail-container">
         <div className="product-wrapper">
           <EmblaCarousel slides={SLIDES}>
-            {SLIDES.map((slide, index) => (
+            {SLIDES?.map((slide, index) => (
               <div key={index} className="relative">
                 <img
                   className="h-full rounded-2xl w-full aspect-square object-cover"

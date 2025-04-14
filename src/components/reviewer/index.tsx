@@ -132,7 +132,7 @@ const Reviewers = ({ reviews }: { reviews: Review[] }) => {
         </div>
 
         <div className="review-detail">
-          {reviewsFromLocalStorage.map((review) => (
+          {reviewsFromLocalStorage?.map((review) => (
             <div className="review-detail-item" key={review.id}>
               <div className="d-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center mb-1">
